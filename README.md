@@ -5,7 +5,11 @@
 > **Phạm vi ứng dụng:** Case study tại một phường tại Thành phố Hồ Chí Minh (Phường Sơn Kỳ, Quận Tân Phú cũ).
 
 ---
-
+## 👤 THÀNH VIÊN THỰC HIỆN
+**Vũ Thế Quang**
+**Nguyễn Ngọc Thảo Hiền**
+**Lê Nguyễn Tâm Đức**
+---
 ## 📌 1. Giới thiệu tổng quan (Overview)
 
 Thu gom rác thải sinh hoạt đô thị là bài toán thực tiễn quan trọng diễn ra hằng ngày. Việc quy hoạch lộ trình xe thu gom chưa tối ưu dẫn đến quãng đường di chuyển kéo dài, gia tăng chi phí nhiên liệu và phát thải khí nhà kính ($\text{CO}_2$).
