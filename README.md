@@ -1,8 +1,3 @@
-Dưới đây là nội dung file **`README.md`** chuẩn chỉ, chuyên nghiệp theo phong cách học thuật và mã nguồn mở (có sẵn bảng biểu, cấu trúc thư mục, quy trình thuật toán và phân công nhóm). 
-
-Bạn chỉ cần **Copy toàn bộ khối code bên dưới** và dán vào file `README.md` trên GitHub:
-
-```markdown
 # 🚛 GreenWaste Route AI: Urban Waste Collection Routing Optimization Using Hybrid SFO-VND
 
 > **Đề tài Nghiên cứu Khoa học Sinh viên**  
@@ -125,10 +120,4 @@ python -m venv .venv
 
 # 3. Cài đặt các thư viện phụ thuộc
 pip install -r requirements.txt
-```
-
----
-
-## 📜 7. Giấy phép (License)
-Dự án được phân phối dưới giấy phép [MIT License](LICENSE). Mã nguồn phục vụ mục đích nghiên cứu khoa học và học thuật.
 ```
