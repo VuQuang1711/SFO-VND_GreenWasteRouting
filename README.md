@@ -108,11 +108,11 @@ SFO-VND-Green-Waste-Routing/
 
 ## 👥 5. Thành viên nhóm nghiên cứu (Team Members)
 
-| STT | Họ và tên | MSSV / Lớp | Vai trò & Trách nhiệm chính |
+| STT | Họ và tên | Ngành | Vai trò & Trách nhiệm chính |
 | :---: | :--- | :---: | :--- |
-| 1 | **Vũ Thế Quang** *(Nhóm trưởng)* | KHDL | Phụ trách mô hình toán học, thuật toán lõi SFO, bộ giải mã Random-Key + Split Decoder và hàm đánh giá phát thải $\text{CO}_2$. |
-| 2 | **Lê Nguyễn Tâm Đức** | KHDL | Phụ trách mạng đường thực tế (OSMnx/NetworkX), xử lý dữ liệu bản đồ Case Study cấp phường và xây dựng giao diện hiển thị tuyến đường. |
-| 3 | **Nguyễn Ngọc Thảo Hiền** | KHDL | Phụ trách bộ dữ liệu Benchmark CVRPLIB, thuật toán Baseline đối chứng (Tham lam, GA) và thống kê kết quả thực nghiệm. |
+| 1 | **Vũ Thế Quang** *(Nhóm trưởng)* | Khoa Học Dữ Liệu | Phụ trách mô hình toán học, thuật toán lõi SFO, bộ giải mã Random-Key + Split Decoder và hàm đánh giá phát thải $\text{CO}_2$. |
+| 2 | **Lê Nguyễn Tâm Đức** | Khoa Học Dữ Liệu | Phụ trách mạng đường thực tế (OSMnx/NetworkX), xử lý dữ liệu bản đồ Case Study cấp phường và xây dựng giao diện hiển thị tuyến đường. |
+| 3 | **Nguyễn Ngọc Thảo Hiền** | Khoa Học Dữ Liệu | Phụ trách bộ dữ liệu Benchmark CVRPLIB, thuật toán Baseline đối chứng (Tham lam, GA) và thống kê kết quả thực nghiệm. |
 
 ---
 
