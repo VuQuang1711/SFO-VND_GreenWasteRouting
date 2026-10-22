@@ -1,4 +1,4 @@
-# 🚛 GreenWaste Route AI: Urban Waste Collection Routing Optimization Using Hybrid SFO-VND
+# 🚛 GreenWaste Route : Urban Waste Collection Routing Optimization Using Hybrid SFO-VND
 
 > **Đề tài Nghiên cứu Khoa học Sinh viên**  
 > **Tên đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị nhằm giảm chi phí và phát thải carbon bằng thuật toán Sailfish Optimizer lai Variable Neighborhood Descent.  
