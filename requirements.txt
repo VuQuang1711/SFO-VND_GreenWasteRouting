@@ -1,0 +1,6 @@
+# Danh sách thư viện phụ thuộc cho đề tài GreenWaste Route AI (SFO-VND)
+numpy>=1.24.0
+pandas>=2.0.0
+streamlit>=1.30.0
+networkx>=3.0
+folium>=0.15.0
