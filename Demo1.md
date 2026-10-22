@@ -2,7 +2,7 @@
 ### Đề tài: Tối ưu hóa Lộ trình Thu gom Rác thải Đô thị Xanh bằng Thuật toán Lai SFO-VND
 ---
 
-## 1. CÂY THƯ MỤC BAN ĐẦU (INITIAL REPOSITORY SKELETON)
+## 1. CÂY THƯ MỤC BAN ĐẦU (INITIAL REPOSITORY SKELETON)(21/10/2026)
 
 Trước khi triển khai, dự án chỉ có cấu trúc khung sườn (skeleton) với các thư mục rỗng và file `.gitkeep`:
 
@@ -38,7 +38,7 @@ Source/
 
 ---
 
-## 2. CÂY THƯ MỤC HOÀN CHỈNH HIỆN TẠI (CURRENT REPOSITORY TREE)
+## 2. CÂY THƯ MỤC HOÀN CHỈNH HIỆN TẠI (CURRENT REPOSITORY TREE)(23/10/2026)
 
 Toàn bộ các module thuật toán, dữ liệu, kiểm thử, bản đồ số GIS và ứng dụng web đã được hiện thực đầy đủ, đạt độ hoàn thiện cao:
 
