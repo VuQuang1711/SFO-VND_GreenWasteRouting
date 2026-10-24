@@ -1,0 +1,14 @@
+point_id,name,x,y,demand_kg,node_type
+0,Trạm trung chuyển Depot,0.0,0.0,0.0,depot
+1,Điểm thu gom 1,10.0,20.0,30.0,customer
+2,Điểm thu gom 2,20.0,30.0,45.0,customer
+3,Điểm thu gom 3,30.0,30.0,25.0,customer
+4,Điểm thu gom 4,30.0,10.0,40.0,customer
+5,Điểm thu gom 5,-20.0,20.0,35.0,customer
+6,Điểm thu gom 6,-30.0,30.0,50.0,customer
+7,Điểm thu gom 7,-40.0,20.0,20.0,customer
+8,Điểm thu gom 8,-30.0,10.0,30.0,customer
+9,Điểm thu gom 9,10.0,-20.0,25.0,customer
+10,Điểm thu gom 10,20.0,-30.0,45.0,customer
+11,Điểm thu gom 11,-10.0,-30.0,40.0,customer
+12,Điểm thu gom 12,-20.0,-20.0,35.0,customer

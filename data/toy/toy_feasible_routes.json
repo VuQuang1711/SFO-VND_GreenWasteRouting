@@ -1,0 +1,95 @@
+{
+  "instance_name": "Toy_12_Points_CVRP",
+  "total_routes": 3,
+  "total_cost": 309.36,
+  "validation_status": "ALL_FEASIBLE_WITNESS_VERIFIED",
+  "routes": [
+    {
+      "vehicle_id": "XE_01",
+      "customer_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "full_path": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "route_load_kg": 140.0,
+      "capacity_kg": 200.0,
+      "is_capacity_feasible": true,
+      "leg_distances": [
+        "0->1 (22.36)",
+        "1->2 (14.14)",
+        "2->3 (10.00)",
+        "3->4 (20.00)",
+        "4->0 (31.62)"
+      ],
+      "route_distance": 98.12,
+      "validation_status": "PASS"
+    },
+    {
+      "vehicle_id": "XE_02",
+      "customer_ids": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "full_path": [
+        0,
+        5,
+        6,
+        7,
+        8,
+        0
+      ],
+      "route_load_kg": 135.0,
+      "capacity_kg": 200.0,
+      "is_capacity_feasible": true,
+      "leg_distances": [
+        "0->5 (28.28)",
+        "5->6 (14.14)",
+        "6->7 (14.14)",
+        "7->8 (14.14)",
+        "8->0 (31.62)"
+      ],
+      "route_distance": 102.32,
+      "validation_status": "PASS"
+    },
+    {
+      "vehicle_id": "XE_03",
+      "customer_ids": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "full_path": [
+        0,
+        9,
+        10,
+        11,
+        12,
+        0
+      ],
+      "route_load_kg": 145.0,
+      "capacity_kg": 200.0,
+      "is_capacity_feasible": true,
+      "leg_distances": [
+        "0->9 (22.36)",
+        "9->10 (14.14)",
+        "10->11 (30.00)",
+        "11->12 (14.14)",
+        "12->0 (28.28)"
+      ],
+      "route_distance": 108.92,
+      "validation_status": "PASS"
+    }
+  ]
+}

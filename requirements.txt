@@ -1,6 +1,28 @@
-# Danh sách thư viện phụ thuộc cho đề tài GreenWaste Route AI (SFO-VND)
-numpy>=1.24.0
-pandas>=2.0.0
+# ==============================================================================
+# DANH SÁCH THƯ VIỆN PHỤ THUỘC - GREENWASTE ROUTE AI (SFO-VND)
+# Môi trường thực thi: Python 3.13.14 (Windows AMD64)
+# Khóa phiên bản Step 2: Chuẩn bị và khóa bộ dữ liệu (Data Layer Frozen)
+# ==============================================================================
+
+# Xử lý ma trận & Dữ liệu bảng
+numpy==2.4.5
+pandas==3.0.3
+
+# Đọc chuẩn quốc tế CVRPLIB (.vrp, .sol)
+vrplib==2.2.0
+
+# Không gian địa lý & Mạng lưới giao thông OpenStreetMap
+geopandas==1.2.0
+osmnx==2.1.1
+networkx==3.6.1
+shapely==2.2.0
+pyproj==3.8.0
+pyogrio==0.13.0
+
+# Trực quan hóa bản đồ & Vẽ biểu đồ đối chứng
+matplotlib==3.10.9
+folium==0.20.0
 streamlit>=1.30.0
-networkx>=3.0
-folium>=0.15.0
+
+# Kiểm thử tự động & Đảm bảo chất lượng (QA)
+pytest==9.0.3

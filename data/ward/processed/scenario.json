@@ -1,0 +1,23 @@
+{
+  "ward_name": "Phường Tây Thạnh, Quận Tân Phú, Thành phố Hồ Chí Minh",
+  "admin_source": "OpenStreetMap_Nominatim_Overpass_API_admin_level_8",
+  "seed": 42,
+  "demand_rule": "Phân tầng 2 nhóm: 35 điểm dân cư (35-75 kg, seed 42) + 15 điểm kinh doanh/thương mại (75-120 kg, seed 42)",
+  "K": 4,
+  "Q": 1500.0,
+  "units": {
+    "demand": "kg",
+    "distance": "meters",
+    "fleet_size": "vehicles"
+  },
+  "road_network_source": "OpenStreetMap_network_type_drive_buffer_400m",
+  "created_at": "2026-10-24T10:41:00+07:00",
+  "total_demand_kg": 3329.0,
+  "total_customers": 50,
+  "depot_id": 0,
+  "depot_location": {
+    "lat": 10.8122,
+    "lon": 106.6215,
+    "snapped_node": 4225472861
+  }
+}

@@ -248,7 +248,7 @@ if res is not None:
                     f"{g_cost:,.0f}",
                     f"{greedy_res['metrics']['active_vehicles']} xe",
                     f"{greedy_res['metrics']['capacity_utilization_pct']:.1f}%",
-                    f"{greedy_res['runtime']:.3f} s"
+                    f"{greedy_res['runtime_seconds']:.3f} s"
                 ],
                 "Phương án After (Đề xuất SFO-VND)": [
                     f"{h_dist:.2f}",

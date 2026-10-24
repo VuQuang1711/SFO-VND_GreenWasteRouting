@@ -71,25 +71,35 @@ Dự án này nghiên cứu và phát triển mô hình định tuyến phương
 
 ---
 
-## 📂 4. Cấu trúc thư mục dự án giả định trên module của Quang (Repository Structure)
+## 📂 4. Cấu trúc thư mục chuẩn hóa (Standardized Repository Structure)
+
+Dự án được chuẩn hóa cấu trúc theo Quy chuẩn Step 2 (phân định minh bạch giữa dữ liệu gốc `raw` và dữ liệu xử lý `processed`):
 
 ```text
-SFO-VND-Green-Waste-Routing/
+SFO-VND_GreenWasteRouting/
 ├── data/
-│   ├── benchmarks/            # 6 bộ dữ liệu chuẩn CVRPLIB (.vrp, .sol)
-│   ├── collection_points.csv  # Danh sách điểm thu gom (ID, Lat, Lon, Demand)
-│   └── distance_matrix.csv    # Ma trận khoảng cách mạng đường thực tế
+│   ├── benchmarks/
+│   │   └── raw/               # 6 bộ dữ liệu chuẩn CVRPLIB (.vrp, .sol)
+│   ├── toy/                   # Instance kiểm thử nhỏ 12 điểm (tính tay & test biên)
+│   │   ├── toy_12_points.csv
+│   │   ├── toy_instance.json
+│   │   └── toy_feasible_routes.json
+│   └── ward/
+│       ├── raw/               # Ranh giới GIS WGS84, mạng đường gốc road_network.graphml
+│       └── processed/         # 50 điểm thu gom, depot, vehicles, ma trận Dijkstra, scenario, feasible witness
 ├── src/
 │   ├── algorithms/
 │   │   ├── sfo.py             # Lõi thuật toán Sailfish Optimizer
 │   │   ├── vnd.py             # 3 toán tử: 2-opt, Relocate, Swap
 │   │   └── hybrid_sfo_vnd.py  # Thuật toán lai hoàn chỉnh SFO-VND
 │   ├── core/
+│   │   ├── cvrplib_loader.py  # Bộ nạp CVRPLIB chuẩn quốc tế dùng vrplib
+│   │   ├── data_loader.py     # Bộ nạp dữ liệu định tuyến phòng thủ
 │   │   ├── decoder.py         # Bộ giải mã Random-Key + Split Decoder
-│   │   ├── evaluator.py       # Hàm tính Fitness, Nhiên liệu & Phát thải CO2
-│   │   └── validator.py       # Hàm kiểm tra 4 điều kiện cứng của nghiệm
+│   │   ├── evaluator.py       # Hàm tính Fitness, Nhiên liệu & Phát thải CO2 (MEET/ISO 14064)
+│   │   └── validator.py       # Kiểm tra 4 điều kiện cứng của nghiệm
 │   ├── map/
-│   │   ├── extract_map.py     # Trích xuất đồ thị đường phố qua OSMnx
+│   │   ├── extract_map.py     # Trích xuất ranh giới, đồ thị có hướng, snap và Dijkstra
 │   │   └── route_mapper.py    # Ánh xạ tọa độ và vẽ tuyến lên Folium/Leaflet
 │   └── baselines/
 │       ├── greedy_baseline.py # Phương án Before (Nearest Neighbor)
@@ -97,9 +107,21 @@ SFO-VND-Green-Waste-Routing/
 ├── web/                       # Ứng dụng Web Demo
 │   ├── static/                # CSS, JS, Icon
 │   └── templates/             # Giao diện HTML bản đồ
-├── tests/                     # Unit test kiểm tra bộ giải mã và hàm mục tiêu
-├── docs/                      # Báo cáo Step 1, Step 2 và mô hình toán học
-├── requirements.txt           # Danh sách thư viện Python cần cài đặt
+├── tests/                     # Bộ kiểm thử tự động (57/57 tests PASS)
+│   ├── test_loader.py         # Kiểm tra nạp 6 bộ benchmark CVRPLIB
+│   ├── test_toy_instance.py   # Kiểm tra 8 ca biên cho instance nhỏ
+│   ├── validate_dataset.py    # Kiểm định 7 Suite chất lượng dữ liệu
+│   └── test_core_and_algorithms.py
+├── docs/                      # Tài liệu và báo cáo theo dõi
+│   ├── ward_selection.md      # So sánh khu vực nghiên cứu & ranh giới OSM
+│   ├── data_dictionary.md     # Từ điển dữ liệu chi tiết nguồn gốc & đơn vị
+│   ├── feasibility_report.md  # Báo cáo khả thi & theo dõi các vấn đề Step 1 (R1-R8)
+│   └── step2_report.md        # Báo cáo tổng thể nghiệm thu Step 2
+├── results/                   # Bằng chứng kết quả & kiểm tra
+│   ├── figures/               # map_boundary.png, map.png, toy_hand_calculation.png
+│   ├── logs/                  # validation_report.log
+│   └── benchmark_metadata.csv # Bảng metadata 6 bộ CVRPLIB
+├── requirements.txt           # Danh sách thư viện Python thực tế
 ├── .gitignore
 └── README.md
 ```
@@ -108,26 +130,30 @@ SFO-VND-Green-Waste-Routing/
 
 ## 👥 5. Thành viên nhóm nghiên cứu (Team Members)
 
-| STT | Họ và tên | Ngành | Vai trò & Trách nhiệm chính |
+| STT | Họ và tên | Ngành | Vai trò & Trách nhiệm chính trong Step 2 |
 | :---: | :--- | :---: | :--- |
-| 1 | **Vũ Thế Quang** *(Nhóm trưởng)* | Khoa Học Dữ Liệu | Phụ trách mô hình toán học, thuật toán lõi SFO, bộ giải mã Random-Key + Split Decoder và hàm đánh giá phát thải $\text{CO}_2$. |
-| 2 | **Lê Nguyễn Tâm Đức** | Khoa Học Dữ Liệu | Phụ trách mạng đường thực tế (OSMnx/NetworkX), xử lý dữ liệu bản đồ Case Study cấp phường và xây dựng giao diện hiển thị tuyến đường. |
-| 3 | **Nguyễn Ngọc Thảo Hiền** | Khoa Học Dữ Liệu | Phụ trách bộ dữ liệu Benchmark CVRPLIB, thuật toán Baseline đối chứng (Tham lam, GA) và thống kê kết quả thực nghiệm. |
+| 1 | **Vũ Thế Quang** *(Nhóm trưởng)* | Khoa Học Dữ Liệu | Khóa schema, kịch bản $K-Q-\text{demand}$; tạo validator tự động, feasible witness; theo dõi R1–R8. |
+| 2 | **Lê Nguyễn Tâm Đức** | Khoa Học Dữ Liệu | Xác định phường nghiên cứu, trích xuất ranh giới GIS OSMnx, xử lý đồ thị có hướng và tính ma trận khoảng cách Dijkstra. |
+| 3 | **Nguyễn Ngọc Thảo Hiền** | Khoa Học Dữ Liệu | Tải và kiểm tra 6 bộ benchmark CVRPLIB, lập bảng metadata và xây dựng bộ kiểm thử nạp benchmark `test_loader.py`. |
 
 ---
 
-## 🛠️ 6. Cài đặt và Bắt đầu nhanh (Quickstart)
+## 🛠️ 6. Cài đặt và Chạy kiểm thử Step 2 (Quickstart)
 
 ```bash
-# 1. Clone kho lưu trữ về máy
-git clone https://github.com/VuQuang1711/SFO-VND_GreenWasteRouting.git
-cd SFO-VND-Green-Waste-Routing
-
-# 2. Tạo môi trường ảo Python
-python -m venv .venv
-# Kích hoạt trên Windows:
+# 1. Kích hoạt môi trường Python (Python 3.13)
+# Trên Windows PowerShell / Command Prompt:
 .venv\Scripts\activate
 
-# 3. Cài đặt các thư viện phụ thuộc
+# 2. Cài đặt các thư viện phụ thuộc đã khóa phiên bản
 pip install -r requirements.txt
+
+# 3. Chạy bộ kiểm định chất lượng dữ liệu 7 Suite (Công việc 2.7)
+python tests/validate_dataset.py
+
+# 4. Chạy toàn bộ các bài kiểm thử tự động (57/57 tests PASS)
+python -m pytest tests/
+
+# 5. Kiểm tra đọc bộ dữ liệu Benchmark CVRPLIB (Công việc 2.3)
+python src/core/cvrplib_loader.py
 ```

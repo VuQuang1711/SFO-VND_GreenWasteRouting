@@ -1,0 +1,7 @@
+instance_name,benchmark_set,author,num_nodes,num_customers,num_vehicles_k,capacity_q,bks_cost,distance_metric,rounding_rule,source_url,status
+E-n33-k4,Set E,Christofides and Eilon (1969),33,32,4,8000,835,EUC_2D,TSPLIB integer round (nint),http://vrp.atd-lab.inf.puc-rio.br/media/com_vrp/instances/E/E-n33-k4.vrp,VERIFIED_BKS
+B-n50-k7,Set B,Augerat et al. (1995),50,49,7,100,741,EUC_2D,TSPLIB integer round (nint),http://vrp.atd-lab.inf.puc-rio.br/media/com_vrp/instances/B/B-n50-k7.vrp,VERIFIED_BKS
+E-n51-k5,Set E,Christofides and Eilon (1969),51,50,5,160,521,EUC_2D,TSPLIB integer round (nint),http://vrp.atd-lab.inf.puc-rio.br/media/com_vrp/instances/E/E-n51-k5.vrp,VERIFIED_BKS
+A-n53-k7,Set A,Augerat et al. (1995),53,52,7,100,1010,EUC_2D,TSPLIB integer round (nint),http://vrp.atd-lab.inf.puc-rio.br/media/com_vrp/instances/A/A-n53-k7.vrp,VERIFIED_BKS
+A-n60-k9,Set A,Augerat et al. (1995),60,59,9,100,1354,EUC_2D,TSPLIB integer round (nint),http://vrp.atd-lab.inf.puc-rio.br/media/com_vrp/instances/A/A-n60-k9.vrp,VERIFIED_BKS
+E-n76-k7,Set E,Christofides and Eilon (1969),76,75,7,220,682,EUC_2D,TSPLIB integer round (nint),http://vrp.atd-lab.inf.puc-rio.br/media/com_vrp/instances/E/E-n76-k7.vrp,VERIFIED_BKS
