@@ -81,17 +81,17 @@ def run_pipeline(
     # 1. NẠP DỮ LIỆU
     print("\n[BƯỚC 1/4] Đang nạp và kiểm tra tính toàn vẹn của dữ liệu...")
     if dataset_type == "case_study":
-        points_path = os.path.join(current_dir, "data", "case_study", "collection_points.csv")
-        matrix_path = os.path.join(current_dir, "data", "case_study", "distance_matrix.csv")
+        points_path = os.path.join(current_dir, "data", "ward", "processed", "collection_points.csv")
+        matrix_path = os.path.join(current_dir, "data", "ward", "processed", "distance_matrix.csv")
 
         if not os.path.exists(points_path):
             raise FileNotFoundError(f"Lỗi: Không tìm thấy file dữ liệu {points_path}")
 
         data = data_loader.load_case_study(points_path, matrix_path)
         is_benchmark = False
-        print(f" -> Đã nạp thành công dữ liệu Case Study Phường Sơn Kỳ với {data['dimension']} điểm thu gom rác.")
+        print(f" -> Đã nạp thành công dữ liệu Case Study Phường Tây Thạnh với {data['dimension']} điểm thu gom rác.")
     else:
-        vrp_path = os.path.join(current_dir, "data", "benchmarks", "E-n33-k4.vrp")
+        vrp_path = os.path.join(current_dir, "data", "benchmarks", "raw", "E-n33-k4.vrp")
         if not os.path.exists(vrp_path):
             raise FileNotFoundError(f"Lỗi: Không tìm thấy file benchmark {vrp_path}")
 
@@ -289,7 +289,7 @@ def main():
         type=str,
         default="case_study",
         choices=["case_study", "benchmark"],
-        help="Loại dữ liệu thử nghiệm: 'case_study' (Phường Sơn Kỳ) hoặc 'benchmark' (CVRPLIB E-n33-k4)."
+        help="Loại dữ liệu thử nghiệm: 'case_study' (Phường Tây Thạnh) hoặc 'benchmark' (CVRPLIB E-n33-k4)."
     )
     parser.add_argument(
         "--iter",

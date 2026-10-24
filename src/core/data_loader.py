@@ -5,7 +5,7 @@ Quy chuẩn: Step 2 - Chuẩn hóa và khóa dữ liệu
 
 Hỗ trợ:
 - Đọc bộ dữ liệu chuẩn CVRPLIB (.vrp, .sol) thông qua CVRPLIBLoader và vrplib.
-- Đọc bộ dữ liệu Case Study cấp phường chuẩn hóa (data/ward/processed/ hoặc data/case_study/).
+- Đọc bộ dữ liệu Case Study cấp phường chuẩn hóa (data/ward/processed/).
 - Hỗ trợ phòng thủ dữ liệu: phát hiện NaN, duplicate, vượt tải, ma trận khuyết.
 """
 
@@ -108,7 +108,7 @@ class DataLoader:
     ) -> Dict[str, Any]:
         """
         Đọc bộ dữ liệu Case Study Phường thực tế:
-        - Mặc định tìm kiếm trong data/ward/processed/ hoặc data/case_study/.
+        - Mặc định tìm kiếm trong data/ward/processed/.
         - Chuẩn hóa khoảng cách ra km cho hàm fitness và lưu khoảng cách gốc mét.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -118,7 +118,6 @@ class DataLoader:
         if points_csv_path is None or not os.path.exists(points_csv_path):
             candidates = [
                 os.path.join(root_dir, "data", "ward", "processed", "collection_points.csv"),
-                os.path.join(root_dir, "data", "case_study", "collection_points.csv"),
             ]
             for c in candidates:
                 if os.path.exists(c):
@@ -132,7 +131,6 @@ class DataLoader:
         if distance_matrix_csv_path is None or not os.path.exists(distance_matrix_csv_path):
             candidates = [
                 os.path.join(root_dir, "data", "ward", "processed", "distance_matrix.csv"),
-                os.path.join(root_dir, "data", "case_study", "distance_matrix.csv"),
             ]
             for c in candidates:
                 if os.path.exists(c):

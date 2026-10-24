@@ -68,22 +68,22 @@ st.sidebar.header("⚙️ Cấu Hình Tham Số Vận Hành")
 # 1. Chọn nguồn dữ liệu
 data_source = st.sidebar.selectbox(
     "📁 Chọn Nguồn Dữ Liệu:",
-    ["Case Study Phường Sơn Kỳ (60 điểm)", "Tùy chỉnh tải file CSV"]
+    ["Case Study Phường Tây Thạnh (50 điểm)", "Tùy chỉnh tải file CSV"]
 )
 
-points_file_path = os.path.join(source_root, "data", "case_study", "collection_points.csv")
-matrix_file_path = os.path.join(source_root, "data", "case_study", "distance_matrix.csv")
+points_file_path = os.path.join(source_root, "data", "ward", "processed", "collection_points.csv")
+matrix_file_path = os.path.join(source_root, "data", "ward", "processed", "distance_matrix.csv")
 
 loader = DataLoader(depot_index=DEPOT_INDEX)
 
-if data_source == "Case Study Phường Sơn Kỳ (60 điểm)":
+if data_source == "Case Study Phường Tây Thạnh (50 điểm)":
     if os.path.exists(points_file_path):
         dataset = loader.load_case_study(points_file_path, matrix_file_path)
     else:
         st.error(f"Chưa tìm thấy file dữ liệu: {points_file_path}")
         st.stop()
 else:
-    st.sidebar.info("Vui lòng đặt file collection_points.csv vào thư mục data/case_study/")
+    st.sidebar.info("Vui lòng đặt file collection_points.csv vào thư mục data/ward/processed/")
     st.stop()
 
 # 2. Cấu hình đội xe & thuật toán
