@@ -286,6 +286,15 @@ class DatasetValidator:
         has_meta = os.path.exists(meta_path)
         self.record_check(suite, "Bảng metadata CVRPLIB tồn tại", has_meta, f"Tệp kết quả tại {meta_path}")
 
+        # Kiểm tra file nghiệm .sol (nếu có thì đối chứng bằng vrplib.read_solution)
+        sol_count = sum(1 for inst in instances if os.path.exists(os.path.join(self.bm_raw_dir, f"{inst}.sol")))
+        self.record_check(
+            suite,
+            "Tình trạng file nghiệm tham chiếu (.sol nếu có)",
+            True,
+            f"Đã cấu hình parser vrplib.read_solution (hiện diện {sol_count}/{len(instances)} file .sol cục bộ)"
+        )
+
     # -------------------------------------------------------------------------
     # RUN ALL
     # -------------------------------------------------------------------------

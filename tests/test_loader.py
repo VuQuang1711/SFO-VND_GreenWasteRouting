@@ -103,3 +103,20 @@ def test_file_not_found(loader):
     """Kiểm tra ném lỗi khi file không tồn tại."""
     with pytest.raises(FileNotFoundError):
         loader.load_instance("non_existent_instance.vrp")
+
+
+@pytest.mark.parametrize("instance_name", BENCHMARK_NAMES)
+def test_solution_verification_if_present(loader, instance_name):
+    """
+    Kiểm tra đối chứng nghiệm tham chiếu BKS khi có file .sol (Theo yêu cầu Step 2 - Mục 2.3).
+    Nếu file .sol tồn tại, tính lại chi phí chu trình và kiểm tra sai số = 0 so với BKS công bố.
+    """
+    sol_data = loader.load_solution(instance_name)
+    if sol_data is not None:
+        inst_data = loader.load_instance(instance_name)
+        res = loader.verify_solution_cost(inst_data, sol_data)
+        assert res["is_exact_match"], (
+            f"Nghiệm .sol của {instance_name} có chi phí tính lại {res['recomputed_cost']} "
+            f"không khớp chi phí công bố {res['published_cost']} (chênh lệch {res['cost_difference']})"
+        )
+
