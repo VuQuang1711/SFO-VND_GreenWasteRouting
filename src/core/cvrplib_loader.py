@@ -103,11 +103,14 @@ class CVRPLIBLoader:
                 demands[idx] = float(d)
 
         # Ma trận khoảng cách
-        edge_weight = instance_data.get("edge_weight")
-        if edge_weight is not None:
-            dist_matrix = np.array(edge_weight, dtype=float)
-        elif len(coords) > 0:
+        # Lưu ý chuẩn TSPLIB/CVRPLIB EUC_2D: vrplib tự sinh float edge_weight,
+        # nhưng chuẩn benchmark quốc tế bắt buộc phải làm tròn nguyên từng cạnh (nint)
+        if len(coords) > 0 and edge_weight_type == "EUC_2D":
             dist_matrix = compute_euc2d_matrix(coords, round_integers=True)
+        elif instance_data.get("edge_weight") is not None:
+            dist_matrix = np.array(instance_data["edge_weight"], dtype=float)
+        elif len(coords) > 0:
+            dist_matrix = compute_euc2d_matrix(coords, round_integers=False)
         else:
             dist_matrix = np.zeros((dimension, dimension), dtype=float)
 
@@ -171,16 +174,12 @@ class CVRPLIBLoader:
         route_details = []
 
         for r_idx, route in enumerate(routes):
-            # Các node trong CVRPLIB solution có thể 1-indexed hoặc 0-indexed
-            # Chuẩn VRPLIB là 1-indexed (depot là 1 hoặc được omit, khách hàng là 2..N)
-            # Chuyển về 0-indexed đối chiếu với ma trận dist_matrix
-            norm_route = []
-            for node in route:
-                idx = int(node) - 1 if min(min(r) for r in routes if len(r) > 0) >= 1 else int(node)
-                norm_route.append(idx)
+            # Các node trong CVRPLIB solution của vrplib đã được index trực tiếp tương ứng với node_coord
+            # Khách hàng là các số c tương ứng dòng c trong coords; depot luôn là 0
+            norm_route = [int(node) for node in route if int(node) != depot]
 
             # Lộ trình khép kín: Depot -> Khách hàng -> Depot
-            full_cycle = [depot] + [n for n in norm_route if n != depot] + [depot]
+            full_cycle = [depot] + norm_route + [depot]
             r_cost = 0.0
             r_demand = 0.0
             for i in range(len(full_cycle) - 1):
@@ -189,8 +188,7 @@ class CVRPLIBLoader:
                 r_cost += dist_matrix[u, v]
 
             for c in norm_route:
-                if c != depot:
-                    r_demand += instance_data["demand"].get(c, 0.0)
+                r_demand += instance_data["demand"].get(c, 0.0)
 
             total_distance += r_cost
             route_details.append({

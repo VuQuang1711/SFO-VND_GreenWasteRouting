@@ -115,8 +115,8 @@ def test_solution_verification_if_present(loader, instance_name):
     if sol_data is not None:
         inst_data = loader.load_instance(instance_name)
         res = loader.verify_solution_cost(inst_data, sol_data)
-        assert res["is_exact_match"], (
-            f"Nghiệm .sol của {instance_name} có chi phí tính lại {res['recomputed_cost']} "
-            f"không khớp chi phí công bố {res['published_cost']} (chênh lệch {res['cost_difference']})"
+        assert res["is_match"], (
+            f"Nghiệm .sol của {instance_name} có chi phí tính lại {res['recalculated_cost']} "
+            f"không khớp chi phí công bố {res['published_cost']} (chênh lệch {res['difference']})"
         )
 
