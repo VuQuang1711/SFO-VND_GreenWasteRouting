@@ -56,8 +56,8 @@ py -m pytest tests/test_loader.py -v
 
 > [!NOTE]
 > **Kết quả mong đợi:**
-> - Terminal hiển thị `19 passed in ...s`.
-> - 6 bộ dữ liệu (`E-n33-k4`, `B-n50-k7`, `E-n51-k5`, `A-n53-k7`, `A-n60-k9`, `E-n76-k7`) đều vượt qua các bài test về tải trọng, quy ước làm tròn nguyên EUC_2D TSPLIB và chi phí tối ưu BKS.
+> - Terminal hiển thị `25 passed in ...s`.
+> - 6 bộ dữ liệu (`E-n33-k4`, `B-n50-k7`, `E-n51-k5`, `A-n53-k7`, `A-n60-k9`, `E-n76-k7`) đều vượt qua các bài test về tải trọng, quy ước làm tròn nguyên EUC_2D TSPLIB và chi phí tối ưu BKS (gồm cả 6 file `.vrp` và 6 file `.sol`).
 
 ### 1.2. Chạy script in bảng Metadata trực tiếp
 ```powershell
@@ -287,9 +287,9 @@ Dành cho sinh viên khi lên máy chiếu thuyết trình trước Hội đồn
 
 | Thao tác kiểm tra | Câu lệnh Terminal thực thi | Kết quả chuẩn cần đọc |
 | :--- | :--- | :--- |
-| **1. Kiểm định dữ liệu 23 tiêu chí** | `py tests/validate_dataset.py` | `Tổng số ca kiểm tra: 23 \| Đạt: 23` |
-| **2. Chạy toàn bộ 34 Unit Tests** | `py -m pytest tests/` | `34 passed in ...s` |
-| **3. Test riêng Benchmark CVRPLIB** | `py -m pytest tests/test_loader.py` | `19 passed` |
+| **1. Kiểm định dữ liệu 24 tiêu chí** | `py tests/validate_dataset.py` | `Tổng số ca kiểm tra: 24 \| Đạt: 24` |
+| **2. Chạy toàn bộ 40 Unit Tests** | `py -m pytest tests/` | `40 passed in ...s` |
+| **3. Test riêng Benchmark CVRPLIB** | `py -m pytest tests/test_loader.py` | `25 passed` |
 | **4. Test riêng Toy 12 điểm tính tay** | `py -m pytest tests/test_toy_instance.py` | `8 passed` |
 | **5. Test snap tim đường và lượng rác**| `py -c "import pandas as pd; df=pd.read_csv('data/ward/processed/collection_points.csv'); print('Max snap:', df['snap_distance_m'].max(), 'Total demand:', df['demand_kg'].sum())"` | `Max snap: 0.0 Total demand: 3345.0` |
 | **6. Chạy demo giải thuật SFO-VND** | `py main.py --iter 5 --sardines 10` | `Giảm 14.92% km, Tiết kiệm 21.49% CO2` |

@@ -11,17 +11,17 @@
 
 Nhóm đã tải lại, giải mã và thẩm định độc lập **6 bộ dữ liệu chuẩn quốc tế CVRPLIB** (Capacitated Vehicle Routing Problem Library) từ các tác giả kinh điển (Christofides & Eilon 1969, Augerat et al. 1995). Toàn bộ 6 file gốc được giữ nguyên vẹn trong thư mục [`data/benchmarks/raw/`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/).
 
-| Tên Instance | Tệp dữ liệu gốc (.vrp) | Số điểm $N$ (gồm Depot) | Số khách $n$ | Đội xe $K$ | Sức chứa $Q$ | Kiểu khoảng cách | BKS Tham chiếu (Công bố) | Kết quả Parser nhóm tính lại | Trạng thái đối chứng |
+| Tên Instance | Tệp dữ liệu gốc (.vrp/.sol) | Số điểm $N$ (gồm Depot) | Số khách $n$ | Đội xe $K$ | Sức chứa $Q$ | Kiểu khoảng cách | BKS Tham chiếu (Công bố) | Kết quả Parser nhóm tính lại | Trạng thái đối chứng |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **E-n33-k4** | [E-n33-k4.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n33-k4.vrp) | 33 | 32 | 4 | 8,000 | `EUC_2D` | **835** | **835** | **KHỚP 100% (PASS)** |
-| **B-n50-k7** | [B-n50-k7.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/B-n50-k7.vrp) | 50 | 49 | 7 | 100 | `EUC_2D` | **741** | **741** | **KHỚP 100% (PASS)** |
-| **E-n51-k5** | [E-n51-k5.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n51-k5.vrp) | 51 | 50 | 5 | 160 | `EUC_2D` | **521** | **521** | **KHỚP 100% (PASS)** |
-| **A-n53-k7** | [A-n53-k7.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/A-n53-k7.vrp) | 53 | 52 | 7 | 100 | `EUC_2D` | **1,010** | **1,010** | **KHỚP 100% (PASS)** |
-| **A-n60-k9** | [A-n60-k9.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/A-n60-k9.vrp) | 60 | 59 | 9 | 100 | `EUC_2D` | **1,354** | **1,354** | **KHỚP 100% (PASS)** |
-| **E-n76-k7** | [E-n76-k7.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n76-k7.vrp) | 76 | 75 | 7 | 220 | `EUC_2D` | **682** | **682** | **KHỚP 100% (PASS)** |
+| **E-n33-k4** | [E-n33-k4.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n33-k4.vrp) / [.sol](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n33-k4.sol) | 33 | 32 | 4 | 8,000 | `EUC_2D` | **835** | **835** | **KHỚP 100% (PASS)** |
+| **B-n50-k7** | [B-n50-k7.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/B-n50-k7.vrp) / [.sol](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/B-n50-k7.sol) | 50 | 49 | 7 | 100 | `EUC_2D` | **741** | **741** | **KHỚP 100% (PASS)** |
+| **E-n51-k5** | [E-n51-k5.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n51-k5.vrp) / [.sol](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n51-k5.sol) | 51 | 50 | 5 | 160 | `EUC_2D` | **521** | **521** | **KHỚP 100% (PASS)** |
+| **A-n53-k7** | [A-n53-k7.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/A-n53-k7.vrp) / [.sol](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/A-n53-k7.sol) | 53 | 52 | 7 | 100 | `EUC_2D` | **1,010** | **1,010** | **KHỚP 100% (PASS)** |
+| **A-n60-k9** | [A-n60-k9.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/A-n60-k9.vrp) / [.sol](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/A-n60-k9.sol) | 60 | 59 | 9 | 100 | `EUC_2D` | **1,354** | **1,354** | **KHỚP 100% (PASS)** |
+| **E-n76-k7** | [E-n76-k7.vrp](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n76-k7.vrp) / [.sol](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/benchmarks/raw/E-n76-k7.sol) | 76 | 75 | 7 | 220 | `EUC_2D` | **682** | **682** | **KHỚP 100% (PASS)** |
 
 * Toàn bộ siêu dữ liệu đã được xuất tự động tại [`results/benchmark_metadata.csv`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/results/benchmark_metadata.csv).
-* Kiểm thử tự động đạt kết quả **19/19 unit tests PASS** tại [`tests/test_loader.py`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/tests/test_loader.py).
+* Kiểm thử tự động đạt kết quả **25/25 unit tests PASS** tại [`tests/test_loader.py`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/tests/test_loader.py) (bao gồm 6 ca đối chứng khớp 100% với file `.sol`).
 
 ---
 
