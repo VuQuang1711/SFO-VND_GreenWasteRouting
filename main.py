@@ -53,7 +53,7 @@ def print_banner():
 ========================================================================================
    🚛 GREENWASTE ROUTE AI - HỆ THỐNG TỐI ƯU HÓA TUYẾN THU GOM RÁC ĐÔ THỊ XANH
    Đề tài NCKH Sinh viên: Hybrid SFO-VND (Sailfish Optimizer + Variable Neighborhood Descent)
-   Địa bàn thử nghiệm: Phường Sơn Kỳ, Quận Tân Phú, TP. Hồ Chí Minh
+   Địa bàn thử nghiệm: Phường Tây Thạnh, Quận Tân Phú, TP. Hồ Chí Minh
 ========================================================================================
     """
     print(banner)
@@ -262,7 +262,7 @@ def run_pipeline(
 
         depot_coords = (points_info[0]["lat"], points_info[0]["lon"])
         mapper = RouteMapper(depot_coords=depot_coords, zoom_start=15)
-        output_map = os.path.join(current_dir, "green_waste_routing_map.html")
+        output_map = os.path.join(current_dir, "results", "green_waste_routing_map.html")
         mapper.generate_map(res_hybrid["best_routes"], points_info, output_map)
         print(f" -> Bạn có thể mở trực tiếp file '{output_map}' trên trình duyệt để xem lộ trình từng xe!")
 

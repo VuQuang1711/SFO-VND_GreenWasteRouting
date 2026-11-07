@@ -1,52 +1,52 @@
 point_id,name,latitude,longitude,demand_kg,point_type,source_type,snapped_node,snap_distance_m
-0,Trạm trung chuyển chất thải Tây Thạnh (Depot),10.8122,106.6215,0.0,depot,trạm trung chuyển chất thải quy hoạch,4225472861,20.2
-1,Số 33 Lê Trọng Tấn (Lề phải),10.802777,106.628071,73.0,residential,điểm thu gom giả lập trên mạng đường OSM,2048466372,30.7
-2,Số 64 Lê Trọng Tấn (Lề trái),10.803469,106.627751,63.0,residential,điểm thu gom giả lập trên mạng đường OSM,4988329154,51.5
-3,Số 90 Lê Trọng Tấn (Lề phải),10.804228,106.627826,49.0,residential,điểm thu gom giả lập trên mạng đường OSM,366376526,17.3
-4,Số 120 Lê Trọng Tấn (Lề trái),10.80492,106.627507,42.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075068902,32.5
-5,Số 148 Lê Trọng Tấn (Lề phải),10.805678,106.627582,55.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075068905,2.3
-6,Số 172 Lê Trọng Tấn (Lề trái),10.806371,106.627262,73.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185448,21.2
-7,Số 202 Lê Trọng Tấn (Lề phải),10.807129,106.627338,53.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075068965,32.6
-8,Số 233 Lê Trọng Tấn (Lề trái),10.807822,106.627018,57.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075068968,26.0
-9,Số 256 Lê Trọng Tấn (Lề phải),10.80858,106.627093,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,5097414527,40.5
-10,Số 286 Lê Trọng Tấn (Lề trái),10.809272,106.626774,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,2922951967,32.2
-11,Số 317 Lê Trọng Tấn (Lề phải),10.810031,106.626849,58.0,residential,điểm thu gom giả lập trên mạng đường OSM,5097414415,25.5
-12,Số 343 Lê Trọng Tấn (Lề trái),10.810723,106.626529,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,5735419213,38.3
-13,Số 37 đường Sơn Kỳ (Lề phải),10.806911,106.626807,74.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185449,86.6
-14,Số 58 đường Sơn Kỳ (Lề trái),10.80661,106.62604,58.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185449,3.8
-15,Số 87 đường Sơn Kỳ (Lề phải),10.806706,106.62522,37.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038019,16.2
-16,Số 118 đường Sơn Kỳ (Lề trái),10.806405,106.624453,56.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038020,24.3
-17,Số 142 đường Sơn Kỳ (Lề phải),10.806501,106.623634,36.0,residential,điểm thu gom giả lập trên mạng đường OSM,8344420156,5.9
-18,Số 172 đường Sơn Kỳ (Lề trái),10.806199,106.622866,58.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185396,56.7
-19,Số 201 đường Sơn Kỳ (Lề phải),10.806295,106.622047,64.0,residential,điểm thu gom giả lập trên mạng đường OSM,10692737767,29.1
-20,Số 232 đường Sơn Kỳ (Lề trái),10.805994,106.62128,72.0,residential,điểm thu gom giả lập trên mạng đường OSM,10692737767,62.1
-21,Số 258 đường Sơn Kỳ (Lề phải),10.80609,106.62046,36.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075080661,114.6
-22,Số 286 đường Sơn Kỳ (Lề trái),10.805789,106.619693,55.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075080661,178.8
-23,Ngã 3 Tân Kỳ Tân Quý - Lê Trọng Tấn (Lề phải),10.801898,106.62719,67.0,residential,điểm thu gom giả lập trên mạng đường OSM,366476542,102.3
-24,Số 59 Tân Kỳ Tân Quý (Lề trái),10.801469,106.626198,46.0,residential,điểm thu gom giả lập trên mạng đường OSM,366476542,215.7
-25,Số 86 Tân Kỳ Tân Quý (Lề phải),10.801431,106.625118,56.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038011,284.9
-26,Số 115 Tân Kỳ Tân Quý (Lề trái),10.801002,106.624126,59.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038011,295.5
-27,Số 143 Tân Kỳ Tân Quý (Lề phải),10.800964,106.623046,61.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038001,299.4
-28,Số 173 Tân Kỳ Tân Quý (Lề trái),10.800536,106.622054,62.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038004,356.6
-29,Số 204 Tân Kỳ Tân Quý (Lề phải),10.800498,106.620974,50.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038004,394.9
-30,Số 229 Tân Kỳ Tân Quý (Lề trái),10.800069,106.619982,49.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038004,490.3
-31,Số 260 Tân Kỳ Tân Quý (Lề phải),10.800031,106.618902,37.0,residential,điểm thu gom giả lập trên mạng đường OSM,2968038004,568.2
-32,Số 287 Tân Kỳ Tân Quý (Lề trái),10.799602,106.61791,71.0,residential,điểm thu gom giả lập trên mạng đường OSM,14058045128,659.6
-33,Số 33 Bờ Bao Tân Thắng (Lề phải),10.799948,106.617255,41.0,residential,điểm thu gom giả lập trên mạng đường OSM,2620586846,589.0
-34,Số 61 Bờ Bao Tân Thắng (Lề trái),10.800642,106.617275,55.0,residential,điểm thu gom giả lập trên mạng đường OSM,14058045128,528.5
-35,Số 91 Bờ Bao Tân Thắng (Lề phải),10.801208,106.617675,43.0,residential,điểm thu gom giả lập trên mạng đường OSM,14058045128,484.1
-36,Số 119 Bờ Bao Tân Thắng (Lề trái),10.801902,106.617695,113.0,commercial,điểm thu gom giả lập trên mạng đường OSM,14058045128,415.6
-37,Aeon Mall Tân Phú - Cổng Bờ Bao Tân Thắng (Lề phải),10.802468,106.618095,92.0,commercial,điểm thu gom giả lập trên mạng đường OSM,14058045128,386.5
-38,Aeon Mall Tân Phú - Cổng Bờ Bao Tân Thắng (Lề trái),10.803162,106.618115,78.0,commercial,điểm thu gom giả lập trên mạng đường OSM,14058045128,330.9
-39,Số 199 Bờ Bao Tân Thắng (Lề phải),10.803728,106.618515,99.0,commercial,điểm thu gom giả lập trên mạng đường OSM,14058045128,328.2
-40,Số 227 Bờ Bao Tân Thắng (Lề trái),10.804422,106.618535,88.0,commercial,điểm thu gom giả lập trên mạng đường OSM,14058045128,299.3
-41,Số 259 Bờ Bao Tân Thắng (Lề phải),10.804988,106.618935,83.0,commercial,điểm thu gom giả lập trên mạng đường OSM,8359663325,254.1
-42,Số 37 đường Đỗ Nhuận (Lề phải),10.806064,106.618728,100.0,commercial,điểm thu gom giả lập trên mạng đường OSM,8359663325,132.8
-43,Số 65 đường Đỗ Nhuận (Lề trái),10.806152,106.618152,76.0,commercial,điểm thu gom giả lập trên mạng đường OSM,9523690156,130.8
-44,Số 92 đường Đỗ Nhuận (Lề phải),10.806592,106.617768,94.0,commercial,điểm thu gom giả lập trên mạng đường OSM,9523690156,103.7
-45,Số 118 đường Đỗ Nhuận (Lề trái),10.80668,106.617192,102.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5757746052,107.6
-46,Số 146 đường Đỗ Nhuận (Lề phải),10.80712,106.616808,81.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5757746052,88.2
-47,Số 176 đường Đỗ Nhuận (Lề trái),10.807208,106.616232,118.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5757746052,139.1
-48,Số 199 đường Đỗ Nhuận (Lề phải),10.807648,106.615848,82.0,commercial,điểm thu gom giả lập trên mạng đường OSM,8345143159,103.6
-49,Số 229 đường Đỗ Nhuận (Lề trái),10.807736,106.615272,109.0,commercial,điểm thu gom giả lập trên mạng đường OSM,12183174139,46.4
-50,Số 36 đường DC (Lề phải),10.804215,106.622816,88.0,commercial,điểm thu gom giả lập trên mạng đường OSM,9642513908,45.4
+0,Trạm trung chuyển chất thải Tây Thạnh (Depot),10.8122,106.6215,0.0,depot,trạm trung chuyển chất thải quy hoạch,4225472861,0.0
+1,Số 21 Đường Tây Thạnh (Lề trái),10.820485,106.630581,35.0,residential,điểm thu gom giả lập trên mạng đường OSM,13718152989,0.0
+2,Khu dịch vụ KCN - Số 28 Đường Tây Thạnh,10.819119,106.628785,100.0,commercial,điểm thu gom giả lập trên mạng đường OSM,3271827669,0.0
+3,Cụm thương mại - dịch vụ - Số 39 Đường Tây Thạnh,10.815084,106.624368,110.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5719489518,0.0
+4,Siêu thị tiện lợi - Số 50 Đường Tây Thạnh,10.812691,106.622293,120.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5719489522,0.0
+5,Siêu thị tiện lợi - Số 61 Đường Tây Thạnh,10.820341,106.63062,90.0,commercial,điểm thu gom giả lập trên mạng đường OSM,13718152987,0.0
+6,Số 56 Đường Tây Thạnh (Lề phải),10.811806,106.621476,50.0,residential,điểm thu gom giả lập trên mạng đường OSM,5719489525,0.0
+7,Số 63 Lê Trọng Tấn (Lề phải),10.813137,106.607341,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,10069227039,0.0
+8,Số 70 Lê Trọng Tấn (Lề trái),10.806622,106.625552,50.0,residential,điểm thu gom giả lập trên mạng đường OSM,366371612,0.0
+9,Số 77 Lê Trọng Tấn (Lề phải),10.808355,106.618447,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,13417557332,0.0
+10,Số 84 Lê Trọng Tấn (Lề phải),10.806099,106.628426,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,5097414529,0.0
+11,Số 91 Lê Trọng Tấn (Lề trái),10.810352,106.612574,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,2048416687,0.0
+12,Số 98 Lê Trọng Tấn (Lề phải),10.807722,106.620566,75.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075080668,0.0
+13,Cửa hàng bán lẻ tổng hợp - Số 149 Chế Lan Viên,10.811416,106.627059,85.0,commercial,điểm thu gom giả lập trên mạng đường OSM,2728341933,0.0
+14,Số 112 Chế Lan Viên (Lề trái),10.81057,106.62564,40.0,residential,điểm thu gom giả lập trên mạng đường OSM,366477185,0.0
+15,Khu dịch vụ KCN - Số 171 Chế Lan Viên,10.811996,106.628589,90.0,commercial,điểm thu gom giả lập trên mạng đường OSM,2728345166,0.0
+16,Số 126 Chế Lan Viên (Lề trái),10.81131,106.62691,75.0,residential,điểm thu gom giả lập trên mạng đường OSM,2048466374,0.0
+17,Số 133 Lưu Chí Hiếu (Lề trái),10.813376,106.62561,50.0,residential,điểm thu gom giả lập trên mạng đường OSM,5735419188,0.0
+18,Số 140 Lưu Chí Hiếu (Lề trái),10.816264,106.623024,55.0,residential,điểm thu gom giả lập trên mạng đường OSM,5092219877,0.0
+19,Siêu thị tiện lợi - Số 35 Lưu Chí Hiếu,10.812208,106.626483,115.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5735419434,0.0
+20,Số 154 Lưu Chí Hiếu (Lề trái),10.812504,106.626268,35.0,residential,điểm thu gom giả lập trên mạng đường OSM,5735419190,0.0
+21,Số 161 Nguyễn Hữu Tiến (Lề phải),10.808479,106.625876,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,5097414547,0.0
+22,Cửa hàng bán lẻ tổng hợp - Số 68 Nguyễn Hữu Tiến,10.809522,106.625757,105.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5719489478,0.0
+23,Số 175 Nguyễn Hữu Tiến (Lề phải),10.808779,106.625839,60.0,residential,điểm thu gom giả lập trên mạng đường OSM,5757646506,0.0
+24,Số 182 Nguyễn Hữu Tiến (Lề phải),10.811895,106.624154,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,5719489506,0.0
+25,Khu dịch vụ KCN - Số 101 Dương Đức Hiền,10.808944,106.627107,85.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5097414527,0.0
+26,Số 196 Dương Đức Hiền (Lề phải),10.809533,106.627054,35.0,residential,điểm thu gom giả lập trên mạng đường OSM,5757647033,0.0
+27,Khu dịch vụ KCN - Số 123 Dương Đức Hiền,10.807694,106.627218,80.0,commercial,điểm thu gom giả lập trên mạng đường OSM,12075068968,0.0
+28,Số 210 Dương Đức Hiền (Lề phải),10.809811,106.627039,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,5757647036,0.0
+29,Số 217 Bùi Xuân Phái (Lề trái),10.808903,106.628564,35.0,residential,điểm thu gom giả lập trên mạng đường OSM,5097414528,0.0
+30,Cửa hàng bán lẻ tổng hợp - Số 156 Bùi Xuân Phái,10.807286,106.628328,100.0,commercial,điểm thu gom giả lập trên mạng đường OSM,6717933366,0.0
+31,Số 231 Bùi Xuân Phái (Lề phải),10.806958,106.628363,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,6717933364,0.0
+32,Số 238 Bùi Xuân Phái (Lề phải),10.809267,106.628578,55.0,residential,điểm thu gom giả lập trên mạng đường OSM,5097414525,0.0
+33,Số 245 Phạm Ngọc Thảo (Lề phải),10.809308,106.627067,35.0,residential,điểm thu gom giả lập trên mạng đường OSM,2922951967,0.0
+34,Số 2 Phạm Ngọc Thảo (Lề phải),10.809406,106.629844,45.0,residential,điểm thu gom giả lập trên mạng đường OSM,2728345165,0.0
+35,Số 9 Phạm Ngọc Thảo (Lề trái),10.809375,106.630319,50.0,residential,điểm thu gom giả lập trên mạng đường OSM,14078153192,0.0
+36,Cụm thương mại - dịch vụ - Số 42 Nguyễn Hữu Dật,10.810797,106.630273,100.0,commercial,điểm thu gom giả lập trên mạng đường OSM,7773469805,0.0
+37,Chợ dân sinh Tây Thạnh - Số 53 Nguyễn Hữu Dật,10.809968,106.630715,90.0,commercial,điểm thu gom giả lập trên mạng đường OSM,5097414521,0.0
+38,Số 30 Nguyễn Hữu Dật (Lề trái),10.805699,106.631101,75.0,residential,điểm thu gom giả lập trên mạng đường OSM,12075068914,0.0
+39,Số 37 Đường CN13 (Lề phải),10.818098,106.619062,60.0,residential,điểm thu gom giả lập trên mạng đường OSM,366445291,0.0
+40,Số 44 Đường CN13 (Lề trái),10.814666,106.616314,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185600,0.0
+41,Cửa hàng bán lẻ tổng hợp - Số 97 Đường CN13,10.811483,106.613616,85.0,commercial,điểm thu gom giả lập trên mạng đường OSM,2621185590,0.0
+42,Số 58 Đường CN1 (Lề trái),10.817451,106.612966,65.0,residential,điểm thu gom giả lập trên mạng đường OSM,2214439696,0.0
+43,Số 65 Đường CN1 (Lề trái),10.817901,106.621652,40.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185537,0.0
+44,Số 72 Đường CN1 (Lề phải),10.812814,106.607909,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,10036736411,0.0
+45,Số 79 Đường Kênh 19/5 (Lề trái),10.803849,106.610281,60.0,residential,điểm thu gom giả lập trên mạng đường OSM,2621185548,0.0
+46,Số 86 Đường Kênh 19/5 (Lề trái),10.814009,106.619238,65.0,residential,điểm thu gom giả lập trên mạng đường OSM,4974488975,0.0
+47,Cụm thương mại - dịch vụ - Số 163 Đường Kênh 19/5,10.812944,106.618353,85.0,commercial,điểm thu gom giả lập trên mạng đường OSM,4974488967,0.0
+48,Số 100 Đường số 15 (Lề phải),10.80237,106.606822,70.0,residential,điểm thu gom giả lập trên mạng đường OSM,5013427920,0.0
+49,Số 107 Đường số 15 (Lề phải),10.802682,106.60643,65.0,residential,điểm thu gom giả lập trên mạng đường OSM,3379561187,0.0
+50,Số 114 Đường số 15 (Lề phải),10.802526,106.606631,50.0,residential,điểm thu gom giả lập trên mạng đường OSM,3379561165,0.0

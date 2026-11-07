@@ -294,7 +294,7 @@ if res is not None:
 
         depot_coords = (points_info[0]["lat"], points_info[0]["lon"])
         mapper = RouteMapper(depot_coords=depot_coords, zoom_start=15)
-        html_map_path = os.path.join(source_root, "green_waste_routing_map.html")
+        html_map_path = os.path.join(source_root, "results", "green_waste_routing_map.html")
         mapper.generate_map(best_routes, points_info, html_map_path)
 
         if os.path.exists(html_map_path):

@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_330d52a62805b514d3534e43e33a332d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 310px;
+            background-color: rgba(255, 255, 255, 0.96);
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            padding: 12px 14px;
+        ">
+            <h4 style="margin: 0 0 8px 0; color: #0f172a; font-size: 14px; border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; font-weight: bold;">
+                🚛 CHÚ GIẢI & ĐIỀU KHIỂN ĐỘI XE
+            </h4>
+            <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px dashed #e2e8f0;">
+                <span style="color: black; font-size: 15px; margin-right: 4px;">★</span>
+                <b>Depot 0:</b> Trạm tập kết Sơn Kỳ (Bắt đầu & Kết thúc)
+            </div>
+            
+            <div style="margin-bottom: 5px; display: flex; align-items: center; justify-content: space-between;">
+                <span>
+                    <span style="display: inline-block; width: 14px; height: 14px; background-color: #E63946; border-radius: 3px; margin-right: 6px; vertical-align: middle;"></span>
+                    <b>Xe Thu Gom #1:</b> 16 điểm
+                </span>
+                <span style="color: #b91c1c; font-weight: bold; margin-left: 8px;">1,190.0 kg</span>
+            </div>
+            
+            <div style="margin-bottom: 5px; display: flex; align-items: center; justify-content: space-between;">
+                <span>
+                    <span style="display: inline-block; width: 14px; height: 14px; background-color: #1D3557; border-radius: 3px; margin-right: 6px; vertical-align: middle;"></span>
+                    <b>Xe Thu Gom #2:</b> 24 điểm
+                </span>
+                <span style="color: #b91c1c; font-weight: bold; margin-left: 8px;">1,490.0 kg</span>
+            </div>
+            
+            <div style="margin-bottom: 5px; display: flex; align-items: center; justify-content: space-between;">
+                <span>
+                    <span style="display: inline-block; width: 14px; height: 14px; background-color: #2A9D8F; border-radius: 3px; margin-right: 6px; vertical-align: middle;"></span>
+                    <b>Xe Thu Gom #3:</b> 10 điểm
+                </span>
+                <span style="color: #b91c1c; font-weight: bold; margin-left: 8px;">665.0 kg</span>
+            </div>
+            
+            
+            <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #cbd5e1;">
+                <div style="font-size: 11px; font-weight: bold; color: #334155; margin-bottom: 4px;">
+                    👁️ Chọn chế độ hiển thị tuyến đường:
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 2px;">
+                    
+        <button onclick="filterTruck(-1)" style="font-size: 11px; padding: 4px 8px; background: #0f172a; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 2px;">
+            Hiện tất cả
+        </button>
+        
+            <button onclick="filterTruck(0)" style="font-size: 11px; padding: 4px 8px; background: #E63946; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 2px;">
+                Chỉ Xe #1
+            </button>
+            
+            <button onclick="filterTruck(1)" style="font-size: 11px; padding: 4px 8px; background: #1D3557; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 2px;">
+                Chỉ Xe #2
+            </button>
+            
+            <button onclick="filterTruck(2)" style="font-size: 11px; padding: 4px 8px; background: #2A9D8F; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin: 2px;">
+                Chỉ Xe #3
+            </button>
+            
+                </div>
+            </div>
+            
+            <div style="font-size: 11px; color: #64748b; margin-top: 8px; font-style: italic;">
+                * Tuyến khép kín xuất phát từ Depot 0 và quay về Depot 0.<br>
+                * Bạn cũng có thể tích chọn các ô ở góc trên bên trái.
+            </div>
+        </div>
+
+        <script>
+        function filterTruck(targetIdx) {
+            const overlays = document.querySelectorAll('.leaflet-control-layers-overlays input[type="checkbox"]');
+            if (!overlays || overlays.length === 0) return;
+            
+            overlays.forEach((cb, idx) => {
+                // idx = 0 là Depot 0 (luôn bật)
+                if (idx === 0) {
+                    if (!cb.checked) cb.click();
+                    return;
+                }
+                
+                const truckIdx = idx - 1;
+                if (targetIdx === -1) {
+                    // Bật tất cả các xe
+                    if (!cb.checked) cb.click();
+                } else if (truckIdx === targetIdx) {
+                    // Bật duy nhất xe được chọn
+                    if (!cb.checked) cb.click();
+                } else {
+                    // Tắt các xe khác
+                    if (cb.checked) cb.click();
+                }
+            });
+        }
+        </script>
+        
+    
+            <div class="folium-map" id="map_330d52a62805b514d3534e43e33a332d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_330d52a62805b514d3534e43e33a332d = L.map(
+                "map_330d52a62805b514d3534e43e33a332d",
+                {
+                    center: [10.8122, 106.6215],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_da1406cb0a3695edda12cc93c644d4a5 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Google Maps",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_da1406cb0a3695edda12cc93c644d4a5.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var tile_layer_636b177509aa0e7bcf613953b8a5147f = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Google Satellite",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_636b177509aa0e7bcf613953b8a5147f.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var tile_layer_577a4c43d1526de2bd2bfeae7fc6777b = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri WorldStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_577a4c43d1526de2bd2bfeae7fc6777b.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var feature_group_d6b6cd48ef4db93211dfe4736ea6a9e9 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_5e31e0d698065dd0effc2c81112858b1 = L.marker(
+                [10.8122, 106.6215],
+                {
+}
+            ).addTo(feature_group_d6b6cd48ef4db93211dfe4736ea6a9e9);
+        
+    
+            var icon_26fe75a588fcbc1e5702bf73d84ce0e0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_971bb876cd3a0886a1999db3e1e71824 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bb1d1a0fa3758a89bec2d76f704e3eca = $(`<div id="html_bb1d1a0fa3758a89bec2d76f704e3eca" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; min-width: 240px; line-height: 1.5;">             <div style="background-color: #0f172a; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                 ★ TRẠM TẬP KẾT RÁC SƠN KỲ (DEPOT 0)             </div>             <div style="font-size: 12px; color: #334155;">                 <b>Vị trí:</b> Trung tâm điều phối rác Phường Sơn Kỳ<br>                 <i>100% các xe thu gom bắt buộc xuất phát từ đây và quay về đây xả rác để hoàn tất chu trình.</i>             </div>         </div>         </div>`)[0];
+                popup_971bb876cd3a0886a1999db3e1e71824.setContent(html_bb1d1a0fa3758a89bec2d76f704e3eca);
+            
+        
+
+        marker_5e31e0d698065dd0effc2c81112858b1.bindPopup(popup_971bb876cd3a0886a1999db3e1e71824)
+        ;
+
+        
+    
+    
+            marker_5e31e0d698065dd0effc2c81112858b1.bindTooltip(
+                `<div>
+                     ★ Trạm tập kết rác Sơn Kỳ (Depot 0) - Xuất phát & Quay về
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5e31e0d698065dd0effc2c81112858b1.setIcon(icon_26fe75a588fcbc1e5702bf73d84ce0e0);
+            
+    
+            feature_group_d6b6cd48ef4db93211dfe4736ea6a9e9.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_e206e169974615cf1a72397705b8f5df = L.polyline(
+                [[10.81218, 106.621481], [10.812058, 106.621615], [10.811852, 106.621427], [10.811806, 106.621476], [10.812371, 106.622006], [10.812621, 106.622231], [10.812651, 106.622257], [10.812691, 106.622293], [10.813068, 106.622629], [10.81313, 106.622685], [10.813412, 106.62293], [10.814344, 106.623714], [10.8144, 106.62376], [10.815084, 106.624368], [10.815214, 106.624484], [10.815298, 106.624567], [10.815366, 106.624641], [10.815396, 106.624673], [10.81572, 106.625024], [10.816039, 106.625368], [10.816707, 106.62609], [10.817194, 106.626585], [10.81802, 106.627491], [10.818426, 106.627943], [10.818693, 106.628272], [10.819119, 106.628785], [10.819185, 106.628878], [10.81944, 106.629245], [10.820196, 106.630303], [10.820341, 106.63062], [10.820341, 106.63062], [10.820404, 106.630827], [10.820558, 106.630785], [10.820485, 106.630581], [10.820485, 106.630581], [10.820407, 106.63043], [10.820207, 106.630154], [10.819501, 106.629198], [10.819301, 106.6289], [10.819211, 106.628783], [10.819176, 106.628737], [10.819119, 106.628785], [10.819119, 106.628785], [10.819185, 106.628878], [10.81944, 106.629245], [10.819501, 106.629198], [10.819301, 106.6289], [10.819211, 106.628783], [10.819176, 106.628737], [10.818781, 106.628268], [10.818471, 106.6279], [10.818349, 106.627766], [10.818081, 106.627449], [10.817935, 106.627307], [10.817617, 106.62695], [10.817239, 106.626537], [10.816786, 106.626015], [10.816107, 106.625298], [10.81578, 106.624967], [10.815561, 106.624738], [10.81545, 106.62462], [10.815418, 106.624587], [10.815348, 106.624517], [10.815258, 106.624432], [10.815127, 106.62431], [10.814449, 106.623711], [10.814389, 106.62366], [10.813766, 106.623131], [10.813454, 106.62287], [10.813178, 106.622627], [10.813116, 106.622573], [10.812807, 106.622293], [10.812743, 106.622235], [10.812702, 106.622199], [10.812421, 106.621954], [10.812058, 106.621615], [10.811852, 106.621427], [10.811806, 106.621476], [10.811806, 106.621476], [10.812371, 106.622006], [10.812621, 106.622231], [10.812651, 106.622257], [10.812691, 106.622293], [10.812743, 106.622235], [10.812702, 106.622199], [10.812421, 106.621954], [10.812058, 106.621615], [10.811852, 106.621427], [10.811737, 106.621321], [10.810612, 106.620287], [10.810532, 106.620213], [10.810262, 106.619962], [10.809646, 106.619375], [10.809386, 106.619127], [10.808916, 106.618694], [10.80861, 106.618403], [10.808582, 106.618376], [10.808556, 106.618353], [10.808496, 106.618319], [10.8084, 106.6183], [10.808297, 106.618311], [10.808259, 106.618439], [10.808224, 106.618561], [10.808161, 106.618786], [10.808071, 106.619135], [10.807815, 106.620145], [10.807722, 106.620566], [10.807506, 106.621542], [10.807495, 106.621589], [10.807465, 106.621726], [10.807565, 106.621739], [10.807594, 106.621611], [10.807711, 106.621089], [10.807916, 106.620173], [10.80802, 106.61975], [10.808057, 106.619601], [10.808128, 106.619314], [10.808158, 106.619196], [10.808307, 106.618614], [10.808321, 106.61856], [10.808355, 106.618447], [10.808361, 106.618427], [10.8084, 106.6183], [10.808297, 106.618311], [10.808259, 106.618439], [10.808224, 106.618561], [10.808161, 106.618786], [10.808071, 106.619135], [10.807815, 106.620145], [10.807722, 106.620566], [10.807722, 106.620566], [10.807506, 106.621542], [10.807495, 106.621589], [10.807465, 106.621726], [10.807428, 106.621895], [10.807343, 106.622279], [10.807006, 106.623781], [10.806966, 106.623937], [10.806859, 106.62445], [10.806728, 106.625073], [10.806622, 106.625552], [10.806622, 106.625553], [10.806548, 106.625891], [10.806506, 106.626082], [10.806608, 106.626075], [10.8067, 106.626066], [10.807358, 106.626005], [10.807665, 106.625973], [10.807801, 106.625956], [10.808082, 106.625919], [10.808235, 106.625902], [10.808405, 106.625884], [10.808479, 106.625876], [10.808779, 106.625839], [10.808822, 106.625835], [10.809094, 106.625805], [10.809522, 106.625757], [10.809556, 106.625752], [10.809753, 106.625726], [10.809897, 106.625708], [10.81057, 106.62564], [10.81057, 106.62564], [10.810768, 106.625951], [10.811002, 106.626323], [10.811211, 106.626721], [10.81131, 106.62691], [10.81131, 106.62691], [10.811417, 106.627059], [10.811516, 106.627251], [10.811577, 106.627409], [10.811722, 106.627786], [10.811996, 106.628589], [10.811996, 106.628589], [10.812036, 106.628822], [10.812368, 106.628865], [10.812457, 106.629113], [10.812616, 106.629136], [10.812669, 106.629544], [10.812616, 106.629136], [10.812457, 106.629113], [10.812368, 106.628865], [10.812036, 106.628822], [10.811996, 106.628589], [10.811722, 106.627786], [10.811577, 106.627409], [10.811516, 106.627251], [10.811417, 106.627059], [10.811417, 106.627059], [10.811525, 106.626982], [10.811537, 106.626973], [10.811951, 106.62668], [10.812208, 106.626483], [10.812208, 106.626483], [10.812504, 106.626268], [10.812504, 106.626268], [10.812798, 106.626038], [10.812824, 106.626019], [10.813203, 106.62574], [10.813376, 106.62561], [10.813376, 106.62561], [10.813506, 106.625514], [10.813967, 106.625165], [10.814443, 106.624814], [10.814556, 106.624737], [10.815084, 106.624368], [10.815084, 106.624368], [10.815214, 106.624484], [10.815298, 106.624567], [10.815348, 106.624517], [10.815258, 106.624432], [10.815127, 106.62431], [10.814449, 106.623711], [10.814389, 106.62366], [10.813766, 106.623131], [10.813454, 106.62287], [10.813178, 106.622627], [10.813116, 106.622573], [10.812807, 106.622293], [10.812743, 106.622235], [10.812691, 106.622293], [10.812691, 106.622293], [10.813068, 106.622629], [10.81313, 106.622685], [10.813178, 106.622627], [10.813116, 106.622573], [10.812807, 106.622293], [10.812743, 106.622235], [10.812702, 106.622199], [10.812421, 106.621954], [10.812058, 106.621615], [10.81218, 106.621481]],
+                {"bubblingMouseEvents": true, "color": "#E63946", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#E63946", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            poly_line_e206e169974615cf1a72397705b8f5df.bindTooltip(
+                `<div>
+                     Chu trình khép kín của Xe Thu Gom #1: Depot ➔ 16 điểm ➔ Depot
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_aa8ba19ea5f92dbbb537b9db82459eed = L.marker(
+                [10.820341, 106.63062],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_02f59226fe02bc1b9542b3b1d774da7f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    1\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_7ced5a8f26a3c5cde5d55a0eab06bec7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f503d3dc9388f559437565cbafb9108 = $(`<div id="html_0f503d3dc9388f559437565cbafb9108" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #1 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Siêu thị tiện lợi - Số 61 Đường Tây Thạnh</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 90.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #2                     </div>                 </div>                 </div>`)[0];
+                popup_7ced5a8f26a3c5cde5d55a0eab06bec7.setContent(html_0f503d3dc9388f559437565cbafb9108);
+            
+        
+
+        marker_aa8ba19ea5f92dbbb537b9db82459eed.bindPopup(popup_7ced5a8f26a3c5cde5d55a0eab06bec7)
+        ;
+
+        
+    
+    
+            marker_aa8ba19ea5f92dbbb537b9db82459eed.bindTooltip(
+                `<div>
+                     #1: Siêu thị tiện lợi - Số 61 Đường Tây Thạnh (90 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aa8ba19ea5f92dbbb537b9db82459eed.setIcon(div_icon_02f59226fe02bc1b9542b3b1d774da7f);
+            
+    
+            var marker_a5df2e5ee4d44a26e86e617d7c608810 = L.marker(
+                [10.820485, 106.630581],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_4914fc41ccffca715f82010646fa849b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    2\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_8ee0c85d2680c42caf73977a00358c29 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6a0f235b730e93d3c8e1d532c9167f6a = $(`<div id="html_6a0f235b730e93d3c8e1d532c9167f6a" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #2 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 21 Đường Tây Thạnh (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 35.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #3                     </div>                 </div>                 </div>`)[0];
+                popup_8ee0c85d2680c42caf73977a00358c29.setContent(html_6a0f235b730e93d3c8e1d532c9167f6a);
+            
+        
+
+        marker_a5df2e5ee4d44a26e86e617d7c608810.bindPopup(popup_8ee0c85d2680c42caf73977a00358c29)
+        ;
+
+        
+    
+    
+            marker_a5df2e5ee4d44a26e86e617d7c608810.bindTooltip(
+                `<div>
+                     #2: Số 21 Đường Tây Thạnh (Lề trái) (35 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5df2e5ee4d44a26e86e617d7c608810.setIcon(div_icon_4914fc41ccffca715f82010646fa849b);
+            
+    
+            var marker_41d1a4523175340d5c72a59cb21cf3cd = L.marker(
+                [10.819119, 106.628785],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_a919aad2eb8a15a015b39748a11f8010 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    3\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_d21e4cb7f615f3a23234f466bc244f69 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c9f42ef660f5537cd2662719588a2dd4 = $(`<div id="html_c9f42ef660f5537cd2662719588a2dd4" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #3 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Khu dịch vụ KCN - Số 28 Đường Tây Thạnh</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 100.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #4                     </div>                 </div>                 </div>`)[0];
+                popup_d21e4cb7f615f3a23234f466bc244f69.setContent(html_c9f42ef660f5537cd2662719588a2dd4);
+            
+        
+
+        marker_41d1a4523175340d5c72a59cb21cf3cd.bindPopup(popup_d21e4cb7f615f3a23234f466bc244f69)
+        ;
+
+        
+    
+    
+            marker_41d1a4523175340d5c72a59cb21cf3cd.bindTooltip(
+                `<div>
+                     #3: Khu dịch vụ KCN - Số 28 Đường Tây Thạnh (100 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_41d1a4523175340d5c72a59cb21cf3cd.setIcon(div_icon_a919aad2eb8a15a015b39748a11f8010);
+            
+    
+            var marker_abcec83a2e6196f2bb71f308a085de69 = L.marker(
+                [10.811806, 106.621476],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_32bcf317e2b59d35185fe502442d2aa4 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    4\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_4762bcb411c43e4706ccb979f6b1c0ae = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_96fba90d9de1c555b426f9744cdff38d = $(`<div id="html_96fba90d9de1c555b426f9744cdff38d" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #4 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 56 Đường Tây Thạnh (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 50.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #5                     </div>                 </div>                 </div>`)[0];
+                popup_4762bcb411c43e4706ccb979f6b1c0ae.setContent(html_96fba90d9de1c555b426f9744cdff38d);
+            
+        
+
+        marker_abcec83a2e6196f2bb71f308a085de69.bindPopup(popup_4762bcb411c43e4706ccb979f6b1c0ae)
+        ;
+
+        
+    
+    
+            marker_abcec83a2e6196f2bb71f308a085de69.bindTooltip(
+                `<div>
+                     #4: Số 56 Đường Tây Thạnh (Lề phải) (50 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_abcec83a2e6196f2bb71f308a085de69.setIcon(div_icon_32bcf317e2b59d35185fe502442d2aa4);
+            
+    
+            var marker_8f96e6a08c2c73d773aebb9ad309aa8c = L.marker(
+                [10.808355, 106.618447],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_ab0deba7b16aef79ad19cdca5fb348a4 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    5\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_305dab2fe4453c6da464662c41374e8b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a18ac787c88a5cbe014e627ee5e8e451 = $(`<div id="html_a18ac787c88a5cbe014e627ee5e8e451" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #5 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 77 Lê Trọng Tấn (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 70.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #6                     </div>                 </div>                 </div>`)[0];
+                popup_305dab2fe4453c6da464662c41374e8b.setContent(html_a18ac787c88a5cbe014e627ee5e8e451);
+            
+        
+
+        marker_8f96e6a08c2c73d773aebb9ad309aa8c.bindPopup(popup_305dab2fe4453c6da464662c41374e8b)
+        ;
+
+        
+    
+    
+            marker_8f96e6a08c2c73d773aebb9ad309aa8c.bindTooltip(
+                `<div>
+                     #5: Số 77 Lê Trọng Tấn (Lề phải) (70 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f96e6a08c2c73d773aebb9ad309aa8c.setIcon(div_icon_ab0deba7b16aef79ad19cdca5fb348a4);
+            
+    
+            var marker_7949c85ede1d735295693d4838272edf = L.marker(
+                [10.807722, 106.620566],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_4fecf2780d60617cec6e32e0faa79485 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    6\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_b95909cf3598e4659674fe2ee024cf58 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8153de5cac96c3e2cb42bf563e6572cf = $(`<div id="html_8153de5cac96c3e2cb42bf563e6572cf" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #6 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 98 Lê Trọng Tấn (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 75.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #7                     </div>                 </div>                 </div>`)[0];
+                popup_b95909cf3598e4659674fe2ee024cf58.setContent(html_8153de5cac96c3e2cb42bf563e6572cf);
+            
+        
+
+        marker_7949c85ede1d735295693d4838272edf.bindPopup(popup_b95909cf3598e4659674fe2ee024cf58)
+        ;
+
+        
+    
+    
+            marker_7949c85ede1d735295693d4838272edf.bindTooltip(
+                `<div>
+                     #6: Số 98 Lê Trọng Tấn (Lề phải) (75 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7949c85ede1d735295693d4838272edf.setIcon(div_icon_4fecf2780d60617cec6e32e0faa79485);
+            
+    
+            var marker_d005832cc299d88f1df23fa3a88bd963 = L.marker(
+                [10.806622, 106.625552],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_35915e1c9150a60e8e97e51ded8c2a8f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    7\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_50612e3984e639ae9ecb97d23e0f4e12 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e664855c2b2e0731c8a93f9f90f5637a = $(`<div id="html_e664855c2b2e0731c8a93f9f90f5637a" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #7 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 70 Lê Trọng Tấn (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 50.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #8                     </div>                 </div>                 </div>`)[0];
+                popup_50612e3984e639ae9ecb97d23e0f4e12.setContent(html_e664855c2b2e0731c8a93f9f90f5637a);
+            
+        
+
+        marker_d005832cc299d88f1df23fa3a88bd963.bindPopup(popup_50612e3984e639ae9ecb97d23e0f4e12)
+        ;
+
+        
+    
+    
+            marker_d005832cc299d88f1df23fa3a88bd963.bindTooltip(
+                `<div>
+                     #7: Số 70 Lê Trọng Tấn (Lề trái) (50 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d005832cc299d88f1df23fa3a88bd963.setIcon(div_icon_35915e1c9150a60e8e97e51ded8c2a8f);
+            
+    
+            var marker_d1e1085056320c9d8eaa553043072d01 = L.marker(
+                [10.81057, 106.62564],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_c02f5ec9072da8625047d689d40525f6 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    8\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_db0e3ffa73aef70e1071c9903d25e9b8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_12a4e07ff8db0da8dfb792810a1334bf = $(`<div id="html_12a4e07ff8db0da8dfb792810a1334bf" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #8 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 112 Chế Lan Viên (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 40.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #9                     </div>                 </div>                 </div>`)[0];
+                popup_db0e3ffa73aef70e1071c9903d25e9b8.setContent(html_12a4e07ff8db0da8dfb792810a1334bf);
+            
+        
+
+        marker_d1e1085056320c9d8eaa553043072d01.bindPopup(popup_db0e3ffa73aef70e1071c9903d25e9b8)
+        ;
+
+        
+    
+    
+            marker_d1e1085056320c9d8eaa553043072d01.bindTooltip(
+                `<div>
+                     #8: Số 112 Chế Lan Viên (Lề trái) (40 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d1e1085056320c9d8eaa553043072d01.setIcon(div_icon_c02f5ec9072da8625047d689d40525f6);
+            
+    
+            var marker_ecdbba44912631748df55de5c5591dc8 = L.marker(
+                [10.81131, 106.62691],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_b611e0ec99f4f273f71152bac123ac2c = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    9\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_38ac919f09323ea0014a5cb787922305 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4145cc747e856dd8a025fa2ba61deb41 = $(`<div id="html_4145cc747e856dd8a025fa2ba61deb41" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #9 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 126 Chế Lan Viên (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 75.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #10                     </div>                 </div>                 </div>`)[0];
+                popup_38ac919f09323ea0014a5cb787922305.setContent(html_4145cc747e856dd8a025fa2ba61deb41);
+            
+        
+
+        marker_ecdbba44912631748df55de5c5591dc8.bindPopup(popup_38ac919f09323ea0014a5cb787922305)
+        ;
+
+        
+    
+    
+            marker_ecdbba44912631748df55de5c5591dc8.bindTooltip(
+                `<div>
+                     #9: Số 126 Chế Lan Viên (Lề trái) (75 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ecdbba44912631748df55de5c5591dc8.setIcon(div_icon_b611e0ec99f4f273f71152bac123ac2c);
+            
+    
+            var marker_a749fdd263d940846d563b34a0b9c14b = L.marker(
+                [10.811996, 106.628589],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_a708b1315e67b3a0c4ce3735719e307c = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    10\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_018624c49d20d41839134b38182c2101 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_109891f32d6c8397210a7bff824c05fd = $(`<div id="html_109891f32d6c8397210a7bff824c05fd" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #10 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Khu dịch vụ KCN - Số 171 Chế Lan Viên</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 90.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #11                     </div>                 </div>                 </div>`)[0];
+                popup_018624c49d20d41839134b38182c2101.setContent(html_109891f32d6c8397210a7bff824c05fd);
+            
+        
+
+        marker_a749fdd263d940846d563b34a0b9c14b.bindPopup(popup_018624c49d20d41839134b38182c2101)
+        ;
+
+        
+    
+    
+            marker_a749fdd263d940846d563b34a0b9c14b.bindTooltip(
+                `<div>
+                     #10: Khu dịch vụ KCN - Số 171 Chế Lan Viên (90 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a749fdd263d940846d563b34a0b9c14b.setIcon(div_icon_a708b1315e67b3a0c4ce3735719e307c);
+            
+    
+            var marker_6ff5e6f419ac87ee5623ffc07ff5b387 = L.marker(
+                [10.811416, 106.627059],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_0dcb4bbe188ab59307949b7cf97fb737 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    11\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_40052939e44eb9a1b9232749beafa118 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c09be415c1d45129d324157c3e1ef496 = $(`<div id="html_c09be415c1d45129d324157c3e1ef496" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #11 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cửa hàng bán lẻ tổng hợp - Số 149 Chế Lan Viên</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 85.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #12                     </div>                 </div>                 </div>`)[0];
+                popup_40052939e44eb9a1b9232749beafa118.setContent(html_c09be415c1d45129d324157c3e1ef496);
+            
+        
+
+        marker_6ff5e6f419ac87ee5623ffc07ff5b387.bindPopup(popup_40052939e44eb9a1b9232749beafa118)
+        ;
+
+        
+    
+    
+            marker_6ff5e6f419ac87ee5623ffc07ff5b387.bindTooltip(
+                `<div>
+                     #11: Cửa hàng bán lẻ tổng hợp - Số 149 Chế Lan Viên (85 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6ff5e6f419ac87ee5623ffc07ff5b387.setIcon(div_icon_0dcb4bbe188ab59307949b7cf97fb737);
+            
+    
+            var marker_e4d3fca3df4c16e75d4f51ec49423423 = L.marker(
+                [10.812208, 106.626483],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_a68012c39d70ac0d829470874f85ed29 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    12\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_8dca4528625954122fa31e0409c61a37 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aa6c1f361644ee6ed28b79bb7cf9f912 = $(`<div id="html_aa6c1f361644ee6ed28b79bb7cf9f912" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #12 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Siêu thị tiện lợi - Số 35 Lưu Chí Hiếu</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 115.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #13                     </div>                 </div>                 </div>`)[0];
+                popup_8dca4528625954122fa31e0409c61a37.setContent(html_aa6c1f361644ee6ed28b79bb7cf9f912);
+            
+        
+
+        marker_e4d3fca3df4c16e75d4f51ec49423423.bindPopup(popup_8dca4528625954122fa31e0409c61a37)
+        ;
+
+        
+    
+    
+            marker_e4d3fca3df4c16e75d4f51ec49423423.bindTooltip(
+                `<div>
+                     #12: Siêu thị tiện lợi - Số 35 Lưu Chí Hiếu (115 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e4d3fca3df4c16e75d4f51ec49423423.setIcon(div_icon_a68012c39d70ac0d829470874f85ed29);
+            
+    
+            var marker_89593758061f4ea904cedb25faa06447 = L.marker(
+                [10.812504, 106.626268],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_95189c266f829831c418af6fcfe3d212 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    13\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_d3017326cf6ca003ad4a02058546720c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ba6a971881e913d5c995a8cedfc29e7c = $(`<div id="html_ba6a971881e913d5c995a8cedfc29e7c" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #13 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 154 Lưu Chí Hiếu (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 35.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #14                     </div>                 </div>                 </div>`)[0];
+                popup_d3017326cf6ca003ad4a02058546720c.setContent(html_ba6a971881e913d5c995a8cedfc29e7c);
+            
+        
+
+        marker_89593758061f4ea904cedb25faa06447.bindPopup(popup_d3017326cf6ca003ad4a02058546720c)
+        ;
+
+        
+    
+    
+            marker_89593758061f4ea904cedb25faa06447.bindTooltip(
+                `<div>
+                     #13: Số 154 Lưu Chí Hiếu (Lề trái) (35 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_89593758061f4ea904cedb25faa06447.setIcon(div_icon_95189c266f829831c418af6fcfe3d212);
+            
+    
+            var marker_7e3b6afa33d97a9db3e0a59d728e5d10 = L.marker(
+                [10.813376, 106.62561],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_593b5ca2e19a5bb887cb3ff5dfee62c2 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    14\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_8faf9a1a4574f433f8b9d36c7e136c44 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bf5ab221143d13b91ae4a639d0b9bae8 = $(`<div id="html_bf5ab221143d13b91ae4a639d0b9bae8" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #14 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 133 Lưu Chí Hiếu (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 50.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #15                     </div>                 </div>                 </div>`)[0];
+                popup_8faf9a1a4574f433f8b9d36c7e136c44.setContent(html_bf5ab221143d13b91ae4a639d0b9bae8);
+            
+        
+
+        marker_7e3b6afa33d97a9db3e0a59d728e5d10.bindPopup(popup_8faf9a1a4574f433f8b9d36c7e136c44)
+        ;
+
+        
+    
+    
+            marker_7e3b6afa33d97a9db3e0a59d728e5d10.bindTooltip(
+                `<div>
+                     #14: Số 133 Lưu Chí Hiếu (Lề trái) (50 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7e3b6afa33d97a9db3e0a59d728e5d10.setIcon(div_icon_593b5ca2e19a5bb887cb3ff5dfee62c2);
+            
+    
+            var marker_8692d964acce19c5e631cdc37adb950a = L.marker(
+                [10.815084, 106.624368],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_bce828cb7188c4910844ea512a565522 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    15\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_c3748fc98468ba25149c7c3a9248d4c0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_454efb8b715a001452931ab85cdaaff6 = $(`<div id="html_454efb8b715a001452931ab85cdaaff6" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #15 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cụm thương mại - dịch vụ - Số 39 Đường Tây Thạnh</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 110.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #16                     </div>                 </div>                 </div>`)[0];
+                popup_c3748fc98468ba25149c7c3a9248d4c0.setContent(html_454efb8b715a001452931ab85cdaaff6);
+            
+        
+
+        marker_8692d964acce19c5e631cdc37adb950a.bindPopup(popup_c3748fc98468ba25149c7c3a9248d4c0)
+        ;
+
+        
+    
+    
+            marker_8692d964acce19c5e631cdc37adb950a.bindTooltip(
+                `<div>
+                     #15: Cụm thương mại - dịch vụ - Số 39 Đường Tây Thạnh (110 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8692d964acce19c5e631cdc37adb950a.setIcon(div_icon_bce828cb7188c4910844ea512a565522);
+            
+    
+            var marker_be3dd9318737419e8d7c0098a1512e07 = L.marker(
+                [10.812691, 106.622293],
+                {
+}
+            ).addTo(feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05);
+        
+    
+            var div_icon_d6b91b17c613a151986c29316d924256 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #E63946;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    16\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_fe34d68b810c193b23c71547ba20bdf0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b33d65075990f04048821306be24fcf = $(`<div id="html_7b33d65075990f04048821306be24fcf" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #E63946; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #1 (Điểm dừng #16 / 16)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Siêu thị tiện lợi - Số 50 Đường Tây Thạnh</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 120.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Quay về Trạm tập kết Sơn Kỳ (Depot 0) xả rác hoàn tất chu trình 🏁                     </div>                 </div>                 </div>`)[0];
+                popup_fe34d68b810c193b23c71547ba20bdf0.setContent(html_7b33d65075990f04048821306be24fcf);
+            
+        
+
+        marker_be3dd9318737419e8d7c0098a1512e07.bindPopup(popup_fe34d68b810c193b23c71547ba20bdf0)
+        ;
+
+        
+    
+    
+            marker_be3dd9318737419e8d7c0098a1512e07.bindTooltip(
+                `<div>
+                     #16: Siêu thị tiện lợi - Số 50 Đường Tây Thạnh (120 kg) - Xe Thu Gom #1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_be3dd9318737419e8d7c0098a1512e07.setIcon(div_icon_d6b91b17c613a151986c29316d924256);
+            
+    
+            feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var feature_group_3ca45851d79e4af82efc8550972e16ca = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_fc971fd2b8e56d3a73e2260f28c28a4b = L.polyline(
+                [[10.81218, 106.621481], [10.812465, 106.62117], [10.812699, 106.621384], [10.813132, 106.621789], [10.81317, 106.621748], [10.813924, 106.620924], [10.814622, 106.621553], [10.814854, 106.621763], [10.815299, 106.622149], [10.815397, 106.622234], [10.816188, 106.62295], [10.816264, 106.623024], [10.816264, 106.623024], [10.816492, 106.623233], [10.817476, 106.622133], [10.81757, 106.622024], [10.817692, 106.621887], [10.817901, 106.621652], [10.818073, 106.621449], [10.818122, 106.621393], [10.818151, 106.621355], [10.81818, 106.621315], [10.818203, 106.621274], [10.818217, 106.621236], [10.818226, 106.621197], [10.81823, 106.62115], [10.81823, 106.621081], [10.818226, 106.620994], [10.818155, 106.620228], [10.818074, 106.619347], [10.818071, 106.619275], [10.818073, 106.619205], [10.818077, 106.619144], [10.818087, 106.619101], [10.818098, 106.619062], [10.818115, 106.619021], [10.81814, 106.618973], [10.818507, 106.618472], [10.818815, 106.618066], [10.818925, 106.617911], [10.818961, 106.617851], [10.818992, 106.617787], [10.819019, 106.617713], [10.819046, 106.617632], [10.819068, 106.617553], [10.819083, 106.61748], [10.819097, 106.617405], [10.819108, 106.617329], [10.819117, 106.617264], [10.81912, 106.617198], [10.81912, 106.617135], [10.819117, 106.617072], [10.819109, 106.617014], [10.819013, 106.616525], [10.818986, 106.616416], [10.818955, 106.616315], [10.818903, 106.616174], [10.818842, 106.616031], [10.818415, 106.615151], [10.818369, 106.615063], [10.818324, 106.614983], [10.817976, 106.614422], [10.817916, 106.614311], [10.817867, 106.614189], [10.817556, 106.613234], [10.817506, 106.613088], [10.817451, 106.612967], [10.817451, 106.612966], [10.817387, 106.612852], [10.81732, 106.612746], [10.816238, 106.611312], [10.81617, 106.611233], [10.814935, 106.609964], [10.814204, 106.609218], [10.813173, 106.608153], [10.813119, 106.608092], [10.813089, 106.608062], [10.813053, 106.60803], [10.813006, 106.607995], [10.812961, 106.607969], [10.812917, 106.607946], [10.812868, 106.607927], [10.812814, 106.607909], [10.812094, 106.609088], [10.812063, 106.609252], [10.811836, 106.609626], [10.811748, 106.609777], [10.811695, 106.609868], [10.81166, 106.609929], [10.811458, 106.610289], [10.811245, 106.610704], [10.811102, 106.610998], [10.81097, 106.611271], [10.810872, 106.611479], [10.810838, 106.611549], [10.810784, 106.611658], [10.810444, 106.612378], [10.810434, 106.612401], [10.810352, 106.612574], [10.810322, 106.612637], [10.810402, 106.612705], [10.811268, 106.613435], [10.811347, 106.613502], [10.811483, 106.613616], [10.811802, 106.613897], [10.811915, 106.613992], [10.813091, 106.614986], [10.813321, 106.61518], [10.814248, 106.615964], [10.814666, 106.616314], [10.814666, 106.616314], [10.81544, 106.616949], [10.816036, 106.617442], [10.81626, 106.617629], [10.816315, 106.617676], [10.8167, 106.617996], [10.817394, 106.618574], [10.817706, 106.618835], [10.818077, 106.619144], [10.818087, 106.619101], [10.818098, 106.619062], [10.818098, 106.619062], [10.818115, 106.619021], [10.81814, 106.618973], [10.818507, 106.618472], [10.818426, 106.618402], [10.818507, 106.618472], [10.81814, 106.618973], [10.818115, 106.619021], [10.818098, 106.619062], [10.818087, 106.619101], [10.818077, 106.619144], [10.818073, 106.619205], [10.818071, 106.619275], [10.818074, 106.619347], [10.818155, 106.620228], [10.818226, 106.620994], [10.81823, 106.621081], [10.81823, 106.62115], [10.818226, 106.621197], [10.818217, 106.621236], [10.818203, 106.621274], [10.81818, 106.621315], [10.818151, 106.621355], [10.818122, 106.621393], [10.818073, 106.621449], [10.817901, 106.621652], [10.817901, 106.621652], [10.817692, 106.621887], [10.81757, 106.622024], [10.817476, 106.622133], [10.816492, 106.623233], [10.815548, 106.624298], [10.815448, 106.624407], [10.815402, 106.624457], [10.815348, 106.624517], [10.815298, 106.624567], [10.815233, 106.624617], [10.814822, 106.624934], [10.814713, 106.625011], [10.813701, 106.625728], [10.813577, 106.625816], [10.812923, 106.626271], [10.812681, 106.62644], [10.812634, 106.626472], [10.81245, 106.626601], [10.812198, 106.626776], [10.811646, 106.627161], [10.811634, 106.627169], [10.811516, 106.627251], [10.811577, 106.627409], [10.811722, 106.627786], [10.811996, 106.628589], [10.810613, 106.629249], [10.810272, 106.629411], [10.809877, 106.6296], [10.809406, 106.629844], [10.809406, 106.629844], [10.809441, 106.629947], [10.809454, 106.63002], [10.80946, 106.630089], [10.809454, 106.630171], [10.809434, 106.630249], [10.809405, 106.630289], [10.809375, 106.630319], [10.809375, 106.630319], [10.809359, 106.630397], [10.809398, 106.631013], [10.809968, 106.630716], [10.810359, 106.63051], [10.810412, 106.630481], [10.810687, 106.630332], [10.810797, 106.630273], [10.810797, 106.630273], [10.810783, 106.630204], [10.810696, 106.629764], [10.810783, 106.630204], [10.810797, 106.630273], [10.810687, 106.630332], [10.810412, 106.630481], [10.810272, 106.629411], [10.809877, 106.6296], [10.809968, 106.630715], [10.809968, 106.630716], [10.809398, 106.631013], [10.80897, 106.631205], [10.808937, 106.631219], [10.808634, 106.631337], [10.808609, 106.631347], [10.808497, 106.631354], [10.808372, 106.631363], [10.808293, 106.631368], [10.808117, 106.631348], [10.807787, 106.631311], [10.807484, 106.631276], [10.80744, 106.631271], [10.807406, 106.631268], [10.806817, 106.63121], [10.806353, 106.631164], [10.805699, 106.631101], [10.805699, 106.631101], [10.805402, 106.631072], [10.805453, 106.630982], [10.805506, 106.630877], [10.805552, 106.630764], [10.805594, 106.630647], [10.805643, 106.630487], [10.805684, 106.630328], [10.805714, 106.630195], [10.805873, 106.629475], [10.805882, 106.629432], [10.80591, 106.629301], [10.805937, 106.62918], [10.80604, 106.6287], [10.806099, 106.628426], [10.806099, 106.628426], [10.806421, 106.628419], [10.806555, 106.628405], [10.80667, 106.628393], [10.806958, 106.628363], [10.806958, 106.628363], [10.807286, 106.628328], [10.807267, 106.628004], [10.80728, 106.627979], [10.807298, 106.627963], [10.807379, 106.62796], [10.807437, 106.627998], [10.807463, 106.628011], [10.807514, 106.62803], [10.80762, 106.628034], [10.80761, 106.628294], [10.807286, 106.628328], [10.807286, 106.628328], [10.806958, 106.628363], [10.80667, 106.628393], [10.806555, 106.628405], [10.806421, 106.628419], [10.806099, 106.628426], [10.806229, 106.627825], [10.806279, 106.627592], [10.80631, 106.627446], [10.806504, 106.627386], [10.806623, 106.627349], [10.807112, 106.627279], [10.807694, 106.627218], [10.808158, 106.62717], [10.808432, 106.627156], [10.808586, 106.627147], [10.808944, 106.627107], [10.808929, 106.627658], [10.808928, 106.627724], [10.808924, 106.627836], [10.808903, 106.628564], [10.808903, 106.628564], [10.809267, 106.628578], [10.809267, 106.628578], [10.809269, 106.627937], [10.80928, 106.627677], [10.809308, 106.627067], [10.809533, 106.627054], [10.809811, 106.627039], [10.809811, 106.627039], [10.809785, 106.626548], [10.809535, 106.626558], [10.809533, 106.627054], [10.809533, 106.627054], [10.809308, 106.627067], [10.809308, 106.627067], [10.809212, 106.627078], [10.808944, 106.627107], [10.808944, 106.627107], [10.808586, 106.627147], [10.808432, 106.627156], [10.808158, 106.62717], [10.807694, 106.627218], [10.807694, 106.627218], [10.807112, 106.627279], [10.806623, 106.627349], [10.806504, 106.627386], [10.80631, 106.627446], [10.806458, 106.626857], [10.806608, 106.626075], [10.8067, 106.626066], [10.807358, 106.626005], [10.807665, 106.625973], [10.807801, 106.625956], [10.808082, 106.625919], [10.808235, 106.625902], [10.808405, 106.625884], [10.808479, 106.625876], [10.808479, 106.625876], [10.808779, 106.625839], [10.808779, 106.625839], [10.808822, 106.625835], [10.809094, 106.625805], [10.809522, 106.625757], [10.809522, 106.625757], [10.809556, 106.625752], [10.809753, 106.625726], [10.809897, 106.625708], [10.81057, 106.62564], [10.811682, 106.624404], [10.811895, 106.624154], [10.811895, 106.624154], [10.812214, 106.623771], [10.812737, 106.623154], [10.813073, 106.622753], [10.81313, 106.622685], [10.813178, 106.622627], [10.813116, 106.622573], [10.812807, 106.622293], [10.812743, 106.622235], [10.812702, 106.622199], [10.812421, 106.621954], [10.812058, 106.621615], [10.81218, 106.621481]],
+                {"bubblingMouseEvents": true, "color": "#1D3557", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#1D3557", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            poly_line_fc971fd2b8e56d3a73e2260f28c28a4b.bindTooltip(
+                `<div>
+                     Chu trình khép kín của Xe Thu Gom #2: Depot ➔ 24 điểm ➔ Depot
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_07dfa23c8114c4771da0927ae0a92c61 = L.marker(
+                [10.816264, 106.623024],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_ef662c5b9b29cb97ccb82bacdcba9633 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    1\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_ced6ca5d276e5211afb9beeca21d139c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_710aac1d261cfcc371cc4ebbbc9c119c = $(`<div id="html_710aac1d261cfcc371cc4ebbbc9c119c" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #1 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 140 Lưu Chí Hiếu (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 55.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #2                     </div>                 </div>                 </div>`)[0];
+                popup_ced6ca5d276e5211afb9beeca21d139c.setContent(html_710aac1d261cfcc371cc4ebbbc9c119c);
+            
+        
+
+        marker_07dfa23c8114c4771da0927ae0a92c61.bindPopup(popup_ced6ca5d276e5211afb9beeca21d139c)
+        ;
+
+        
+    
+    
+            marker_07dfa23c8114c4771da0927ae0a92c61.bindTooltip(
+                `<div>
+                     #1: Số 140 Lưu Chí Hiếu (Lề trái) (55 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_07dfa23c8114c4771da0927ae0a92c61.setIcon(div_icon_ef662c5b9b29cb97ccb82bacdcba9633);
+            
+    
+            var marker_85c736572d9d7b905bd81b73b1b0030d = L.marker(
+                [10.817451, 106.612966],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_8d2b32c59e34f9c584c3481768675b8d = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    2\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_4c0d7691a5fcdbac76a430fec4fff742 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3a9378aba9cb5c913b44885fa2c3fd2 = $(`<div id="html_f3a9378aba9cb5c913b44885fa2c3fd2" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #2 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 58 Đường CN1 (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 65.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #3                     </div>                 </div>                 </div>`)[0];
+                popup_4c0d7691a5fcdbac76a430fec4fff742.setContent(html_f3a9378aba9cb5c913b44885fa2c3fd2);
+            
+        
+
+        marker_85c736572d9d7b905bd81b73b1b0030d.bindPopup(popup_4c0d7691a5fcdbac76a430fec4fff742)
+        ;
+
+        
+    
+    
+            marker_85c736572d9d7b905bd81b73b1b0030d.bindTooltip(
+                `<div>
+                     #2: Số 58 Đường CN1 (Lề trái) (65 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_85c736572d9d7b905bd81b73b1b0030d.setIcon(div_icon_8d2b32c59e34f9c584c3481768675b8d);
+            
+    
+            var marker_398dff77178b6d6626a0ec2e21e05acf = L.marker(
+                [10.814666, 106.616314],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_44fe8fb91eb3d0de3c2279a6d8d98ca8 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    3\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_7433f79f7e54d8a60491bdb6c68c0afb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c939208b63ef416dcf0becb1c867bd7b = $(`<div id="html_c939208b63ef416dcf0becb1c867bd7b" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #3 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 44 Đường CN13 (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 70.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #4                     </div>                 </div>                 </div>`)[0];
+                popup_7433f79f7e54d8a60491bdb6c68c0afb.setContent(html_c939208b63ef416dcf0becb1c867bd7b);
+            
+        
+
+        marker_398dff77178b6d6626a0ec2e21e05acf.bindPopup(popup_7433f79f7e54d8a60491bdb6c68c0afb)
+        ;
+
+        
+    
+    
+            marker_398dff77178b6d6626a0ec2e21e05acf.bindTooltip(
+                `<div>
+                     #3: Số 44 Đường CN13 (Lề trái) (70 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_398dff77178b6d6626a0ec2e21e05acf.setIcon(div_icon_44fe8fb91eb3d0de3c2279a6d8d98ca8);
+            
+    
+            var marker_cdfb7fcda28c37a6c23e521d9e91d8da = L.marker(
+                [10.818098, 106.619062],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_3185804c9810992048ee865215d0cdc3 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    4\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_235a70383fb4726a1759ba1e6ce2ce85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2ff866e29b994bbee9e17ccb03c51c84 = $(`<div id="html_2ff866e29b994bbee9e17ccb03c51c84" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #4 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 37 Đường CN13 (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 60.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #5                     </div>                 </div>                 </div>`)[0];
+                popup_235a70383fb4726a1759ba1e6ce2ce85.setContent(html_2ff866e29b994bbee9e17ccb03c51c84);
+            
+        
+
+        marker_cdfb7fcda28c37a6c23e521d9e91d8da.bindPopup(popup_235a70383fb4726a1759ba1e6ce2ce85)
+        ;
+
+        
+    
+    
+            marker_cdfb7fcda28c37a6c23e521d9e91d8da.bindTooltip(
+                `<div>
+                     #4: Số 37 Đường CN13 (Lề phải) (60 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cdfb7fcda28c37a6c23e521d9e91d8da.setIcon(div_icon_3185804c9810992048ee865215d0cdc3);
+            
+    
+            var marker_9d81b0c33c47c58d23f07b7b4ff699fb = L.marker(
+                [10.817901, 106.621652],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_86100168d41d9eb10b30c0ce597c1192 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    5\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_0c05d7d49368ca05cc49a2047f1f005b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d6632a7a94ff99c9c899a8fb27d7964f = $(`<div id="html_d6632a7a94ff99c9c899a8fb27d7964f" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #5 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 65 Đường CN1 (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 40.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #6                     </div>                 </div>                 </div>`)[0];
+                popup_0c05d7d49368ca05cc49a2047f1f005b.setContent(html_d6632a7a94ff99c9c899a8fb27d7964f);
+            
+        
+
+        marker_9d81b0c33c47c58d23f07b7b4ff699fb.bindPopup(popup_0c05d7d49368ca05cc49a2047f1f005b)
+        ;
+
+        
+    
+    
+            marker_9d81b0c33c47c58d23f07b7b4ff699fb.bindTooltip(
+                `<div>
+                     #5: Số 65 Đường CN1 (Lề trái) (40 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9d81b0c33c47c58d23f07b7b4ff699fb.setIcon(div_icon_86100168d41d9eb10b30c0ce597c1192);
+            
+    
+            var marker_295b8f3441e6950da7b42469a77a76b7 = L.marker(
+                [10.809406, 106.629844],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_e0c15beca58b7d37fc0a80e7bba319ce = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    6\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_97ef1e4eef5dbc9af251ff9d01a13737 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9736bdce37c3a42b898bb8aae02d9707 = $(`<div id="html_9736bdce37c3a42b898bb8aae02d9707" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #6 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 2 Phạm Ngọc Thảo (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 45.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #7                     </div>                 </div>                 </div>`)[0];
+                popup_97ef1e4eef5dbc9af251ff9d01a13737.setContent(html_9736bdce37c3a42b898bb8aae02d9707);
+            
+        
+
+        marker_295b8f3441e6950da7b42469a77a76b7.bindPopup(popup_97ef1e4eef5dbc9af251ff9d01a13737)
+        ;
+
+        
+    
+    
+            marker_295b8f3441e6950da7b42469a77a76b7.bindTooltip(
+                `<div>
+                     #6: Số 2 Phạm Ngọc Thảo (Lề phải) (45 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_295b8f3441e6950da7b42469a77a76b7.setIcon(div_icon_e0c15beca58b7d37fc0a80e7bba319ce);
+            
+    
+            var marker_1e66e0455df79006865f1a90821a0fd2 = L.marker(
+                [10.809375, 106.630319],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_33fb42925169028c5c77961709bff937 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    7\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_ee5f3881a638603e956be77700b85774 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_90d1642c2f4ee527e90a0a1cac998662 = $(`<div id="html_90d1642c2f4ee527e90a0a1cac998662" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #7 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 9 Phạm Ngọc Thảo (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 50.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #8                     </div>                 </div>                 </div>`)[0];
+                popup_ee5f3881a638603e956be77700b85774.setContent(html_90d1642c2f4ee527e90a0a1cac998662);
+            
+        
+
+        marker_1e66e0455df79006865f1a90821a0fd2.bindPopup(popup_ee5f3881a638603e956be77700b85774)
+        ;
+
+        
+    
+    
+            marker_1e66e0455df79006865f1a90821a0fd2.bindTooltip(
+                `<div>
+                     #7: Số 9 Phạm Ngọc Thảo (Lề trái) (50 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1e66e0455df79006865f1a90821a0fd2.setIcon(div_icon_33fb42925169028c5c77961709bff937);
+            
+    
+            var marker_f714f58e1a7e842da0e227fa3a2a1c42 = L.marker(
+                [10.810797, 106.630273],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_f462c7d370a89896d05d641d6d73365b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    8\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_fc65ef1a0cee0816b47085bad7fc9586 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad61331ddd1a85b2e7b59599c13135e4 = $(`<div id="html_ad61331ddd1a85b2e7b59599c13135e4" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #8 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cụm thương mại - dịch vụ - Số 42 Nguyễn Hữu Dật</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 100.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #9                     </div>                 </div>                 </div>`)[0];
+                popup_fc65ef1a0cee0816b47085bad7fc9586.setContent(html_ad61331ddd1a85b2e7b59599c13135e4);
+            
+        
+
+        marker_f714f58e1a7e842da0e227fa3a2a1c42.bindPopup(popup_fc65ef1a0cee0816b47085bad7fc9586)
+        ;
+
+        
+    
+    
+            marker_f714f58e1a7e842da0e227fa3a2a1c42.bindTooltip(
+                `<div>
+                     #8: Cụm thương mại - dịch vụ - Số 42 Nguyễn Hữu Dật (100 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f714f58e1a7e842da0e227fa3a2a1c42.setIcon(div_icon_f462c7d370a89896d05d641d6d73365b);
+            
+    
+            var marker_d9e68af6640e86a30b30147d0682c47c = L.marker(
+                [10.809968, 106.630715],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_cc8481bbca17f3ae266c374b2301d769 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    9\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_2d18a97e88400f97e432b8e97666e944 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2144c42f482cc97bb8ddfc493b1a93d = $(`<div id="html_f2144c42f482cc97bb8ddfc493b1a93d" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #9 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Chợ dân sinh Tây Thạnh - Số 53 Nguyễn Hữu Dật</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 90.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #10                     </div>                 </div>                 </div>`)[0];
+                popup_2d18a97e88400f97e432b8e97666e944.setContent(html_f2144c42f482cc97bb8ddfc493b1a93d);
+            
+        
+
+        marker_d9e68af6640e86a30b30147d0682c47c.bindPopup(popup_2d18a97e88400f97e432b8e97666e944)
+        ;
+
+        
+    
+    
+            marker_d9e68af6640e86a30b30147d0682c47c.bindTooltip(
+                `<div>
+                     #9: Chợ dân sinh Tây Thạnh - Số 53 Nguyễn Hữu Dật (90 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d9e68af6640e86a30b30147d0682c47c.setIcon(div_icon_cc8481bbca17f3ae266c374b2301d769);
+            
+    
+            var marker_5795f7dce75c95e6fb18aaf38808124c = L.marker(
+                [10.805699, 106.631101],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_f8e9fa5c916932ff6a6fb8ca2ebbe474 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    10\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_a71223f6c5c86968ecd2188b27326848 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_587bc24c443e72d329c259dc249610c6 = $(`<div id="html_587bc24c443e72d329c259dc249610c6" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #10 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 30 Nguyễn Hữu Dật (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 75.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #11                     </div>                 </div>                 </div>`)[0];
+                popup_a71223f6c5c86968ecd2188b27326848.setContent(html_587bc24c443e72d329c259dc249610c6);
+            
+        
+
+        marker_5795f7dce75c95e6fb18aaf38808124c.bindPopup(popup_a71223f6c5c86968ecd2188b27326848)
+        ;
+
+        
+    
+    
+            marker_5795f7dce75c95e6fb18aaf38808124c.bindTooltip(
+                `<div>
+                     #10: Số 30 Nguyễn Hữu Dật (Lề trái) (75 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5795f7dce75c95e6fb18aaf38808124c.setIcon(div_icon_f8e9fa5c916932ff6a6fb8ca2ebbe474);
+            
+    
+            var marker_f309ec6cf24aa6fe4622b42502ca34ec = L.marker(
+                [10.806099, 106.628426],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_07a73042262313dab411b6429eae6bb2 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    11\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_571dbaf8d4d7ec3e2cb2b35b45ecda58 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_99e34e27039c7b8b3f0f4acb7087fe78 = $(`<div id="html_99e34e27039c7b8b3f0f4acb7087fe78" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #11 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 84 Lê Trọng Tấn (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 70.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #12                     </div>                 </div>                 </div>`)[0];
+                popup_571dbaf8d4d7ec3e2cb2b35b45ecda58.setContent(html_99e34e27039c7b8b3f0f4acb7087fe78);
+            
+        
+
+        marker_f309ec6cf24aa6fe4622b42502ca34ec.bindPopup(popup_571dbaf8d4d7ec3e2cb2b35b45ecda58)
+        ;
+
+        
+    
+    
+            marker_f309ec6cf24aa6fe4622b42502ca34ec.bindTooltip(
+                `<div>
+                     #11: Số 84 Lê Trọng Tấn (Lề phải) (70 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f309ec6cf24aa6fe4622b42502ca34ec.setIcon(div_icon_07a73042262313dab411b6429eae6bb2);
+            
+    
+            var marker_9a3bb84f34f522b931c07c87576357c2 = L.marker(
+                [10.806958, 106.628363],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_5abd354b01cd1c0b76d966069e1b090b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    12\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_1c68b221f397e80c1398b719670b55b3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1021af1018fcab3682095a7efb301f68 = $(`<div id="html_1021af1018fcab3682095a7efb301f68" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #12 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 231 Bùi Xuân Phái (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 45.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #13                     </div>                 </div>                 </div>`)[0];
+                popup_1c68b221f397e80c1398b719670b55b3.setContent(html_1021af1018fcab3682095a7efb301f68);
+            
+        
+
+        marker_9a3bb84f34f522b931c07c87576357c2.bindPopup(popup_1c68b221f397e80c1398b719670b55b3)
+        ;
+
+        
+    
+    
+            marker_9a3bb84f34f522b931c07c87576357c2.bindTooltip(
+                `<div>
+                     #12: Số 231 Bùi Xuân Phái (Lề phải) (45 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9a3bb84f34f522b931c07c87576357c2.setIcon(div_icon_5abd354b01cd1c0b76d966069e1b090b);
+            
+    
+            var marker_7c7cd106d1ce2a0009f7773424fa32f6 = L.marker(
+                [10.807286, 106.628328],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_c37c1c104dafe77257e54b12dc2adfef = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    13\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_d26afc3e8debd580c86f797b1b0a91f7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_465dcde8cd1fa9f21278920765d679a4 = $(`<div id="html_465dcde8cd1fa9f21278920765d679a4" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #13 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cửa hàng bán lẻ tổng hợp - Số 156 Bùi Xuân Phái</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 100.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #14                     </div>                 </div>                 </div>`)[0];
+                popup_d26afc3e8debd580c86f797b1b0a91f7.setContent(html_465dcde8cd1fa9f21278920765d679a4);
+            
+        
+
+        marker_7c7cd106d1ce2a0009f7773424fa32f6.bindPopup(popup_d26afc3e8debd580c86f797b1b0a91f7)
+        ;
+
+        
+    
+    
+            marker_7c7cd106d1ce2a0009f7773424fa32f6.bindTooltip(
+                `<div>
+                     #13: Cửa hàng bán lẻ tổng hợp - Số 156 Bùi Xuân Phái (100 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c7cd106d1ce2a0009f7773424fa32f6.setIcon(div_icon_c37c1c104dafe77257e54b12dc2adfef);
+            
+    
+            var marker_9ebbede4b3a04e2316e5ff3e9b30e5c6 = L.marker(
+                [10.808903, 106.628564],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_f8cf60ec54689bcaa2bdbacac5df80be = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    14\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_26fb953beb37b7f900f76a274d1b1ed6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2c596baf3ca52d7c21d66b0badb9112 = $(`<div id="html_f2c596baf3ca52d7c21d66b0badb9112" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #14 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 217 Bùi Xuân Phái (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 35.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #15                     </div>                 </div>                 </div>`)[0];
+                popup_26fb953beb37b7f900f76a274d1b1ed6.setContent(html_f2c596baf3ca52d7c21d66b0badb9112);
+            
+        
+
+        marker_9ebbede4b3a04e2316e5ff3e9b30e5c6.bindPopup(popup_26fb953beb37b7f900f76a274d1b1ed6)
+        ;
+
+        
+    
+    
+            marker_9ebbede4b3a04e2316e5ff3e9b30e5c6.bindTooltip(
+                `<div>
+                     #14: Số 217 Bùi Xuân Phái (Lề trái) (35 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9ebbede4b3a04e2316e5ff3e9b30e5c6.setIcon(div_icon_f8cf60ec54689bcaa2bdbacac5df80be);
+            
+    
+            var marker_46299fbf4c21bce415bcb982d9b2ca82 = L.marker(
+                [10.809267, 106.628578],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_ee48cb2a5a75c7197023ce3178ef8f05 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    15\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_2fa84b65dae275e514ac67224d0a5d62 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7759992c2509096ea210baa289f217c6 = $(`<div id="html_7759992c2509096ea210baa289f217c6" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #15 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 238 Bùi Xuân Phái (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 55.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #16                     </div>                 </div>                 </div>`)[0];
+                popup_2fa84b65dae275e514ac67224d0a5d62.setContent(html_7759992c2509096ea210baa289f217c6);
+            
+        
+
+        marker_46299fbf4c21bce415bcb982d9b2ca82.bindPopup(popup_2fa84b65dae275e514ac67224d0a5d62)
+        ;
+
+        
+    
+    
+            marker_46299fbf4c21bce415bcb982d9b2ca82.bindTooltip(
+                `<div>
+                     #15: Số 238 Bùi Xuân Phái (Lề phải) (55 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_46299fbf4c21bce415bcb982d9b2ca82.setIcon(div_icon_ee48cb2a5a75c7197023ce3178ef8f05);
+            
+    
+            var marker_7dbb0a45feb0b7e43e6c6438e2dd2c8e = L.marker(
+                [10.809811, 106.627039],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_b5ab89f8e2161fb4b4f3605b33111164 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    16\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_2ccd634d882d420b66498a2a036a96b3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e1b6bd874e1d13b4065a3f92764df046 = $(`<div id="html_e1b6bd874e1d13b4065a3f92764df046" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #16 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 210 Dương Đức Hiền (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 45.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #17                     </div>                 </div>                 </div>`)[0];
+                popup_2ccd634d882d420b66498a2a036a96b3.setContent(html_e1b6bd874e1d13b4065a3f92764df046);
+            
+        
+
+        marker_7dbb0a45feb0b7e43e6c6438e2dd2c8e.bindPopup(popup_2ccd634d882d420b66498a2a036a96b3)
+        ;
+
+        
+    
+    
+            marker_7dbb0a45feb0b7e43e6c6438e2dd2c8e.bindTooltip(
+                `<div>
+                     #16: Số 210 Dương Đức Hiền (Lề phải) (45 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7dbb0a45feb0b7e43e6c6438e2dd2c8e.setIcon(div_icon_b5ab89f8e2161fb4b4f3605b33111164);
+            
+    
+            var marker_68c8bd71902e860938d3c61917521877 = L.marker(
+                [10.809533, 106.627054],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_7faa888f499e5ff1ce84d7c9bb124e4e = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    17\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_235661d89947c34c744436e3c70ba838 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af2f4b0cbd611647fa59c3cccba54ab0 = $(`<div id="html_af2f4b0cbd611647fa59c3cccba54ab0" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #17 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 196 Dương Đức Hiền (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 35.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #18                     </div>                 </div>                 </div>`)[0];
+                popup_235661d89947c34c744436e3c70ba838.setContent(html_af2f4b0cbd611647fa59c3cccba54ab0);
+            
+        
+
+        marker_68c8bd71902e860938d3c61917521877.bindPopup(popup_235661d89947c34c744436e3c70ba838)
+        ;
+
+        
+    
+    
+            marker_68c8bd71902e860938d3c61917521877.bindTooltip(
+                `<div>
+                     #17: Số 196 Dương Đức Hiền (Lề phải) (35 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_68c8bd71902e860938d3c61917521877.setIcon(div_icon_7faa888f499e5ff1ce84d7c9bb124e4e);
+            
+    
+            var marker_f79632119839f0b04b0664c65e2d7935 = L.marker(
+                [10.809308, 106.627067],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_f3f9c472b8ea0c98d2fb481f14eca824 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    18\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_62bf14a59e34efc3f097b5f304767b49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b1dae8f2e54e34d0e083dfa01a933d59 = $(`<div id="html_b1dae8f2e54e34d0e083dfa01a933d59" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #18 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 245 Phạm Ngọc Thảo (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 35.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #19                     </div>                 </div>                 </div>`)[0];
+                popup_62bf14a59e34efc3f097b5f304767b49.setContent(html_b1dae8f2e54e34d0e083dfa01a933d59);
+            
+        
+
+        marker_f79632119839f0b04b0664c65e2d7935.bindPopup(popup_62bf14a59e34efc3f097b5f304767b49)
+        ;
+
+        
+    
+    
+            marker_f79632119839f0b04b0664c65e2d7935.bindTooltip(
+                `<div>
+                     #18: Số 245 Phạm Ngọc Thảo (Lề phải) (35 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f79632119839f0b04b0664c65e2d7935.setIcon(div_icon_f3f9c472b8ea0c98d2fb481f14eca824);
+            
+    
+            var marker_bfd5f1f48d0aec1596f17ab77f5c8d09 = L.marker(
+                [10.808944, 106.627107],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_5dcf15ca521e37a2c094fedf6bf6256f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    19\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_d17df8e1934c8f787b89985a2fc1e79f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e82d05c5152e192c9b359cba0f0b3a27 = $(`<div id="html_e82d05c5152e192c9b359cba0f0b3a27" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #19 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Khu dịch vụ KCN - Số 101 Dương Đức Hiền</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 85.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #20                     </div>                 </div>                 </div>`)[0];
+                popup_d17df8e1934c8f787b89985a2fc1e79f.setContent(html_e82d05c5152e192c9b359cba0f0b3a27);
+            
+        
+
+        marker_bfd5f1f48d0aec1596f17ab77f5c8d09.bindPopup(popup_d17df8e1934c8f787b89985a2fc1e79f)
+        ;
+
+        
+    
+    
+            marker_bfd5f1f48d0aec1596f17ab77f5c8d09.bindTooltip(
+                `<div>
+                     #19: Khu dịch vụ KCN - Số 101 Dương Đức Hiền (85 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bfd5f1f48d0aec1596f17ab77f5c8d09.setIcon(div_icon_5dcf15ca521e37a2c094fedf6bf6256f);
+            
+    
+            var marker_92ee1694bc8211f87fd67ba097e76f81 = L.marker(
+                [10.807694, 106.627218],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_ab31a968a14d0b2c1d4eb688337227c0 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    20\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_a264360b20d073395c051486d77a83fd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9d0024d9f2f83724efd545c9b3213ca7 = $(`<div id="html_9d0024d9f2f83724efd545c9b3213ca7" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #20 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Khu dịch vụ KCN - Số 123 Dương Đức Hiền</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 80.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #21                     </div>                 </div>                 </div>`)[0];
+                popup_a264360b20d073395c051486d77a83fd.setContent(html_9d0024d9f2f83724efd545c9b3213ca7);
+            
+        
+
+        marker_92ee1694bc8211f87fd67ba097e76f81.bindPopup(popup_a264360b20d073395c051486d77a83fd)
+        ;
+
+        
+    
+    
+            marker_92ee1694bc8211f87fd67ba097e76f81.bindTooltip(
+                `<div>
+                     #20: Khu dịch vụ KCN - Số 123 Dương Đức Hiền (80 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92ee1694bc8211f87fd67ba097e76f81.setIcon(div_icon_ab31a968a14d0b2c1d4eb688337227c0);
+            
+    
+            var marker_14b84a7de6b221e77c7698dc27645eef = L.marker(
+                [10.808479, 106.625876],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_e1188db877770d207ef041012d58fa6f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    21\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_22bbd09c9fa19f3ae448afa704587c45 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dc90d73b074445f693d9e1a25f6d278e = $(`<div id="html_dc90d73b074445f693d9e1a25f6d278e" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #21 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 161 Nguyễn Hữu Tiến (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 45.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #22                     </div>                 </div>                 </div>`)[0];
+                popup_22bbd09c9fa19f3ae448afa704587c45.setContent(html_dc90d73b074445f693d9e1a25f6d278e);
+            
+        
+
+        marker_14b84a7de6b221e77c7698dc27645eef.bindPopup(popup_22bbd09c9fa19f3ae448afa704587c45)
+        ;
+
+        
+    
+    
+            marker_14b84a7de6b221e77c7698dc27645eef.bindTooltip(
+                `<div>
+                     #21: Số 161 Nguyễn Hữu Tiến (Lề phải) (45 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_14b84a7de6b221e77c7698dc27645eef.setIcon(div_icon_e1188db877770d207ef041012d58fa6f);
+            
+    
+            var marker_b049d7ce0fd416193e461f6d8f1b6d7a = L.marker(
+                [10.808779, 106.625839],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_77795313e995f113aad455d0aa7cd239 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    22\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_01449eef46b5e6a8c4a731ecf6d7a1b6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e889ecee053c4255822bcfd52b02f60 = $(`<div id="html_7e889ecee053c4255822bcfd52b02f60" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #22 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 175 Nguyễn Hữu Tiến (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 60.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #23                     </div>                 </div>                 </div>`)[0];
+                popup_01449eef46b5e6a8c4a731ecf6d7a1b6.setContent(html_7e889ecee053c4255822bcfd52b02f60);
+            
+        
+
+        marker_b049d7ce0fd416193e461f6d8f1b6d7a.bindPopup(popup_01449eef46b5e6a8c4a731ecf6d7a1b6)
+        ;
+
+        
+    
+    
+            marker_b049d7ce0fd416193e461f6d8f1b6d7a.bindTooltip(
+                `<div>
+                     #22: Số 175 Nguyễn Hữu Tiến (Lề phải) (60 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b049d7ce0fd416193e461f6d8f1b6d7a.setIcon(div_icon_77795313e995f113aad455d0aa7cd239);
+            
+    
+            var marker_92996913bc5989c10dd0fb74e2819841 = L.marker(
+                [10.809522, 106.625757],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_1de26921ffcef47094fc0f447d2ce732 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    23\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_c99d610ad2727cbd48fc93cb772615b0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_601af71991f8d9e2494ef92ca5943cb8 = $(`<div id="html_601af71991f8d9e2494ef92ca5943cb8" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #23 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cửa hàng bán lẻ tổng hợp - Số 68 Nguyễn Hữu Tiến</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 105.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #24                     </div>                 </div>                 </div>`)[0];
+                popup_c99d610ad2727cbd48fc93cb772615b0.setContent(html_601af71991f8d9e2494ef92ca5943cb8);
+            
+        
+
+        marker_92996913bc5989c10dd0fb74e2819841.bindPopup(popup_c99d610ad2727cbd48fc93cb772615b0)
+        ;
+
+        
+    
+    
+            marker_92996913bc5989c10dd0fb74e2819841.bindTooltip(
+                `<div>
+                     #23: Cửa hàng bán lẻ tổng hợp - Số 68 Nguyễn Hữu Tiến (105 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_92996913bc5989c10dd0fb74e2819841.setIcon(div_icon_1de26921ffcef47094fc0f447d2ce732);
+            
+    
+            var marker_90b20231592f39207785b176ea2a412a = L.marker(
+                [10.811895, 106.624154],
+                {
+}
+            ).addTo(feature_group_3ca45851d79e4af82efc8550972e16ca);
+        
+    
+            var div_icon_f7dea82f09e976b3e7051b2e898dc73b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #1D3557;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    24\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_99a4d8483311a02abab69ba0d56f9d23 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f4f8827d3d8b117673c00bd279a9c94e = $(`<div id="html_f4f8827d3d8b117673c00bd279a9c94e" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #1D3557; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #2 (Điểm dừng #24 / 24)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 182 Nguyễn Hữu Tiến (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 45.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Quay về Trạm tập kết Sơn Kỳ (Depot 0) xả rác hoàn tất chu trình 🏁                     </div>                 </div>                 </div>`)[0];
+                popup_99a4d8483311a02abab69ba0d56f9d23.setContent(html_f4f8827d3d8b117673c00bd279a9c94e);
+            
+        
+
+        marker_90b20231592f39207785b176ea2a412a.bindPopup(popup_99a4d8483311a02abab69ba0d56f9d23)
+        ;
+
+        
+    
+    
+            marker_90b20231592f39207785b176ea2a412a.bindTooltip(
+                `<div>
+                     #24: Số 182 Nguyễn Hữu Tiến (Lề phải) (45 kg) - Xe Thu Gom #2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_90b20231592f39207785b176ea2a412a.setIcon(div_icon_f7dea82f09e976b3e7051b2e898dc73b);
+            
+    
+            feature_group_3ca45851d79e4af82efc8550972e16ca.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var feature_group_137002a9805da1f9362a0ebc508ca773 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_196ea78799f0c1e10ff1251b935b2862 = L.polyline(
+                [[10.81218, 106.621481], [10.812058, 106.621615], [10.811852, 106.621427], [10.811737, 106.621321], [10.810612, 106.620287], [10.810532, 106.620213], [10.810262, 106.619962], [10.809646, 106.619375], [10.809386, 106.619127], [10.808916, 106.618694], [10.80861, 106.618403], [10.808582, 106.618376], [10.808556, 106.618353], [10.808496, 106.618319], [10.8084, 106.6183], [10.808513, 106.61792], [10.808764, 106.617043], [10.808808, 106.616888], [10.808843, 106.616763], [10.808874, 106.616652], [10.809165, 106.615615], [10.809204, 106.615477], [10.809211, 106.61545], [10.80928, 106.615222], [10.809366, 106.614927], [10.809286, 106.61486], [10.809227, 106.61481], [10.808637, 106.614318], [10.808373, 106.614099], [10.808185, 106.613942], [10.808104, 106.613873], [10.807968, 106.613757], [10.807945, 106.613738], [10.807909, 106.613708], [10.807585, 106.613438], [10.807192, 106.613109], [10.806994, 106.612941], [10.806401, 106.612436], [10.806287, 106.612339], [10.806037, 106.612129], [10.805229, 106.611437], [10.805169, 106.611385], [10.805129, 106.611352], [10.804972, 106.611225], [10.804417, 106.610759], [10.803849, 106.610281], [10.803849, 106.610281], [10.803326, 106.609826], [10.802131, 106.608887], [10.801914, 106.608707], [10.801888, 106.608681], [10.801719, 106.608538], [10.801156, 106.608063], [10.801552, 106.607635], [10.801856, 106.607383], [10.801999, 106.607245], [10.802022, 106.607225], [10.802158, 106.607081], [10.802191, 106.607041], [10.80237, 106.606822], [10.80237, 106.606822], [10.802526, 106.606631], [10.802526, 106.606631], [10.802682, 106.60643], [10.802682, 106.60643], [10.803129, 106.606782], [10.803305, 106.606921], [10.803479, 106.607069], [10.803676, 106.607237], [10.804001, 106.607492], [10.804054, 106.607532], [10.804545, 106.607891], [10.804727, 106.608025], [10.804836, 106.608094], [10.804924, 106.60815], [10.80499, 106.608255], [10.805025, 106.608481], [10.805089, 106.608848], [10.805431, 106.608666], [10.805653, 106.608546], [10.805988, 106.608376], [10.806059, 106.60834], [10.806087, 106.608327], [10.806666, 106.60804], [10.806756, 106.607995], [10.807331, 106.607694], [10.807736, 106.607512], [10.807834, 106.607476], [10.807931, 106.607448], [10.808019, 106.607429], [10.808119, 106.607416], [10.808191, 106.607412], [10.808257, 106.607411], [10.808386, 106.607416], [10.808779, 106.607446], [10.809509, 106.607514], [10.809906, 106.607557], [10.810399, 106.607611], [10.81063, 106.607636], [10.811034, 106.607681], [10.812131, 106.607807], [10.812523, 106.607852], [10.812649, 106.60787], [10.812696, 106.607878], [10.812746, 106.60789], [10.812814, 106.607909], [10.812814, 106.607909], [10.812094, 106.609088], [10.812063, 106.609252], [10.811836, 106.609626], [10.811748, 106.609777], [10.811695, 106.609868], [10.811769, 106.609936], [10.811827, 106.609825], [10.811918, 106.609669], [10.812226, 106.609175], [10.813973, 106.606265], [10.814104, 106.60605], [10.814207, 106.605877], [10.814346, 106.605644], [10.814518, 106.605354], [10.814419, 106.605323], [10.814111, 106.605841], [10.814018, 106.605997], [10.813851, 106.606132], [10.813748, 106.606299], [10.81326, 106.60713], [10.813137, 106.607341], [10.813137, 106.607341], [10.813352, 106.607467], [10.813634, 106.606966], [10.813786, 106.606709], [10.814038, 106.606295], [10.814104, 106.60605], [10.814207, 106.605877], [10.814346, 106.605644], [10.814518, 106.605354], [10.814419, 106.605323], [10.814111, 106.605841], [10.814018, 106.605997], [10.813889, 106.606216], [10.812145, 106.609121], [10.812063, 106.609252], [10.811836, 106.609626], [10.811748, 106.609777], [10.811695, 106.609868], [10.81166, 106.609929], [10.811458, 106.610289], [10.811245, 106.610704], [10.811102, 106.610998], [10.81097, 106.611271], [10.810872, 106.611479], [10.810838, 106.611549], [10.810784, 106.611658], [10.810444, 106.612378], [10.810434, 106.612401], [10.810352, 106.612574], [10.810322, 106.612637], [10.810402, 106.612705], [10.811268, 106.613435], [10.811347, 106.613502], [10.811483, 106.613616], [10.811483, 106.613616], [10.811534, 106.613549], [10.811388, 106.613428], [10.811315, 106.613368], [10.810528, 106.612718], [10.810433, 106.612639], [10.810352, 106.612574], [10.810352, 106.612574], [10.810322, 106.612637], [10.810216, 106.612863], [10.810168, 106.612965], [10.809858, 106.613627], [10.809787, 106.613767], [10.809333, 106.614744], [10.809315, 106.614784], [10.809286, 106.61486], [10.809209, 106.615108], [10.80928, 106.615222], [10.809337, 106.615293], [10.809397, 106.615358], [10.809761, 106.615681], [10.810587, 106.616374], [10.811085, 106.616788], [10.81256, 106.618025], [10.812944, 106.618353], [10.812944, 106.618353], [10.813319, 106.61867], [10.813627, 106.618926], [10.814009, 106.619238], [10.814009, 106.619238], [10.813134, 106.620174], [10.812342, 106.621056], [10.812465, 106.62117], [10.81218, 106.621481]],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2A9D8F", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            poly_line_196ea78799f0c1e10ff1251b935b2862.bindTooltip(
+                `<div>
+                     Chu trình khép kín của Xe Thu Gom #3: Depot ➔ 10 điểm ➔ Depot
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6e400167b385f571a2a031480fe5fd7a = L.marker(
+                [10.803849, 106.610281],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_0e76528b0f926d02da5005e5763cf61b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    1\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_8c6369a5cd00aff520a815848b2508bb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5e41cc519bc89cd66c9b953ac9a386cd = $(`<div id="html_5e41cc519bc89cd66c9b953ac9a386cd" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #1 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 79 Đường Kênh 19/5 (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 60.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #2                     </div>                 </div>                 </div>`)[0];
+                popup_8c6369a5cd00aff520a815848b2508bb.setContent(html_5e41cc519bc89cd66c9b953ac9a386cd);
+            
+        
+
+        marker_6e400167b385f571a2a031480fe5fd7a.bindPopup(popup_8c6369a5cd00aff520a815848b2508bb)
+        ;
+
+        
+    
+    
+            marker_6e400167b385f571a2a031480fe5fd7a.bindTooltip(
+                `<div>
+                     #1: Số 79 Đường Kênh 19/5 (Lề trái) (60 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6e400167b385f571a2a031480fe5fd7a.setIcon(div_icon_0e76528b0f926d02da5005e5763cf61b);
+            
+    
+            var marker_15887f88280254ed94b7a46b0413f4d2 = L.marker(
+                [10.80237, 106.606822],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_3d882f7d0fe29737d790a9c7b3fd071b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    2\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_77225776cef4673daf48e61838f0b4a7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_db2c707ee11bff746298269b64ebbb0f = $(`<div id="html_db2c707ee11bff746298269b64ebbb0f" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #2 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 100 Đường số 15 (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 70.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #3                     </div>                 </div>                 </div>`)[0];
+                popup_77225776cef4673daf48e61838f0b4a7.setContent(html_db2c707ee11bff746298269b64ebbb0f);
+            
+        
+
+        marker_15887f88280254ed94b7a46b0413f4d2.bindPopup(popup_77225776cef4673daf48e61838f0b4a7)
+        ;
+
+        
+    
+    
+            marker_15887f88280254ed94b7a46b0413f4d2.bindTooltip(
+                `<div>
+                     #2: Số 100 Đường số 15 (Lề phải) (70 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_15887f88280254ed94b7a46b0413f4d2.setIcon(div_icon_3d882f7d0fe29737d790a9c7b3fd071b);
+            
+    
+            var marker_84d4e0c9c31f29cc9e9639f4a03f2d7a = L.marker(
+                [10.802526, 106.606631],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_5a67626aebce63db5cada898226fc5e5 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    3\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_fdead3df6a05412be90b12b953178e68 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a94222ba17e56ede735a342201a4f53e = $(`<div id="html_a94222ba17e56ede735a342201a4f53e" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #3 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 114 Đường số 15 (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 50.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #4                     </div>                 </div>                 </div>`)[0];
+                popup_fdead3df6a05412be90b12b953178e68.setContent(html_a94222ba17e56ede735a342201a4f53e);
+            
+        
+
+        marker_84d4e0c9c31f29cc9e9639f4a03f2d7a.bindPopup(popup_fdead3df6a05412be90b12b953178e68)
+        ;
+
+        
+    
+    
+            marker_84d4e0c9c31f29cc9e9639f4a03f2d7a.bindTooltip(
+                `<div>
+                     #3: Số 114 Đường số 15 (Lề phải) (50 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_84d4e0c9c31f29cc9e9639f4a03f2d7a.setIcon(div_icon_5a67626aebce63db5cada898226fc5e5);
+            
+    
+            var marker_0ba3be422ddb0d272fdc9d514e175a54 = L.marker(
+                [10.802682, 106.60643],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_a1bc32eb6cd9a03f0a41789a009dd75f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    4\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_f7145847f486a8fd26206305c5513fc3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7ff57d08cbcdd8a6db0c86cf9e1f9e73 = $(`<div id="html_7ff57d08cbcdd8a6db0c86cf9e1f9e73" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #4 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 107 Đường số 15 (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 65.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #5                     </div>                 </div>                 </div>`)[0];
+                popup_f7145847f486a8fd26206305c5513fc3.setContent(html_7ff57d08cbcdd8a6db0c86cf9e1f9e73);
+            
+        
+
+        marker_0ba3be422ddb0d272fdc9d514e175a54.bindPopup(popup_f7145847f486a8fd26206305c5513fc3)
+        ;
+
+        
+    
+    
+            marker_0ba3be422ddb0d272fdc9d514e175a54.bindTooltip(
+                `<div>
+                     #4: Số 107 Đường số 15 (Lề phải) (65 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0ba3be422ddb0d272fdc9d514e175a54.setIcon(div_icon_a1bc32eb6cd9a03f0a41789a009dd75f);
+            
+    
+            var marker_bb9499c04c5cc7837c33d3b26cd71de5 = L.marker(
+                [10.812814, 106.607909],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_c29bff8c071008f8334781df18436b4c = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    5\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_46bcc2d77d1f21b741677ce7b84ddd4b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_769791b4ca4c32883fd2e2917b6fe081 = $(`<div id="html_769791b4ca4c32883fd2e2917b6fe081" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #5 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 72 Đường CN1 (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 70.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #6                     </div>                 </div>                 </div>`)[0];
+                popup_46bcc2d77d1f21b741677ce7b84ddd4b.setContent(html_769791b4ca4c32883fd2e2917b6fe081);
+            
+        
+
+        marker_bb9499c04c5cc7837c33d3b26cd71de5.bindPopup(popup_46bcc2d77d1f21b741677ce7b84ddd4b)
+        ;
+
+        
+    
+    
+            marker_bb9499c04c5cc7837c33d3b26cd71de5.bindTooltip(
+                `<div>
+                     #5: Số 72 Đường CN1 (Lề phải) (70 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bb9499c04c5cc7837c33d3b26cd71de5.setIcon(div_icon_c29bff8c071008f8334781df18436b4c);
+            
+    
+            var marker_caf0280eb4c816be864211526a8a4eee = L.marker(
+                [10.813137, 106.607341],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_2a0dabdda680755bd026003f5875b7eb = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    6\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_a0ddfaa14bcfec5baac856a684c4790f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6c6489bc5f840bf041b6fb36ad82c9f2 = $(`<div id="html_6c6489bc5f840bf041b6fb36ad82c9f2" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #6 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 63 Lê Trọng Tấn (Lề phải)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 70.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #7                     </div>                 </div>                 </div>`)[0];
+                popup_a0ddfaa14bcfec5baac856a684c4790f.setContent(html_6c6489bc5f840bf041b6fb36ad82c9f2);
+            
+        
+
+        marker_caf0280eb4c816be864211526a8a4eee.bindPopup(popup_a0ddfaa14bcfec5baac856a684c4790f)
+        ;
+
+        
+    
+    
+            marker_caf0280eb4c816be864211526a8a4eee.bindTooltip(
+                `<div>
+                     #6: Số 63 Lê Trọng Tấn (Lề phải) (70 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_caf0280eb4c816be864211526a8a4eee.setIcon(div_icon_2a0dabdda680755bd026003f5875b7eb);
+            
+    
+            var marker_a17bcde3f72a892c3726d36ab2c18e34 = L.marker(
+                [10.811483, 106.613616],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_9c1d20ddbeed5632e84db4da42afec79 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    7\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_6eede4f626c4ee2a86b934c32f5dff5e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_703fc84577f0ad18fb8e13dd85966770 = $(`<div id="html_703fc84577f0ad18fb8e13dd85966770" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #7 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cửa hàng bán lẻ tổng hợp - Số 97 Đường CN13</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 85.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #8                     </div>                 </div>                 </div>`)[0];
+                popup_6eede4f626c4ee2a86b934c32f5dff5e.setContent(html_703fc84577f0ad18fb8e13dd85966770);
+            
+        
+
+        marker_a17bcde3f72a892c3726d36ab2c18e34.bindPopup(popup_6eede4f626c4ee2a86b934c32f5dff5e)
+        ;
+
+        
+    
+    
+            marker_a17bcde3f72a892c3726d36ab2c18e34.bindTooltip(
+                `<div>
+                     #7: Cửa hàng bán lẻ tổng hợp - Số 97 Đường CN13 (85 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a17bcde3f72a892c3726d36ab2c18e34.setIcon(div_icon_9c1d20ddbeed5632e84db4da42afec79);
+            
+    
+            var marker_edbb95fc8ead9d9fd3adc08ece978f79 = L.marker(
+                [10.810352, 106.612574],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_dc9c9142bb9d53a13b152b02ef752cb9 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    8\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_a54fa8fdb5cba2cf0595e19b00085e72 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_94bfda7d2706b8740489c613e238fddf = $(`<div id="html_94bfda7d2706b8740489c613e238fddf" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #8 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 91 Lê Trọng Tấn (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 45.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #9                     </div>                 </div>                 </div>`)[0];
+                popup_a54fa8fdb5cba2cf0595e19b00085e72.setContent(html_94bfda7d2706b8740489c613e238fddf);
+            
+        
+
+        marker_edbb95fc8ead9d9fd3adc08ece978f79.bindPopup(popup_a54fa8fdb5cba2cf0595e19b00085e72)
+        ;
+
+        
+    
+    
+            marker_edbb95fc8ead9d9fd3adc08ece978f79.bindTooltip(
+                `<div>
+                     #8: Số 91 Lê Trọng Tấn (Lề trái) (45 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_edbb95fc8ead9d9fd3adc08ece978f79.setIcon(div_icon_dc9c9142bb9d53a13b152b02ef752cb9);
+            
+    
+            var marker_88e884672f93d4e006aef5d3928115d1 = L.marker(
+                [10.812944, 106.618353],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_9737dd5dc0208e2a985d4595f0955639 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    9\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_7453397ec8883343067298749450e317 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6912e48c1ba6c31e5cb418fdcfac4d4d = $(`<div id="html_6912e48c1ba6c31e5cb418fdcfac4d4d" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #9 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Cụm thương mại - dịch vụ - Số 163 Đường Kênh 19/5</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 85.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Tiếp tục ghé Điểm dừng #10                     </div>                 </div>                 </div>`)[0];
+                popup_7453397ec8883343067298749450e317.setContent(html_6912e48c1ba6c31e5cb418fdcfac4d4d);
+            
+        
+
+        marker_88e884672f93d4e006aef5d3928115d1.bindPopup(popup_7453397ec8883343067298749450e317)
+        ;
+
+        
+    
+    
+            marker_88e884672f93d4e006aef5d3928115d1.bindTooltip(
+                `<div>
+                     #9: Cụm thương mại - dịch vụ - Số 163 Đường Kênh 19/5 (85 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_88e884672f93d4e006aef5d3928115d1.setIcon(div_icon_9737dd5dc0208e2a985d4595f0955639);
+            
+    
+            var marker_5f915cfc4ccd9f7dff2d088050a2e31a = L.marker(
+                [10.814009, 106.619238],
+                {
+}
+            ).addTo(feature_group_137002a9805da1f9362a0ebc508ca773);
+        
+    
+            var div_icon_0d1817b8299b5206fb13a09d079a7a37 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    width: 20px;\n                    height: 20px;\n                    background-color: #2A9D8F;\n                    color: #ffffff;\n                    border: 2px solid #ffffff;\n                    border-radius: 50%;\n                    box-shadow: 0 2px 4px rgba(0,0,0,0.35);\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                    font-size: 10px;\n                    font-weight: bold;\n                    font-family: Arial, sans-serif;\n                    line-height: 20px;\n                    text-align: center;\n                    cursor: pointer;\n                \"\u003e\n                    10\n                \u003c/div\u003e\n                ",
+  "iconSize": [20, 20],
+  "iconAnchor": [10, 10],
+  "className": "empty",
+});
+        
+    
+        var popup_1493af8a5f43f7eabccf08e57769dae8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ef52993796e83f0e1e3f936673d0fe12 = $(`<div id="html_ef52993796e83f0e1e3f936673d0fe12" style="width: 100.0%; height: 100.0%;">                 <div style="font-family: Arial, sans-serif; min-width: 230px; line-height: 1.5;">                     <div style="background-color: #2A9D8F; color: white; padding: 6px 10px; border-radius: 4px; font-weight: bold; margin-bottom: 6px;">                         🚚 Xe Thu Gom #3 (Điểm dừng #10 / 10)                     </div>                     <div style="font-size: 13px; font-weight: bold; color: #0f172a;">Số 86 Đường Kênh 19/5 (Lề trái)</div>                     <div style="font-size: 12px; color: #475569; margin: 4px 0;">Loại địa điểm: <b>Dân cư</b></div>                     <div style="font-size: 13px; color: #dc2626; font-weight: bold;">Khối lượng rác: 65.0 kg</div>                     <div style="font-size: 12px; color: #0284c7; margin-top: 5px; border-top: 1px dashed #cbd5e1; padding-top: 4px;">                         <b>Chặng tiếp theo:</b> Quay về Trạm tập kết Sơn Kỳ (Depot 0) xả rác hoàn tất chu trình 🏁                     </div>                 </div>                 </div>`)[0];
+                popup_1493af8a5f43f7eabccf08e57769dae8.setContent(html_ef52993796e83f0e1e3f936673d0fe12);
+            
+        
+
+        marker_5f915cfc4ccd9f7dff2d088050a2e31a.bindPopup(popup_1493af8a5f43f7eabccf08e57769dae8)
+        ;
+
+        
+    
+    
+            marker_5f915cfc4ccd9f7dff2d088050a2e31a.bindTooltip(
+                `<div>
+                     #10: Số 86 Đường Kênh 19/5 (Lề trái) (65 kg) - Xe Thu Gom #3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5f915cfc4ccd9f7dff2d088050a2e31a.setIcon(div_icon_0d1817b8299b5206fb13a09d079a7a37);
+            
+    
+            feature_group_137002a9805da1f9362a0ebc508ca773.addTo(map_330d52a62805b514d3534e43e33a332d);
+        
+    
+            var layer_control_c0f668fe30c7860e7d3f131932c3ea67_layers = {
+                base_layers : {
+                    "Google Maps (\u0110\u01b0\u1eddng ph\u1ed1)" : tile_layer_da1406cb0a3695edda12cc93c644d4a5,
+                    "Google Maps (\u1ea2nh V\u1ec7 Tinh)" : tile_layer_636b177509aa0e7bcf613953b8a5147f,
+                    "B\u1ea3n \u0111\u1ed3 Esri Street Map" : tile_layer_577a4c43d1526de2bd2bfeae7fc6777b,
+                },
+                overlays :  {
+                    "\u2605 Tr\u1ea1m t\u1eadp k\u1ebft (Depot 0)" : feature_group_d6b6cd48ef4db93211dfe4736ea6a9e9,
+                    "\ud83d\ude9a Xe Thu Gom #1 (M\u00e0u \u0110\u1ecf)" : feature_group_5c78fabe4191e6b101d0d9f6d1ad8b05,
+                    "\ud83d\ude9a Xe Thu Gom #2 (M\u00e0u Xanh d\u01b0\u01a1ng)" : feature_group_3ca45851d79e4af82efc8550972e16ca,
+                    "\ud83d\ude9a Xe Thu Gom #3 (M\u00e0u Xanh ng\u1ecdc)" : feature_group_137002a9805da1f9362a0ebc508ca773,
+                },
+            };
+            let layer_control_c0f668fe30c7860e7d3f131932c3ea67 = L.control.layers(
+                layer_control_c0f668fe30c7860e7d3f131932c3ea67_layers.base_layers,
+                layer_control_c0f668fe30c7860e7d3f131932c3ea67_layers.overlays,
+                {
+  "position": "topleft",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_330d52a62805b514d3534e43e33a332d);
+
+        
+</script>
+</html>

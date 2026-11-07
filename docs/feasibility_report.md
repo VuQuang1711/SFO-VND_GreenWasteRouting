@@ -13,7 +13,7 @@ Tuân thủ hướng dẫn nghiệm thu nội bộ Step 2, nhóm tổng hợp tr
 | Mã vấn đề | Nội dung tồn tại từ Step 1 | Giải pháp & Kết quả đã thực hiện trong Step 2 | Trạng thái nghiệm thu | Mốc chốt tiếp theo |
 | :---: | :--- | :--- | :---: | :---: |
 | **R1** | **Sơn Kỳ là địa danh cũ**<br>Nguy cơ sai lệch địa bàn hành chính sau sáp nhập. | • Xác định địa bàn Sơn Kỳ cũ được phân bổ vào Bình Hưng Hòa, Tây Thạnh, Tân Sơn Nhì.<br>• Chọn **Phường Tây Thạnh (Quận Tân Phú)** làm địa bàn chính thức có đối chiếu ranh giới GIS chuẩn WGS84 EPSG:4326 từ OpenStreetMap.<br>• Thiết lập vùng đệm 400m kết nối mạng đường.<br>• Xuất file [ward_selection.md](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/docs/ward_selection.md), [ward_boundary.geojson](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/raw/ward_boundary.geojson). | **ĐÃ HOÀN TẤT (PASS)** | Khóa tại Step 2 |
-| **R2** | **Dữ liệu rác có thể vượt tải**<br>Nguy cơ không tồn tại phương án phân tuyến khả thi. | • Phân tầng 50 điểm gom ($Q = 1500$ kg, $K = 4$ xe, Tổng sức chứa = 6000 kg).<br>• Tổng demand = 3329.0 kg $\le 6000$ kg (Điều kiện cần đạt).<br>• Tạo và kiểm chứng phương án phân tuyến hợp lệ (**Feasible Witness**), lưu minh chứng tại [feasible_routes.json](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/feasible_routes.json) (Xe 1: 757kg, Xe 2: 700kg, Xe 3: 752kg, Xe 4: 1120kg). | **ĐÃ HOÀN TẤT (PASS)** | Khóa tại Step 2 |
+| **R2** | **Dữ liệu rác có thể vượt tải**<br>Nguy cơ không tồn tại phương án phân tuyến khả thi. | • Phân tầng 50 điểm gom ($Q = 1500$ kg, $K = 4$ xe, Tổng sức chứa = 6000 kg).<br>• Tổng demand = 3345.0 kg $\le 6000$ kg (Điều kiện cần đạt).<br>• Tạo và kiểm chứng phương án phân tuyến hợp lệ (**Feasible Witness**), lưu minh chứng tại [feasible_routes.json](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/feasible_routes.json) (Xe 1: 1475.0kg, Xe 2: 1475.0kg, Xe 3: 395.0kg, Xe 4: 0.0kg dự phòng). | **ĐÃ HOÀN TẤT (PASS)** | Khóa tại Step 2 |
 | **R3** | **Thực tế / OSM / mô phỏng chưa tách sạch**<br>Lẫn lộn dữ liệu khảo sát và giả lập. | • Xây dựng Từ điển dữ liệu chuẩn [data_dictionary.md](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/docs/data_dictionary.md).<br>• Gắn nhãn phân loại minh bạch: `điểm thu gom giả lập trên mạng đường OSM` (không gọi là thùng rác thực tế).<br>• Ghi rõ thời điểm lấy (2026-10-24), đơn vị đo (kg, mét, phút) và quy tắc sinh. | **ĐÃ HOÀN TẤT (PASS)** | Khóa tại Step 2 |
 | **R4** | **Distance matrix, đường một chiều**<br>Sai số do dùng khoảng cách chim bay hoặc đứt đường. | • Tuyệt đối không dùng khoảng cách Euclid/chim bay thay đường bộ.<br>• Tính Dijkstra có hướng trên thành phần liên thông mạnh SCC (868 nút) của đồ thị ô tô OSMnx.<br>• Bảo đảm $100\%$ các điểm đều có đường đi từ/về Depot, $D[i,i] = 0.0$, ma trận bất đối xứng phản ánh đường 1 chiều.<br>• Đối chiếu thủ công 3 cặp điểm và 1 vòng khép kín. | **ĐÃ HOÀN TẤT (PASS)** | Khóa tại Step 2 |
 | **R5** | **Benchmark/BKS sai quy ước**<br>Quy ước làm tròn và số khách hàng chưa chuẩn. | • Sử dụng thư viện chuẩn `vrplib.read_instance` đọc file `.vrp` gốc.<br>• Phân biệt rõ số nút $N$ (gồm cả depot) và số khách $N-1$.<br>• Quy ước làm tròn nguyên EUC_2D theo chuẩn TSPLIB/CVRPLIB.<br>• Đã kiểm chứng 6 bộ dữ liệu: `E-n33-k4`, `B-n50-k7`, `E-n51-k5`, `A-n53-k7`, `A-n60-k9`, `E-n76-k7`. | **ĐÃ HOÀN TẤT (PASS)** | Khóa tại Step 2 |
@@ -53,25 +53,25 @@ Tuân thủ mục 22 của Hướng dẫn Step 2, nhóm kiểm tra đối chiế
 
 ### 3.1. Đối chiếu 3 cặp điểm hai chiều (Tính chất bất đối xứng đường 1 chiều):
 1. **Cặp Depot (0) $\leftrightarrow$ Điểm 1:**
-   * Chiều đi $d(0, 1) = 1,649.4\text{ m}$
-   * Chiều về $d(1, 0) = 1,587.1\text{ m}$
-   * Độ chênh lệch: $\Delta = |1649.4 - 1587.1| = 62.3\text{ m}$ (do các đoạn đường gom một chiều tại trục Lê Trọng Tấn).
+   * Chiều đi $d(0, 1) = 1,487.6\text{ m}$
+   * Chiều về $d(1, 0) = 1,360.5\text{ m}$
+   * Độ chênh lệch: $\Delta = |1487.6 - 1360.5| = 127.1\text{ m}$ (do các đoạn đường gom một chiều tại trục Lê Trọng Tấn / Tây Thạnh).
 2. **Cặp Điểm 1 $\leftrightarrow$ Điểm 15:**
-   * Chiều đi $d(1, 15) = 634.7\text{ m}$
-   * Chiều về $d(15, 1) = 625.7\text{ m}$
-   * Độ chênh lệch: $\Delta = 9.0\text{ m}$.
+   * Chiều đi $d(1, 15) = 1,384.6\text{ m}$
+   * Chiều về $d(15, 1) = 1,603.1\text{ m}$
+   * Độ chênh lệch: $\Delta = 218.5\text{ m}$.
 3. **Cặp Điểm 15 $\leftrightarrow$ Điểm 30:**
-   * Chiều đi $d(15, 30) = 1,261.7\text{ m}$
-   * Chiều về $d(30, 15) = 1,004.4\text{ m}$
-   * Độ chênh lệch: $\Delta = 257.3\text{ m}$ (khu vực có dải phân cách cứng yêu cầu xe phải đi vòng qua giao lộ quay đầu).
+   * Chiều đi $d(15, 30) = 701.6\text{ m}$
+   * Chiều về $d(30, 15) = 2,116.2\text{ m}$
+   * Độ chênh lệch: $\Delta = 1,414.6\text{ m}$ (khu vực có dải phân cách cứng yêu cầu xe phải đi vòng qua giao lộ quay đầu).
 
 ### 3.2. Đối chiếu 1 vòng khép kín Depot – A – B – Depot:
 Xét vòng di chuyển: $\text{Depot (0)} \to \text{Điểm 1 (A)} \to \text{Điểm 2 (B)} \to \text{Depot (0)}$:
-* Chặng 1: $\text{Depot (0)} \to \text{Điểm 1}: d(0, 1) = 1,649.4\text{ m}$
-* Chặng 2: $\text{Điểm 1} \to \text{Điểm 2}: d(1, 2) = 100.9\text{ m}$
-* Chặng 3: $\text{Điểm 2} \to \text{Depot (0)}: d(2, 0) = 1,486.1\text{ m}$
+* Chặng 1: $\text{Depot (0)} \to \text{Điểm 1}: d(0, 1) = 1,487.6\text{ m}$
+* Chặng 2: $\text{Điểm 1} \to \text{Điểm 2}: d(1, 2) = 256.9\text{ m}$
+* Chặng 3: $\text{Điểm 2} \to \text{Depot (0)}: d(2, 0) = 1,120.1\text{ m}$
 * **Tổng độ dài vòng khép kín:**
-  $$D_{\text{cycle}} = 1649.4 + 100.9 + 1486.1 = 3,236.4\text{ m} = 3.236\text{ km}$$
+  $$D_{\text{cycle}} = 1487.6 + 256.9 + 1120.1 = 2,864.6\text{ m} = 2.865\text{ km}$$
 * Kết luận: Các cung đường đều liên tục, khớp hoàn toàn với dữ liệu Dijkstra trên đồ thị và không có giá trị khuyết bị thay bằng 0.
 
 ---

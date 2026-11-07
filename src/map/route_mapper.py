@@ -136,10 +136,11 @@ class RouteMapper:
             control=True
         ).add_to(route_map)
 
-        # Lớp 3: OpenStreetMap (Dự phòng)
+        # Lớp 3: Esri WorldStreetMap (Dự phòng ổn định không bị chặn lỗi 403 OSM)
         folium.TileLayer(
-            tiles="OpenStreetMap",
-            name="OpenStreetMap",
+            tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+            attr="Esri WorldStreetMap",
+            name="Bản đồ Esri Street Map",
             control=True
         ).add_to(route_map)
 

@@ -98,7 +98,7 @@ Tuân thủ nghiêm ngặt yêu cầu của Hướng dẫn Step 2 (Vấn đề R
   },
   "road_network_source": "OpenStreetMap_network_type_drive_buffer_400m",
   "created_at": "2026-10-24T10:41:00+07:00",
-  "total_demand_kg": 3329.0,
+  "total_demand_kg": 3345.0,
   "total_customers": 50,
   "depot_id": 0
 }
