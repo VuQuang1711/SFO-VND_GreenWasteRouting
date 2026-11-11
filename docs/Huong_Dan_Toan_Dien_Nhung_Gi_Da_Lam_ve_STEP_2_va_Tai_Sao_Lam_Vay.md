@@ -185,18 +185,18 @@ Nhóm đã chủ động viết các ca kiểm thử cố tình tạo ra dữ li
 2. Phân tầng nhu cầu rác thải thực tế (`seed = 42`):
    * 35 điểm dân cư: $35 - 75\text{ kg}$/điểm.
    * 15 điểm kinh doanh/thương mại (Aeon Mall, hàng quán): $75 - 120\text{ kg}$/điểm.
-   * Tổng lượng rác toàn phường: **$3,329.0\text{ kg}$**.
+   * Tổng lượng rác toàn phường: **$3,345.0\text{ kg}$**.
 3. Khóa kịch bản đội xe: **$K = 4$ xe chuyên dụng**, tải trọng thiết kế **$Q = 1,500\text{ kg}$/xe (1.5 tấn)**.
    * Tổng sức chứa đội xe: $4 \times 1,500 = 6,000.0\text{ kg}$.
-   * Tỷ lệ tải toàn hệ thống: $3,329 / 6,000 = 55.5\%$ (Dự phòng an toàn $44.5\%$).
+   * Tỷ lệ tải toàn hệ thống: $3,345 / 6,000 = 55.75\%$ (Biên độ dự phòng an toàn $44.25\%$).
 4. **Thiết lập và chứng minh tồn tại Nghiệm Khả thi (Feasible Witness):**
    * Lưu tại [data/ward/processed/feasible_routes.json](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/feasible_routes.json).
    * Phân chia hợp lệ thành 4 tuyến xe:
-     * Xe 1: Gom 11 điểm — Tải $757\text{ kg} \le 1,500\text{ kg}$
-     * Xe 2: Gom 10 điểm — Tải $700\text{ kg} \le 1,500\text{ kg}$
-     * Xe 3: Gom 11 điểm — Tải $752\text{ kg} \le 1,500\text{ kg}$
-     * Xe 4: Gom 18 điểm — Tải $1,120\text{ kg} \le 1,500\text{ kg}$
-   * Phục vụ đủ 50/50 điểm, không sót, không lặp, $100\%$ không xe nào vượt tải $Q$.
+     * Xe 1: Gom 21 điểm (ID 1-21) — Tải $1,475.0\text{ kg} \le 1,500\text{ kg}$ (Cự ly: $20.886\text{ km}$)
+     * Xe 2: Gom 23 điểm (ID 22-44) — Tải $1,475.0\text{ kg} \le 1,500\text{ kg}$ (Cự ly: $13.471\text{ km}$)
+     * Xe 3: Gom 6 điểm (ID 45-50) — Tải $395.0\text{ kg} \le 1,500\text{ kg}$ (Cự ly: $7.969\text{ km}$)
+     * Xe 4: Dự phòng đỉnh tải — Tải $0.0\text{ kg}$
+   * Phục vụ đủ 50/50 điểm, không sót, không lặp, $100\%$ không xe nào vượt tải $Q$, tổng cự ly $42.326\text{ km}$.
 
 ---
 
@@ -212,7 +212,7 @@ Nhóm đã chủ động viết các ca kiểm thử cố tình tạo ra dữ li
 * Để thu gom rác trong các khu dân cư đông đúc như Tân Phú, Công ty TNHH MTV Môi trường Đô thị TP.HCM (CITENCO) sử dụng đội xe ép rác mini chuyên dụng có tải trọng từ $1.0 - 1.5$ tấn (như dòng xe Isuzu / Hino mini). Thông số $Q = 1,500\text{ kg}$ là con số bám sát $100\%$ thực tế vận hành!
 
 #### ❓ "Feasible Witness" (Nghiệm chứng khả thi) là gì và tại sao bắt buộc phải có trước khi chạy SFO-VND?
-* **Bản chất toán học:** Trong quy hoạch tối ưu, điều kiện cần $\sum q_i \le K \cdot Q$ ($3,329 \le 6,000$) chưa chắc đã đảm bảo bài toán có nghiệm (vì có thể do cách đóng gói bao bì mà không thể chia vào $K$ thùng).
+* **Bản chất toán học:** Trong quy hoạch tối ưu, điều kiện cần $\sum q_i \le K \cdot Q$ ($3,345 \le 6,000$) chưa chắc đã đảm bảo bài toán có nghiệm (vì có thể do cách đóng gói bao bì mà không thể chia vào $K$ thùng).
 * **Feasible Witness** là việc nhóm đưa ra được **ít nhất một phương án phân tuyến thực tế** thỏa mãn toàn bộ 4 ràng buộc cứng. Nó đóng vai trò là "chứng minh thư" xác nhận bài toán là **Giải được (Feasible)**. Nếu không có bước này, nhỡ dữ liệu bị lỗi bất khả thi mà mang đi nạp vào thuật toán SFO thì sẽ biến công sức ở Step 3 thành vô nghĩa!
 
 ---
@@ -248,7 +248,7 @@ Nhóm đã chủ động viết các ca kiểm thử cố tình tạo ra dữ li
 
 #### ❓ Cố định `seed = 42` để làm gì?
 * Các hàm ngẫu nhiên của máy tính (`random`, `numpy.random`) nếu không cố định hạt giống (seed) thì mỗi lần chạy sẽ sinh ra các giá trị tọa độ hoặc khối lượng rác khác nhau.
-* Cố định `seed = 42` bảo đảm tính **Tái lập khoa học (Reproducibility)**: Bất kỳ ai, dù chạy trên máy Windows của bạn Quang hay máy Mac của bạn Hiền, đều sẽ sinh ra đúng $100\%$ bộ số 3,329.0 kg rác và các tọa độ tương ứng!
+* Cố định `seed = 42` bảo đảm tính **Tái lập khoa học (Reproducibility)**: Bất kỳ ai, dù chạy trên máy Windows của bạn Quang hay máy Mac của bạn Hiền, đều sẽ sinh ra đúng $100\%$ bộ số 3,345.0 kg rác và các tọa độ tương ứng!
 
 ---
 
@@ -314,7 +314,7 @@ Khi lên báo cáo Step 2, bạn hãy trình bày gãy gọn theo cấu trúc 5 
 > *"Thứ ba, về Case Study thực tế:
 > - Nhóm đã giải quyết triệt để vấn đề lịch sử của địa danh Sơn Kỳ cũ bằng việc lựa chọn **Phường Tây Thạnh, Quận Tân Phú** có ranh giới GIS pháp lý chính thức từ OpenStreetMap, kết hợp vùng đệm **Buffer 400m** để giữ trọn các nút giao quay đầu. Trạm trung chuyển Depot được đặt hợp pháp tại Khu công nghiệp Tân Bình.
 > - Đặc biệt, nhóm tuyệt đối không dùng đường chim bay. Nhóm trích xuất đồ thị xe ô tô từ OSMnx và lọc ra **Thành phần Liên thông Mạnh (SCC) gồm 868 nút**. Snap toàn bộ 51 điểm vào SCC này bảo đảm $100\%$ các điểm đều có đường đi đến và đường quay về Depot an toàn, không có ngõ cụt. Ma trận khoảng cách $51 \times 51$ tính bằng Dijkstra phản ánh chính xác tính chất bất đối xứng của đường một chiều.
-> - Kịch bản đội xe gồm $K=4$ xe ép rác 1.5 tấn, phục vụ 50 điểm thu gom với tổng lượng rác $3,329\text{ kg}$. Nhóm đã thiết lập thành công **Feasible Witness** (Bằng chứng phân tuyến khả thi), chứng minh bài toán cấp phường hoàn toàn giải được."*
+> - Kịch bản đội xe gồm $K=4$ xe ép rác 1.5 tấn, phục vụ 50 điểm thu gom với tổng lượng rác $3,345\text{ kg}$. Nhóm đã thiết lập thành công **Feasible Witness** (Bằng chứng phân tuyến khả thi), chứng minh bài toán cấp phường hoàn toàn giải được."*
 
 ### 🎤 Bước 5: Kết luận & Đề xuất chuyển giao Step 3 (1 phút)
 > *"Toàn bộ dữ liệu của nhóm đã vượt qua **23/23 tiêu chí kiểm định** tự động tại `validate_dataset.py` và **34/34 bài unit test Pytest**, cố định `seed = 42` bảo đảm khả năng tái lập độc lập.
