@@ -109,14 +109,25 @@ def test_file_not_found(loader):
 def test_solution_verification_if_present(loader, instance_name):
     """
     Kiểm tra đối chứng nghiệm tham chiếu BKS khi có file .sol (Theo yêu cầu Step 2 - Mục 2.3).
-    Nếu file .sol tồn tại, tính lại chi phí chu trình và kiểm tra sai số = 0 so với BKS công bố.
+    Kiểm tra map đủ N-1 điểm khách hàng (không trùng, không sót), đúng tải trọng và sai số BKS = 0.
     """
     sol_data = loader.load_solution(instance_name)
-    if sol_data is not None:
-        inst_data = loader.load_instance(instance_name)
-        res = loader.verify_solution_cost(inst_data, sol_data)
-        assert res["is_match"], (
-            f"Nghiệm .sol của {instance_name} có chi phí tính lại {res['recalculated_cost']} "
-            f"không khớp chi phí công bố {res['published_cost']} (chênh lệch {res['difference']})"
-        )
+    assert sol_data is not None, f"Thiếu file .sol cho bộ {instance_name}"
+    
+    inst_data = loader.load_instance(instance_name)
+    res = loader.verify_solution_cost(inst_data, sol_data)
+    
+    # 1. Kiểm tra map đúng và đủ N-1 khách hàng (từ 1 đến dimension-1)
+    visited_customers = [node for r in res["routes"] for node in r["nodes"]]
+    expected_customers = list(range(1, inst_data["dimension"]))
+    assert len(visited_customers) == inst_data["num_customers"], "Số lượt khách phục vụ không khớp tổng số khách"
+    assert sorted(visited_customers) == expected_customers, "Các điểm trong .sol không map khớp 1-1 với N-1 điểm trong .vrp"
 
+    # 2. Kiểm tra tải trọng từng tuyến hợp lệ
+    assert all(r["is_capacity_valid"] for r in res["routes"]), "Có tuyến vượt quá tải trọng Q"
+
+    # 3. Kiểm tra tổng độ dài tính lại khớp tuyệt đối với BKS (sai số = 0)
+    assert res["is_match"], (
+        f"Nghiệm .sol của {instance_name} có chi phí tính lại {res['recalculated_cost']} "
+        f"không khớp chi phí công bố {res['published_cost']} (chênh lệch {res['difference']})"
+    )
