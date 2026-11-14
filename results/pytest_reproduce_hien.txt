@@ -1,0 +1,11 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.0.3, pluggy-1.7.0
+rootdir: C:\Users\Asus\Downloads\SFO-VND_GreenWasteRouting-main
+plugins: anyio-4.15.1
+collected 40 items
+
+tests\test_core_and_algorithms.py .......                                [ 17%]
+tests\test_loader.py .........................                           [ 80%]
+tests\test_toy_instance.py ........                                      [100%]
+
+============================= 40 passed in 2.48s ==============================
