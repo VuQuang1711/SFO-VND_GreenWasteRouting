@@ -1,5 +1,6 @@
 # 🏙️ KẾT QUẢ 3: CASE STUDY PHƯỜNG TÂY THẠNH 50 ĐIỂM & PHÂN TÍCH CHUYÊN SÂU
 
+> **Đơn vị:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị bằng thuật toán lai SFO-VND  
 > **Giai đoạn:** Step 2 — Chuẩn bị và khóa bộ dữ liệu  
 > **Thành viên phụ trách chính:** Lê Nguyễn Tâm Đức *(GIS & Mạng đường giao thông)*, Vũ Thế Quang *(Khóa Schema & Kịch bản)*  
@@ -14,7 +15,7 @@ Nhóm đã xây dựng và chuẩn hóa thành công bộ dữ liệu thực đ�
 | Hạng mục dữ liệu | Giá trị cụ thể đã chuẩn hóa | Nguồn dữ liệu & Phương pháp xác minh | Tệp tin lưu trữ đối chứng |
 | :--- | :--- | :--- | :--- |
 | **Ranh giới hành chính** | Đa giác khép kín EPSG:4326, diện tích $4.12\text{ km}^2$ | OpenStreetMap Nominatim Overpass API (`admin_level = 8`), ngày lấy: 24/10/2026 | [`data/ward/raw/ward_boundary.geojson`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/raw/ward_boundary.geojson) |
-| **Vùng đệm mạng đường (Buffer)** | **400 mét** mở rộng đa giác | Khuyến nghị chuẩn 300–500m để bảo đảm kết nối thông suốt với đường vành đai ngoài | [`docs/ward_selection.md`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/docs/ward_selection.md) |
+| **Vùng đệm mạng đường (Buffer)** | **400 mét** mở rộng đa giác | Khuyến nghị chuẩn 300–500m để bảo đảm kết nối thông suốt với đường vành đai ngoài | [`ward_selection.md`](../reports/ward_selection.md) |
 | **Quy mô đồ thị giao thông** | **935 nút (nodes), 2,123 cung đường (edges)** | Thư viện `osmnx` tải đồ thị xe ô tô (`network_type = "drive"`) | [`data/ward/raw/road_network.graphml`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/raw/road_network.graphml) |
 | **Thành phần liên thông mạnh (SCC)** | **868 nút (chiếm 92.8% toàn mạng)** | Thuật toán Tarjan/Kosaraju xác định SCC lớn nhất, loại bỏ ngõ cụt 1 chiều | [`src/map/generate_tay_thanh_dataset.py`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/src/map/generate_tay_thanh_dataset.py) |
 | **Số điểm thu gom** | **50 điểm khách hàng + 1 Depot (= 51 điểm)** | Lấy trực tiếp từ các nút thuộc SCC trên 13 trục phố chính của Tây Thạnh | [`data/ward/processed/collection_points.csv`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/collection_points.csv) |
@@ -63,5 +64,5 @@ Nhóm đã xây dựng và chuẩn hóa thành công bộ dữ liệu thực đ�
 3. Danh sách 50 điểm thu gom: [`data/ward/processed/collection_points.csv`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/collection_points.csv)
 4. Trạm trung chuyển Depot: [`data/ward/processed/depot.csv`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/depot.csv)
 5. Kịch bản tham số: [`data/ward/processed/scenario.json`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/scenario.json)
-6. Từ điển dữ liệu: [`docs/data_dictionary.md`](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/docs/data_dictionary.md)
+6. Từ điển dữ liệu: [`data_dictionary.md`](../reports/data_dictionary.md)
 

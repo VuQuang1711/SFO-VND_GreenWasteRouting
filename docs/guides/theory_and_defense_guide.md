@@ -1,10 +1,12 @@
 # 📘 CẨM NANG TOÀN DIỆN VỀ DỰ ÁN: LÝ THUYẾT NỀN TẢNG, KIẾN TRÚC HỆ THỐNG VÀ KỊCH BẢN THUYẾT TRÌNH BẢO VỆ
 
+> **Đơn vị đào tạo:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị nhằm giảm chi phí và phát thải carbon bằng thuật toán Sailfish Optimizer lai Variable Neighborhood Descent (Hybrid SFO–VND).  
 > **Địa bàn nghiên cứu (Case Study):** Phường Tây Thạnh, Quận Tân Phú, Thành phố Hồ Chí Minh (kế thừa khảo sát khu vực Sơn Kỳ).  
 > **Tác giả thực hiện:** Vũ Thế Quang *(Nhóm trưởng)*, Lê Nguyễn Tâm Đức, Nguyễn Ngọc Thảo Hiền.  
 > **Mục đích tài liệu:** Hướng dẫn thành viên nhóm nắm vững từ bản chất lý thuyết toán học, cơ chế giải thuật, xử lý dữ liệu GIS cho tới kịch bản thuyết trình và bộ câu hỏi phản biện bảo vệ trước Hội đồng Khoa học / Giảng viên hướng dẫn.
 
+> **Thời điểm:** Tính đến Step 2.
 ---
 
 ## 📑 MỤC LỤC TỔNG QUAN

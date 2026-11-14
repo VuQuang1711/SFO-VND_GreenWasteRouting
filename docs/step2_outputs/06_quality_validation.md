@@ -1,5 +1,6 @@
 # 🛡️ KẾT QUẢ 6: BỘ KIỂM ĐỊNH TỰ ĐỘNG 23 TIÊU CHÍ, TÍNH TÁI LẬP & PHÂN TÍCH CHUYÊN SÂU
 
+> **Đơn vị:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị bằng thuật toán lai SFO-VND  
 > **Giai đoạn:** Step 2 — Chuẩn bị và khóa bộ dữ liệu  
 > **Thành viên phụ trách chính:** Vũ Thế Quang *(Nhóm trưởng - Quản lý Chất lượng QA & Kiểm thử tự động)*  

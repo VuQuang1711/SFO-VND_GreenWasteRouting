@@ -1,5 +1,6 @@
 # 🗺️ BÁO CÁO LỰA CHỌN PHƯỜNG NGHIÊN CỨU & PHẠM VI MẠNG ĐƯỜNG (WARD SELECTION)
 
+> **Đơn vị:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị bằng thuật toán lai Sailfish Optimizer và Variable Neighborhood Descent (SFO-VND)  
 > **Giai đoạn:** Step 2 — Chuẩn bị và khóa bộ dữ liệu (Công việc 2.1)  
 > **Thành viên phụ trách:** Lê Nguyễn Tâm Đức (Mạng đường & GIS), Vũ Thế Quang (Điều phối)

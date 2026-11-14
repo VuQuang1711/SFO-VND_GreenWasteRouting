@@ -1,5 +1,7 @@
 # 📑 BÁO CÁO NGHIỆM THU NỘI BỘ STEP 2: CHUẨN BỊ VÀ KHÓA BỘ DỮ LIỆU
 
+> **Đơn vị:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
+> **Khoa/Ngành:** Ngành Khoa học Dữ liệu  
 > **Tên đề tài:** Tối ưu lộ trình thu gom rác đô thị bằng Sailfish Optimizer lai Variable Neighborhood Descent (SFO–VND)  
 > **Chương trình:** Nghiên cứu Khoa học Sinh viên  
 > **Giai đoạn:** Step 2 — Chuẩn bị và khóa bộ dữ liệu  

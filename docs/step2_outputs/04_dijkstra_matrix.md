@@ -1,5 +1,6 @@
 # 🛣️ KẾT QUẢ 4: MA TRẬN KHOẢNG CÁCH CÓ HƯỚNG DIJKSTRA & PHÂN TÍCH CHUYÊN SÂU
 
+> **Đơn vị:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị bằng thuật toán lai SFO-VND  
 > **Giai đoạn:** Step 2 — Chuẩn bị và khóa bộ dữ liệu  
 > **Thành viên phụ trách chính:** Lê Nguyễn Tâm Đức *(Mạng đường & Ma trận Dijkstra)*, Vũ Thế Quang *(Kiểm thử tính liên thông)*  

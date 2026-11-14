@@ -1,8 +1,9 @@
 # 📘 HƯỚNG DẪN TOÀN DIỆN VỀ STEP 2: NHỮNG GÌ ĐÃ LÀM VÀ TẠI SAO LẠI LÀM NHƯ VẬY?
 
+> **Đơn vị đào tạo:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Tên tài liệu:** Cẩm nang Học thuật & Kỹ thuật Nghiệm thu Step 2 — Chuẩn bị và Khóa Bộ Dữ liệu  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị bằng thuật toán lai Sailfish Optimizer kết hợp Variable Neighborhood Descent (Hybrid SFO–VND)  
-> **Nhóm thực hiện:** Vũ Thế Quang *(Nhóm trưởng)*, Lê Nguyễn Tâm Đức, Nguyễn Ngọc Thảo Hiền (Lớp 15DHKHDL03)  
+> **Nhóm thực hiện:** Vũ Thế Quang *(Nhóm trưởng)*, Lê Nguyễn Tâm Đức, Nguyễn Ngọc Thảo Hiền  
 > **Mục tiêu của tài liệu:** Giúp từng thành viên nắm vững **từng việc nhóm đã làm**, **bản chất lý do khoa học tại sao phải làm như vậy**, từ đó tự tin thuyết trình, đối thoại và bảo vệ xuất sắc trước Giảng viên hướng dẫn (GVHD) và Hội đồng chấm điểm.
 
 ---
@@ -53,7 +54,7 @@ Depot KCN Tân Bình  Dijkstra có hướng   Khớp 100% BKS       8 test bắt
 3. Trích xuất ranh giới số chuẩn WGS84 EPSG:4326 dạng Polygon từ OpenStreetMap qua Overpass API (`admin_level = 8`).
 4. Thiết lập vùng đệm mở rộng **Buffer 400 mét**.
 5. Bố trí Trạm trung chuyển (Depot) tại tọa độ $(10.8122, 106.6215)$ nằm trong khuôn viên **Khu công nghiệp Tân Bình thuộc Phường Tây Thạnh**, tiếp giáp trực tiếp đường trục CN13.
-6. Lưu trữ minh chứng: [ward_selection.md](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/docs/ward_selection.md), [ward_boundary.geojson](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/raw/ward_boundary.geojson), ảnh [map_boundary.png](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/results/figures/map_boundary.png).
+6. Lưu trữ minh chứng: [ward_selection.md](../reports/ward_selection.md), [ward_boundary.geojson](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/raw/ward_boundary.geojson), ảnh [map_boundary.png](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/results/figures/map_boundary.png).
 
 ---
 
@@ -230,7 +231,7 @@ Nhóm đã chủ động viết các ca kiểm thử cố tình tạo ra dữ li
        ├── raw/               # Ranh giới GIS gốc, file road_network.graphml
        └── processed/         # collection_points.csv, distance_matrix.csv, scenario.json
    ```
-2. Soạn thảo Từ điển Dữ liệu chi tiết: [docs/data_dictionary.md](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/docs/data_dictionary.md) quy định rõ: tên trường, kiểu dữ liệu, đơn vị đo (mét, kg, Lít, VNĐ), nhãn phân loại dữ liệu (`điểm thu gom giả lập trên mạng đường OSM`).
+2. Soạn thảo Từ điển Dữ liệu chi tiết: [data_dictionary.md](../reports/data_dictionary.md) quy định rõ: tên trường, kiểu dữ liệu, đơn vị đo (mét, kg, Lít, VNĐ), nhãn phân loại dữ liệu (`điểm thu gom giả lập trên mạng đường OSM`).
 3. Cố định `seed = 42` tại [data/ward/processed/scenario.json](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/scenario.json).
 4. Khóa phiên bản thư viện chính xác trong [requirements.txt](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/requirements.txt): Python 3.13.14, `osmnx 2.1.1`, `vrplib 2.2.0`, `networkx 3.6.1`, `geopandas 1.2.0`, `pandas 2.2.3`, `numpy 2.2.3`, `pytest 9.0.3`.
 
@@ -294,9 +295,9 @@ Nhóm đã chủ động viết các ca kiểm thử cố tình tạo ra dữ li
 
 ---
 
-# PHẦN II: KỊCH BẢN THUYẾT TRÌNH BẢO VỆ STEP 2 TRƯỚC HỘI ĐỒNG (5–7 PHÚT)
+# PHẦN II: Ý TƯỞNG BÁO CÁO
 
-Khi lên báo cáo Step 2, bạn hãy trình bày gãy gọn theo cấu trúc 5 bước sau:
+Khi báo cáo Step 2, trình bày gãy gọn theo cấu trúc 5 bước sau:
 
 ### 🎤 Bước 1: Tuyên bố Mục tiêu & Triết lý của Step 2 (1 phút)
 > *"Kính thưa Thầy hướng dẫn và các bạn! Hôm nay nhóm xin báo cáo kết quả nghiệm thu **Step 2: Chuẩn bị và Khóa Bộ Dữ liệu**. 
@@ -347,7 +348,7 @@ Khi lên báo cáo Step 2, bạn hãy trình bày gãy gọn theo cấu trúc 5 
 ### ❓ Câu 5: Dữ liệu lượng rác tại 50 điểm của phường là dữ liệu nhóm tự bịa ra hay lấy ở đâu?
 * **Trả lời sắc bén:**
   > *"Dạ thưa Thầy, nhóm xin trả lời rất thẳng thắn và minh bạch: Tọa độ 50 điểm là tọa độ thực tế được trích xuất dọc theo các trục đường giao thông của Phường Tây Thạnh từ OpenStreetMap. Còn khối lượng rác là dữ liệu **mô phỏng có kiểm soát (Controlled Simulation)** được cố định bởi `seed = 42`.  
-  > Nhóm không tự bịa ngẫu nhiên mà phân tầng theo định mức phát sinh rác thải đô thị thực tế tại TP.HCM: điểm dân cư từ $35 - 75\text{ kg}$/ngày và điểm kinh doanh/hàng quán từ $75 - 120\text{ kg}$/ngày. Toàn bộ định nghĩa này được nhóm công bố minh bạch trong Từ điển Dữ liệu `data_dictionary.md` và gắn nhãn rõ ràng là 'điểm thu gom giả lập trên mạng đường OSM' chứ không nhận vơ là số đo từ cảm biến thật ạ."*
+  > Nhóm không tự bịa ngẫu nhiên mà phân tầng giả lập theo định mức phát sinh rác thải đô thị thực tế tại TP.HCM: điểm dân cư từ $35 - 75\text{ kg}$/ngày và điểm kinh doanh/hàng quán từ $75 - 120\text{ kg}$/ngày. Toàn bộ định nghĩa này được nhóm công bố minh bạch trong Từ điển Dữ liệu `data_dictionary.md` và gắn nhãn rõ ràng là 'điểm thu gom giả lập trên mạng đường OSM' chứ không nhận vơ là số đo từ cảm biến thật ạ."*
 
 ---
 

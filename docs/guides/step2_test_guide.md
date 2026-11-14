@@ -1,6 +1,7 @@
 # 🧪 HƯỚNG DẪN TỰ KIỂM TRA (TEST) TỪNG BƯỚC CỦA STEP 2
 ## Cẩm nang Thực hành dành cho Sinh viên & Hội đồng Thẩm định
 
+> **Đơn vị đào tạo:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài NCKH:** Tối ưu hóa lộ trình thu gom rác thải đô thị bằng thuật toán lai SFO-VND  
 > **Giai đoạn:** Step 2 — Chuẩn bị và khóa bộ dữ liệu (Phiên bản v1.0)  
 > **Mục tiêu cẩm nang:** Hướng dẫn chi tiết từng câu lệnh terminal, thao tác kiểm chứng, kết quả mong đợi và cách đọc file log/bản đồ để bất kỳ ai (sinh viên, giảng viên hướng dẫn, người phản biện) đều có thể tự kiểm tra lại toàn bộ quy trình của Step 2 mà không gặp lỗi.

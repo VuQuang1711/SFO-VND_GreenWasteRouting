@@ -1,5 +1,6 @@
 # 📖 TỪ ĐIỂN DỮ LIỆU DỰ ÁN (DATA DICTIONARY)
 
+> **Đơn vị:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
 > **Đề tài:** Tối ưu hóa lộ trình thu gom rác đô thị bằng thuật toán lai SFO-VND  
 > **Phiên bản:** v1.0 (Khóa dữ liệu Step 2)  
 > **Ngày ban hành:** 2026-10-24  

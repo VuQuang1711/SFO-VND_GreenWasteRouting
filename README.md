@@ -1,19 +1,16 @@
 # 🚛 GreenWaste Route : Urban Waste Collection Routing Optimization Using Hybrid SFO-VND
 
+> **Đơn vị đào tạo:** Trường Đại học Công Thương Thành phố Hồ Chí Minh (HUIT)  
+> **Khoa/Ngành:** Ngành Khoa học Dữ liệu  
 > **Đề tài Nghiên cứu Khoa học Sinh viên**  
 > **Tên đề tài:** Tối ưu hóa lộ trình thu gom rác thải đô thị nhằm giảm chi phí và phát thải carbon bằng thuật toán Sailfish Optimizer lai Variable Neighborhood Descent.  
-> **Phạm vi ứng dụng:** Case study tại một phường tại Thành phố Hồ Chí Minh (Phường Sơn Kỳ, Quận Tân Phú cũ).
+> **Phạm vi ứng dụng:** Case study tại Phường Tây Thạnh, Quận Tân Phú, TP. Hồ Chí Minh.
 
 ---
-## 👤 THÀNH VIÊN THỰC HIỆN
-**Vũ Thế Quang**
-
-
-**Nguyễn Ngọc Thảo Hiền**
-
-
-**Lê Nguyễn Tâm Đức**
-
+## 👤 THÀNH VIÊN THỰC HIỆN (HUIT)
+* **Vũ Thế Quang** *(Nhóm trưởng)*
+* **Nguyễn Ngọc Thảo Hiền**
+* **Lê Nguyễn Tâm Đức**
 
 ---
 ## 📌 1. Giới thiệu tổng quan (Overview)
@@ -112,11 +109,27 @@ SFO-VND_GreenWasteRouting/
 │   ├── test_toy_instance.py   # Kiểm tra 8 ca biên cho instance nhỏ
 │   ├── validate_dataset.py    # Kiểm định 7 Suite chất lượng dữ liệu
 │   └── test_core_and_algorithms.py
-├── docs/                      # Tài liệu và báo cáo theo dõi
-│   ├── ward_selection.md      # So sánh khu vực nghiên cứu & ranh giới OSM
-│   ├── data_dictionary.md     # Từ điển dữ liệu chi tiết nguồn gốc & đơn vị
-│   ├── feasibility_report.md  # Báo cáo khả thi & theo dõi các vấn đề Step 1 (R1-R8)
-│   └── step2_report.md        # Báo cáo tổng thể nghiệm thu Step 2
+├── docs/                      # Tài liệu và báo cáo toàn diện (Đã chuẩn hóa)
+│   ├── README.md              # Cổng tra cứu tài liệu trung tâm (Master Portal)
+│   ├── reports/               # Báo cáo chính thức, nghiệm thu & cơ sở địa lý
+│   │   ├── step2_official_report.md   # Báo cáo tổng thể nộp GVHD (10 mục chuẩn)
+│   │   ├── step2_executive_summary.md # Biên bản nghiệm thu nội bộ Step 2
+│   │   ├── feasibility_report.md      # Báo cáo khả thi & theo dõi R1–R8
+│   │   ├── ward_selection.md          # Cơ sở chọn địa bàn Tây Thạnh & ranh giới GIS
+│   │   └── data_dictionary.md         # Từ điển dữ liệu chuẩn & xuất xứ
+│   ├── step2_outputs/         # 6 Báo cáo kết quả đầu ra chuyên sâu Step 2
+│   │   ├── 01_cvrplib_benchmark.md    # Kết quả 1: Benchmark CVRPLIB
+│   │   ├── 02_toy_instance.md         # Kết quả 2: Toy instance 12 điểm
+│   │   ├── 03_tay_thanh_case_study.md # Kết quả 3: Case study Tây Thạnh 50 điểm
+│   │   ├── 04_dijkstra_matrix.md      # Kết quả 4: Ma trận khoảng cách có hướng
+│   │   ├── 05_feasible_witness.md     # Kết quả 5: Minh chứng phân tuyến khả thi
+│   │   └── 06_quality_validation.md   # Kết quả 6: Kiểm định chất lượng dữ liệu
+│   ├── guides/                # Cẩm nang thực hành, kiểm thử & bảo vệ đồ án
+│   │   ├── step2_test_guide.md        # Hướng dẫn tự kiểm tra từng bước CLI
+│   │   ├── theory_and_defense_guide.md# Cẩm nang lý thuyết & thuyết trình bảo vệ
+│   │   └── scientific_rationale.md    # Cẩm nang giải trình khoa học "Tại sao làm vậy"
+│   └── architecture/          # Kiến trúc hệ thống & Lộ trình triển khai Step 3
+│       └── system_architecture.md     # Sơ đồ phân tầng, luồng tối ưu & roadmap Step 3
 ├── results/                   # Bằng chứng kết quả & kiểm tra
 │   ├── figures/               # map_boundary.png, map.png, toy_hand_calculation.png
 │   ├── logs/                  # validation_report.log
