@@ -141,19 +141,91 @@ class RouteDecoder:
 
         return routes
 
+    def optimal_split_decoder(
+        self,
+        giant_tour: Union[np.ndarray, List[int]],
+        demands: Union[np.ndarray, List[float], Dict[int, float]],
+        distance_matrix: np.ndarray,
+        capacity_q_max: float = None
+    ) -> List[List[int]]:
+        """
+        Cắt chuỗi Giant Tour tối ưu bằng Quy hoạch động Prins (2004) trên đồ thị phụ trợ DAG (Optimal Split).
+        Giải quyết vấn đề R7: So sánh giữa Greedy Split và Optimal Split trên đồ thị có hướng.
+        """
+        q_limit = float(capacity_q_max) if capacity_q_max is not None else self.capacity_q_max
+        tour_list = [int(p) for p in giant_tour if int(p) != self.depot_index]
+        n = len(tour_list)
+        if n == 0:
+            return []
+
+        def get_demand(point_id: int) -> float:
+            if isinstance(demands, dict):
+                return float(demands.get(point_id, 0.0))
+            return float(demands[point_id])
+
+        # V[i]: chi phí nhỏ nhất để phục vụ i khách hàng đầu tiên trong giant_tour
+        V = [float("inf")] * (n + 1)
+        P = [0] * (n + 1)
+        V[0] = 0.0
+
+        for i in range(n):
+            load = 0.0
+            cost = 0.0
+            for j in range(i, n):
+                cust = tour_list[j]
+                d_cust = get_demand(cust)
+                if d_cust < 0:
+                    raise ValueError(f"Lỗi dữ liệu: Điểm thu gom {cust} có lượng rác âm ({d_cust} kg).")
+                if d_cust > q_limit:
+                    raise ValueError(f"Lỗi bất khả thi: Điểm thu gom {cust} có lượng rác {d_cust} kg > Q={q_limit} kg.")
+
+                load += d_cust
+                if load > q_limit:
+                    break
+
+                if j == i:
+                    cost = float(distance_matrix[self.depot_index, cust] + distance_matrix[cust, self.depot_index])
+                else:
+                    prev_cust = tour_list[j - 1]
+                    cost = (
+                        cost
+                        - float(distance_matrix[prev_cust, self.depot_index])
+                        + float(distance_matrix[prev_cust, cust])
+                        + float(distance_matrix[cust, self.depot_index])
+                    )
+
+                if V[i] + cost < V[j + 1]:
+                    V[j + 1] = V[i] + cost
+                    P[j + 1] = i
+
+        # Truy vết lại các tuyến xe tối ưu từ mảng P
+        routes: List[List[int]] = []
+        curr = n
+        while curr > 0:
+            prev = P[curr]
+            segment = tour_list[prev:curr]
+            routes.append([self.depot_index] + segment + [self.depot_index])
+            curr = prev
+
+        routes.reverse()
+        return routes
+
     def decode(
         self,
         vector: Union[np.ndarray, List[float]],
         demands: Union[np.ndarray, List[float], Dict[int, float]],
-        capacity_q_max: float = None
+        capacity_q_max: float = None,
+        distance_matrix: np.ndarray = None,
+        split_mode: str = "greedy"
     ) -> List[List[int]]:
         """
         Hàm giải mã hoàn chỉnh từ vector số thực của SFO ra tập hợp các tuyến xe hợp lệ.
-        Kết hợp 2 bước: random_key_to_tour -> split_decoder.
+        Hỗ trợ cả 'greedy' (First-Fit Split) và 'optimal' (Prins 2004 Bell-man/DAG Split).
         """
         giant_tour = self.random_key_to_tour(vector)
-        routes = self.split_decoder(giant_tour, demands, capacity_q_max)
-        return routes
+        if split_mode == "optimal" and distance_matrix is not None:
+            return self.optimal_split_decoder(giant_tour, demands, distance_matrix, capacity_q_max)
+        return self.split_decoder(giant_tour, demands, capacity_q_max)
 
     def tour_to_random_key(self, routes: List[List[int]], dimension: int) -> np.ndarray:
         """

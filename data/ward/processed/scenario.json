@@ -16,6 +16,7 @@
     "cost": "VND"
   },
   "road_network_source": "OpenStreetMap drive network with 400m buffer, filtered largest SCC (868 nodes)",
+  "fuel_emission_status": "Liệt kê tham số lý thuyết MEET / ISO 14064 — Chính thức khóa công thức ở Step 3",
   "created_at": "2026-11-07T15:00:00+07:00",
-  "version": "1.1"
+  "version": "1.0"
 }

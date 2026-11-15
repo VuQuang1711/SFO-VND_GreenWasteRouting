@@ -281,10 +281,19 @@ class DatasetValidator:
 
         self.record_check(suite, "Nạp thành công 6 bộ benchmark CVRPLIB gốc", all_loaded, "Cả 6 file .vrp đọc đúng schema" if all_loaded else err_msg)
 
-        # Kiểm tra metadata bảng CSV
+        # Kiểm tra metadata bảng CSV (đảm bảo có cả cột số nguyên và số thực đối chứng BKS)
         meta_path = os.path.join(ROOT_DIR, "results", "benchmark_metadata.csv")
         has_meta = os.path.exists(meta_path)
-        self.record_check(suite, "Bảng metadata CVRPLIB tồn tại", has_meta, f"Tệp kết quả tại {meta_path}")
+        meta_cols_ok = False
+        if has_meta:
+            df_meta = pd.read_csv(meta_path)
+            meta_cols_ok = {"bks_cost", "recalculated_int_cost", "recalculated_float_cost"}.issubset(df_meta.columns)
+        self.record_check(
+            suite,
+            "Bảng metadata CVRPLIB tồn tại (gồm cột Int & Float)",
+            has_meta and meta_cols_ok,
+            f"Tệp kết quả đầy đủ cột Int/Float tại {meta_path}"
+        )
 
         # Kiểm tra file nghiệm .sol (nếu có thì đối chứng bằng vrplib.read_solution)
         sol_count = sum(1 for inst in instances if os.path.exists(os.path.join(self.bm_raw_dir, f"{inst}.sol")))

@@ -30,7 +30,7 @@ if sys.platform.startswith("win"):
 def compute_euc2d_matrix(coords: Dict[int, Tuple[float, float]], round_integers: bool = True) -> np.ndarray:
     """
     Tính ma trận khoảng cách Euclid 2 chiều theo quy ước chuẩn TSPLIB/CVRPLIB (EUC_2D).
-    Quy tắc làm tròn: round(sqrt(dx*dx + dy*dy)) (nearest integer).
+    Quy tắc làm tròn chuẩn TSPLIB (nint): floor(sqrt(dx*dx + dy*dy) + 0.5).
     """
     n = len(coords)
     matrix = np.zeros((n, n), dtype=float)
@@ -40,7 +40,7 @@ def compute_euc2d_matrix(coords: Dict[int, Tuple[float, float]], round_integers:
                 dx = coords[i][0] - coords[j][0]
                 dy = coords[i][1] - coords[j][1]
                 dist = math.sqrt(dx * dx + dy * dy)
-                matrix[i, j] = round(dist) if round_integers else dist
+                matrix[i, j] = float(int(math.floor(dist + 0.5))) if round_integers else dist
             else:
                 matrix[i, j] = 0.0
     return matrix
@@ -107,12 +107,16 @@ class CVRPLIBLoader:
         # nhưng chuẩn benchmark quốc tế bắt buộc phải làm tròn nguyên từng cạnh (nint)
         if len(coords) > 0 and edge_weight_type == "EUC_2D":
             dist_matrix = compute_euc2d_matrix(coords, round_integers=True)
+            dist_matrix_float = compute_euc2d_matrix(coords, round_integers=False)
         elif instance_data.get("edge_weight") is not None:
             dist_matrix = np.array(instance_data["edge_weight"], dtype=float)
+            dist_matrix_float = dist_matrix.copy()
         elif len(coords) > 0:
             dist_matrix = compute_euc2d_matrix(coords, round_integers=False)
+            dist_matrix_float = dist_matrix.copy()
         else:
             dist_matrix = np.zeros((dimension, dimension), dtype=float)
+            dist_matrix_float = np.zeros((dimension, dimension), dtype=float)
 
         return {
             "name": name,
@@ -124,6 +128,7 @@ class CVRPLIBLoader:
             "edge_weight_type": edge_weight_type,
             "node_coord": coords,
             "distance_matrix": dist_matrix,
+            "distance_matrix_float": dist_matrix_float,
             "comment": instance_data.get("comment", ""),
             "raw_keys": sorted(instance_data.keys()),
             "file_path": path
@@ -168,9 +173,11 @@ class CVRPLIBLoader:
         """
         routes = solution_data.get("routes", [])
         dist_matrix = instance_data.get("distance_matrix")
+        dist_matrix_float = instance_data.get("distance_matrix_float", dist_matrix)
         depot = instance_data.get("depot", 0)
 
         total_distance = 0.0
+        total_float_distance = 0.0
         route_details = []
 
         for r_idx, route in enumerate(routes):
@@ -181,31 +188,38 @@ class CVRPLIBLoader:
             # Lộ trình khép kín: Depot -> Khách hàng -> Depot
             full_cycle = [depot] + norm_route + [depot]
             r_cost = 0.0
+            r_float_cost = 0.0
             r_demand = 0.0
             for i in range(len(full_cycle) - 1):
                 u = full_cycle[i]
                 v = full_cycle[i + 1]
                 r_cost += dist_matrix[u, v]
+                r_float_cost += dist_matrix_float[u, v]
 
             for c in norm_route:
                 r_demand += instance_data["demand"].get(c, 0.0)
 
             total_distance += r_cost
+            total_float_distance += r_float_cost
             route_details.append({
                 "route_index": r_idx + 1,
                 "nodes": norm_route,
                 "cost": r_cost,
+                "float_cost": round(r_float_cost, 2),
                 "demand": r_demand,
                 "is_capacity_valid": r_demand <= instance_data["capacity"]
             })
 
         published_cost = solution_data.get("cost")
         diff = None if published_cost is None else abs(total_distance - float(published_cost))
+        float_diff = None if published_cost is None else round(total_float_distance - float(published_cost), 2)
 
         return {
             "recalculated_cost": total_distance,
+            "recalculated_float_cost": round(total_float_distance, 2),
             "published_cost": published_cost,
             "difference": diff,
+            "float_difference": float_diff,
             "num_routes": len(routes),
             "routes": route_details,
             "is_match": (diff == 0.0) if diff is not None else False

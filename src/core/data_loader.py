@@ -98,8 +98,18 @@ class DataLoader:
                         ) * 1.3
 
         np.fill_diagonal(clean_matrix, 0.0)
-        clean_matrix = np.nan_to_num(clean_matrix, nan=0.0, posinf=999.0, neginf=0.0)
-        clean_matrix = np.maximum(clean_matrix, 0.0)
+
+        # Kiểm tra nghiêm ngặt: Tuyệt đối không tự ý thay khoảng cách thiếu/không kết nối bằng 0 (Quy chuẩn Step 2 - Mục 2.6 & 2.7)
+        if np.any(np.isnan(clean_matrix)) or np.any(np.isinf(clean_matrix)):
+            bad_indices = np.argwhere(np.isnan(clean_matrix) | np.isinf(clean_matrix))
+            pairs_str = ", ".join([f"({int(u)}->{int(v)})" for u, v in bad_indices[:10]])
+            raise ValueError(
+                f"Lỗi ma trận khoảng cách: Phát hiện {len(bad_indices)} cặp điểm không có đường đi (NaN/Inf): {pairs_str}. "
+                f"Tuyệt đối không tự động gán bằng 0!"
+            )
+
+        if np.any(clean_matrix < 0.0):
+            raise ValueError("Lỗi ma trận khoảng cách: Tồn tại khoảng cách âm bất hợp lệ.")
 
         return df, clean_matrix
 

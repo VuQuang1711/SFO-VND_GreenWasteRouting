@@ -45,7 +45,8 @@ class RouteEvaluator:
         fuel_price: float = FUEL_PRICE_VND_PER_LITER,
         carbon_cost: float = CARBON_COST_VND_PER_KG,
         penalty_weight: float = PENALTY_WEIGHT,
-        benchmark_mode: bool = False
+        benchmark_mode: bool = False,
+        max_vehicles: int = None
     ):
         """
         Khởi tạo bộ đánh giá hàm mục tiêu.
@@ -72,6 +73,7 @@ class RouteEvaluator:
         self.carbon_cost = float(carbon_cost)
         self.penalty_weight = float(penalty_weight)
         self.benchmark_mode = bool(benchmark_mode)
+        self.max_vehicles = int(max_vehicles) if max_vehicles is not None else None
 
     def _get_demand(self, point_id: int) -> float:
         """Truy xuất khối lượng rác tại điểm thu gom an toàn."""
@@ -177,8 +179,9 @@ class RouteEvaluator:
         # 2. Chi phí phát thải môi trường (thuế/trọng số carbon)
         carbon_cost = total_co2 * self.carbon_cost
 
-        # 3. Tiền phạt vi phạm tải trọng (Penalty)
-        penalty_cost = total_overload * self.penalty_weight
+        # 3. Tiền phạt vi phạm tải trọng và số lượng xe vượt trần K (Penalty)
+        excess_vehicles = max(0, active_vehicles - self.max_vehicles) if self.max_vehicles is not None else 0
+        penalty_cost = (total_overload + excess_vehicles * self.capacity_q_max) * self.penalty_weight
 
         # 4. Tính toán hàm mục tiêu Fitness
         if self.benchmark_mode:
