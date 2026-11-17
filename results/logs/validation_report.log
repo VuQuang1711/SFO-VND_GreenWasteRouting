@@ -1,0 +1,37 @@
+2026-11-18 00:33:54,786 [INFO] ================================================================================
+2026-11-18 00:33:54,786 [INFO] BẮT ĐẦU CHẠY KIỂM ĐỊNH CHẤT LƯỢNG BỘ DỮ LIỆU STEP 2 (v1.0 - 30 TIÊU CHÍ)
+2026-11-18 00:33:54,786 [INFO] ================================================================================
+2026-11-18 00:33:54,795 [INFO] [PASS] [1. Schema & Khóa chính] Cột bắt buộc collection_points.csv: Đầy đủ cột theo yêu cầu mục 18
+2026-11-18 00:33:54,799 [INFO] [PASS] [1. Schema & Khóa chính] Kiểu dữ liệu hợp lệ & không chứa NaN/Null: 100% trường đúng kiểu int/float/str, 0 giá trị NaN/Null
+2026-11-18 00:33:54,799 [INFO] [PASS] [1. Schema & Khóa chính] Khóa chính point_id duy nhất (0..50): Tổng 51 điểm, ID liên tục từ 0 đến 50 không trùng lặp
+2026-11-18 00:33:54,801 [INFO] [PASS] [1. Schema & Khóa chính] Depot ID 0 tồn tại và demand_kg = 0: Depot ID 0 có mặt, point_type='depot', demand_kg=0.0 kg
+2026-11-18 00:33:54,802 [INFO] [PASS] [1. Schema & Khóa chính] Cột bắt buộc depot.csv: Đầy đủ cột depot.csv
+2026-11-18 00:33:54,803 [INFO] [PASS] [1. Schema & Khóa chính] Cột bắt buộc vehicles.csv: Đầy đủ cột vehicles.csv
+2026-11-18 00:33:54,805 [INFO] [PASS] [2. Tọa độ, Giá trị & Đơn vị] Tọa độ GPS chuẩn WGS84 thuộc Phường Tây Thạnh: 100% tọa độ nằm trong khung [10.8024..10.8205, 106.6064..106.6311]
+2026-11-18 00:33:54,805 [INFO] [PASS] [2. Tọa độ, Giá trị & Đơn vị] Demand hợp lệ (Depot = 0, Khách hàng > 0 kg): Depot = 0.0 kg; 50 điểm khách trong khoảng [35.0, 120.0] kg
+2026-11-18 00:33:54,806 [INFO] [PASS] [2. Tọa độ, Giá trị & Đơn vị] Mọi điểm thu gom thỏa q_i <= Q (1500 kg): 100% điểm thu gom có q_i <= Q=1500.0 kg (max q_i = 120.0 kg)
+2026-11-18 00:33:54,808 [INFO] [PASS] [2. Tọa độ, Giá trị & Đơn vị] Ma trận khớp kích thước NxN (51x51) theo ID: Kích thước ma trận (51, 51) khớp chính xác 51 điểm (ID 0..50)
+2026-11-18 00:33:54,808 [INFO] [PASS] [2. Tọa độ, Giá trị & Đơn vị] Đường chéo chính d(i,i) = 0 m: 100% phần tử đường chéo = 0.0 m
+2026-11-18 00:33:54,808 [INFO] [PASS] [2. Tọa độ, Giá trị & Đơn vị] Ngoài đường chéo d(i,j) > 0 (Không gán 0 cho ô thiếu): 100% cặp i != j có d(i,j) > 0 m (min = 16.5 m, max = 3920.7 m)
+2026-11-18 00:33:54,809 [INFO] [PASS] [3. Tải trọng & Feasible Witness] Điều kiện cần: Tổng demand <= K x Q: Tổng demand = 3345.0 kg <= Tổng sức chứa = 6000.0 kg
+2026-11-18 00:33:54,809 [INFO] [PASS] [3. Tải trọng & Feasible Witness] Số xe <= K (4 xe) và tải trọng từng xe <= Q: Sử dụng 4/4 xe, tất cả các tuyến đều <= 1500.0 kg
+2026-11-18 00:33:54,810 [INFO] [PASS] [3. Tải trọng & Feasible Witness] Phủ đủ 100% điểm khách hàng (50/50 không bỏ sót): Đã phục vụ đủ 50/50 điểm thu gom rác
+2026-11-18 00:33:54,810 [INFO] [PASS] [3. Tải trọng & Feasible Witness] Phục vụ đúng 1 lần mỗi điểm & Khép kín về Depot 0: Tổng lượt ghé = 50 (0 điểm lặp), 100% tuyến xuất phát và kết thúc tại Depot 0
+2026-11-18 00:33:54,810 [INFO] [PASS] [4. Mạng đường & Tính liên thông] File đồ thị gốc road_network.graphml tồn tại: Đồ thị đường gốc tại E:\15DHKHDL03\2026-2027\HKI_26_27\SFO_VND\Source\data\ward\raw\road_network.graphml
+2026-11-18 00:33:54,811 [INFO] [PASS] [4. Mạng đường & Tính liên thông] Mọi cặp điểm đều có đường đi (Không có Inf/NaN): 0 cặp điểm bị vô cực hoặc NaN (Dijkstra trên SCC 868 nút)
+2026-11-18 00:33:54,811 [INFO] [PASS] [4. Mạng đường & Tính liên thông] Có đường đi từ Depot đến mọi điểm (d(0,i) > 0): 100% điểm đến được từ Depot
+2026-11-18 00:33:54,811 [INFO] [PASS] [4. Mạng đường & Tính liên thông] Có đường quay về Depot từ mọi điểm (d(i,0) > 0): 100% điểm quay về được Depot
+2026-11-18 00:33:54,811 [INFO] [PASS] [4. Mạng đường & Tính liên thông] Tính chất có hướng của mạng đường (d(i,j) != d(j,i)): Ma trận bất đối xứng phản ánh đúng đường 1 chiều thực tế
+2026-11-18 00:33:54,812 [INFO] [PASS] [5. Tính tái lập (Reproducibility)] Cố định Seed ngẫu nhiên (seed=42) trong scenario: Seed được khóa tại 42 để đảm bảo tái lập 100%
+2026-11-18 00:33:54,812 [INFO] [PASS] [5. Tính tái lập (Reproducibility)] Quy tắc sinh dữ liệu và đơn vị đo rõ ràng: Rule: 35 điểm dân cư (35-75kg) + 15 điểm kinh doanh/thương mại (80-120kg)
+2026-11-18 00:33:54,828 [INFO] [PASS] [5. Tính tái lập (Reproducibility)] So sánh 2 lần chạy cùng seed=42 khớp tuyệt đối 100%: Lần chạy 1 và Lần chạy 2 (cùng seed=42) cho ra vector demand, phân loại điểm và ma trận giống hệt 100%
+2026-11-18 00:33:54,829 [INFO] [PASS] [6. Nguồn gốc dữ liệu & Snap] Phân loại nguồn dữ liệu (source_type) minh bạch: Các phân loại nguồn: {'trạm trung chuyển chất thải quy hoạch', 'điểm thu gom giả lập trên mạng đường OSM'} (không gán nhãn sai thùng rác thực tế)
+2026-11-18 00:33:54,829 [INFO] [PASS] [6. Nguồn gốc dữ liệu & Snap] Khoảng cách ánh xạ mạng đường (snap_distance_m = 0m): 100% điểm nằm trực tiếp trên nút mạng đường SCC (snap_distance_m = 0.0 m)
+2026-11-18 00:33:54,829 [INFO] [PASS] [6. Nguồn gốc dữ liệu & Snap] File ranh giới hành chính ward_boundary.geojson: Ranh giới chuẩn WGS84 EPSG:4326 tại E:\15DHKHDL03\2026-2027\HKI_26_27\SFO_VND\Source\data\ward\raw\ward_boundary.geojson
+2026-11-18 00:33:54,839 [INFO] [PASS] [7. Benchmark CVRPLIB] Nạp thành công 6 bộ benchmark CVRPLIB gốc (.vrp): Cả 6 file .vrp đọc đúng schema
+2026-11-18 00:33:54,841 [INFO] [PASS] [7. Benchmark CVRPLIB] Bảng benchmark_metadata.csv đủ cột Int & Float: Tệp kết quả đầy đủ cột Int/Float tại E:\15DHKHDL03\2026-2027\HKI_26_27\SFO_VND\Source\results\benchmark_metadata.csv
+2026-11-18 00:33:54,852 [INFO] [PASS] [7. Benchmark CVRPLIB] Đối chứng 6 file nghiệm (.sol) khớp 100% BKS (diff=0): Cả 6/6 file .sol tính lại theo EUC_2D nguyên (TSPLIB nint) khớp tuyệt đối 100% với BKS
+2026-11-18 00:33:54,852 [INFO] ================================================================================
+2026-11-18 00:33:54,852 [INFO] TỔNG KẾT KIỂM ĐỊNH: 30/30 ĐẠT (PASS) | 0 THẤT BẠI (FAIL)
+2026-11-18 00:33:54,852 [INFO] Chi tiết log được lưu tại: E:\15DHKHDL03\2026-2027\HKI_26_27\SFO_VND\Source\results\logs\validation_report.log
+2026-11-18 00:33:54,852 [INFO] ================================================================================

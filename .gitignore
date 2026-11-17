@@ -220,3 +220,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Allow validation report logs in results/logs/
+!results/logs/*.log
+
