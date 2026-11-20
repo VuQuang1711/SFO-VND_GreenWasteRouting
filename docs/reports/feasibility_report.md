@@ -61,10 +61,10 @@ Tuân thủ mục 22 của Hướng dẫn Step 2, nhóm kiểm tra đối chiế
    * Chiều đi $d(1, 15) = 1,384.6\text{ m}$
    * Chiều về $d(15, 1) = 1,603.1\text{ m}$
    * Độ chênh lệch: $\Delta = 218.5\text{ m}$.
-3. **Cặp Điểm 15 $\leftrightarrow$ Điểm 30:**
-   * Chiều đi $d(15, 30) = 701.6\text{ m}$
-   * Chiều về $d(30, 15) = 2,116.2\text{ m}$
-   * Độ chênh lệch: $\Delta = 1,414.6\text{ m}$ (khu vực có dải phân cách cứng yêu cầu xe phải đi vòng qua giao lộ quay đầu).
+3. **Cặp Điểm 8 $\leftrightarrow$ Điểm 24:**
+   * Chiều đi $d(8, 24) = 732.9\text{ m}$
+   * Chiều về $d(24, 8) = 1,587.3\text{ m}$
+   * Độ chênh lệch: $\Delta = 854.4\text{ m}$ (khu vực có dải phân cách cứng và phân luồng một chiều yêu cầu xe phải đi vòng qua giao lộ quay đầu).
 
 ### 3.2. Đối chiếu 1 vòng khép kín Depot – A – B – Depot:
 Xét vòng di chuyển: $\text{Depot (0)} \to \text{Điểm 1 (A)} \to \text{Điểm 2 (B)} \to \text{Depot (0)}$:

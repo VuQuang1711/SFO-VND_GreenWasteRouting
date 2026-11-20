@@ -12,6 +12,7 @@ import numpy as np
 sys.path.insert(0, ".")
 
 from src.config import CAPACITY_Q_MAX, DEPOT_INDEX
+from src.core.data_loader import DataLoader
 from src.core.decoder import RouteDecoder
 from src.core.validator import RouteValidator
 from src.core.evaluator import RouteEvaluator
@@ -180,6 +181,54 @@ class TestGreenVRPCoreAndAlgorithms(unittest.TestCase):
         self.assertGreater(len(res["convergence_curve"]), 0)
         hybrid.shutdown_resources()
         self.assertFalse(hybrid.is_optimized)
+
+    def test_08_data_loader_strict_validation(self):
+        """Kiểm tra cơ chế Strict Validation của DataLoader (không dropna, không cắt demand, không Haversine)."""
+        import pandas as pd
+
+        loader = DataLoader(depot_index=0)
+        base_df = pd.DataFrame({
+            "point_id": [0, 1, 2],
+            "latitude": [10.8122, 10.8130, 10.8140],
+            "longitude": [106.6215, 106.6220, 106.6230],
+            "demand_kg": [0.0, 50.0, 80.0],
+        })
+        base_matrix = np.array([
+            [0.0, 500.0, 900.0],
+            [520.0, 0.0, 400.0],
+            [950.0, 410.0, 0.0],
+        ])
+
+        # 1. Dữ liệu hợp lệ phải đi qua
+        clean_df, clean_mat = loader.preprocess_case_study_data(base_df, base_matrix, capacity_q_max=1500.0)
+        self.assertEqual(len(clean_df), 3)
+        self.assertEqual(clean_mat.shape, (3, 3))
+
+        # 2. Thiếu dữ liệu (NaN) -> phải raise ValueError (không tự dropna)
+        nan_df = base_df.copy()
+        nan_df.loc[1, "demand_kg"] = np.nan
+        with self.assertRaises(ValueError):
+            loader.preprocess_case_study_data(nan_df, base_matrix, capacity_q_max=1500.0)
+
+        # 3. Quá tải đơn điểm (1800 kg > 1500 kg) -> phải raise ValueError (không cắt giảm demand)
+        over_df = base_df.copy()
+        over_df.loc[1, "demand_kg"] = 1800.0
+        with self.assertRaises(ValueError):
+            loader.preprocess_case_study_data(over_df, base_matrix, capacity_q_max=1500.0)
+
+        # 4. Ma trận sai kích thước -> phải raise ValueError (không tự tạo lại bằng Haversine)
+        bad_matrix = np.zeros((2, 2))
+        with self.assertRaises(ValueError):
+            loader.preprocess_case_study_data(base_df, bad_matrix, capacity_q_max=1500.0)
+
+        # 5. Thiếu file ma trận OSMnx -> phải raise FileNotFoundError (không fallback Haversine)
+        with self.assertRaises(FileNotFoundError):
+            loader.load_case_study(distance_matrix_csv_path="data/ward/processed/non_existent_matrix.csv")
+
+        # 6. Nạp thành công bộ Case Study chính thức 51 điểm Phường Tây Thạnh
+        case_data = loader.load_case_study()
+        self.assertEqual(case_data["dimension"], 50)
+        self.assertEqual(case_data["distance_matrix_m"].shape, (51, 51))
 
 
 if __name__ == "__main__":

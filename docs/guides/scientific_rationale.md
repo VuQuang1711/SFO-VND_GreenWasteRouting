@@ -233,7 +233,7 @@ Nhóm đã chủ động viết các ca kiểm thử cố tình tạo ra dữ li
    ```
 2. Soạn thảo Từ điển Dữ liệu chi tiết: [data_dictionary.md](../reports/data_dictionary.md) quy định rõ: tên trường, kiểu dữ liệu, đơn vị đo (mét, kg, Lít, VNĐ), nhãn phân loại dữ liệu (`điểm thu gom giả lập trên mạng đường OSM`).
 3. Cố định `seed = 42` tại [data/ward/processed/scenario.json](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/data/ward/processed/scenario.json).
-4. Khóa phiên bản thư viện chính xác trong [requirements.txt](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/requirements.txt): Python 3.13.14, `osmnx 2.1.1`, `vrplib 2.2.0`, `networkx 3.6.1`, `geopandas 1.2.0`, `pandas 2.2.3`, `numpy 2.2.3`, `pytest 9.0.3`.
+4. Khóa phiên bản thư viện chính xác trong [requirements.txt](file:///e:/15DHKHDL03/2026-2027/HKI_26_27/SFO_VND/Source/requirements.txt): Python 3.13.14, `osmnx 2.1.1`, `vrplib 2.2.0`, `networkx 3.6.1`, `geopandas 1.2.0`, `pandas 3.0.3`, `numpy 2.4.5`, `pytest 9.0.3`.
 
 ---
 

@@ -29,7 +29,7 @@ Nhóm đã tính toán ma trận cự ly đường bộ thực tế quy mô **$5
 | :--- | :---: | :---: | :---: | :--- |
 | **Depot (0) $\leftrightarrow$ Điểm 1** | $d(0, 1) = \mathbf{1,487.6}$ | $d(1, 0) = \mathbf{1,360.5}$ | **127.1 m** | Các đoạn rẽ nhánh một chiều và phân luồng tại nút giao Tây Thạnh – Lê Trọng Tấn. |
 | **Điểm 1 $\leftrightarrow$ Điểm 15** | $d(1, 15) = \mathbf{1,384.6}$ | $d(15, 1) = \mathbf{1,603.1}$ | **218.5 m** | Dải phân cách cứng trên trục Tây Thạnh buộc xe chiều về phải đi qua giao lộ tiếp theo để quay đầu. |
-| **Điểm 15 $\leftrightarrow$ Điểm 30** | $d(15, 30) = \mathbf{701.6}$ | $d(30, 15) = \mathbf{2,116.2}$ | **1,414.6 m** | Khu vực có đường gom một chiều, xe phải đi vòng qua trục Nguyễn Hữu Dật để chuyển hướng. |
+| **Điểm 8 $\leftrightarrow$ Điểm 24** | $d(8, 24) = \mathbf{732.9}$ | $d(24, 8) = \mathbf{1,587.3}$ | **854.4 m** | Khu vực có đường gom một chiều và dải phân cách cứng, xe chiều về phải đi vòng qua giao lộ để quay đầu. |
 
 ---
 

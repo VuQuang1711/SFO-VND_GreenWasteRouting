@@ -6,13 +6,12 @@ Quy chuẩn: Step 2 - Chuẩn hóa và khóa dữ liệu
 Hỗ trợ:
 - Đọc bộ dữ liệu chuẩn CVRPLIB (.vrp, .sol) thông qua CVRPLIBLoader và vrplib.
 - Đọc bộ dữ liệu Case Study cấp phường chuẩn hóa (data/ward/processed/).
-- Hỗ trợ phòng thủ dữ liệu: phát hiện NaN, duplicate, vượt tải, ma trận khuyết.
+- Kiểm định nghiêm ngặt (Strict Validation): từ chối NaN/Null, ID trùng, demand âm/vượt tải,
+  thiếu file hoặc sai kích thước ma trận khoảng cách OSMnx (tuyệt đối không dùng Haversine fallback).
 """
 
 import os
-import sys
-import math
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Dict, Tuple, Any, Optional
 import numpy as np
 import pandas as pd
 
@@ -22,27 +21,12 @@ from .cvrplib_loader import CVRPLIBLoader
 
 class DataLoader:
     """
-    Lớp quản trị và tiền xử lý dữ liệu bài toán định tuyến (Data Layer).
+    Lớp quản trị và kiểm định dữ liệu bài toán định tuyến (Data Layer).
     """
 
     def __init__(self, depot_index: int = DEPOT_INDEX):
         self.depot_index = int(depot_index)
         self.cvrp_loader = CVRPLIBLoader()
-
-    @staticmethod
-    def calculate_haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-        """
-        Tính khoảng cách đường cong mặt cầu Haversine (km) giữa 2 tọa độ GPS.
-        """
-        r = 6371.0  # Bán kính Trái Đất (km)
-        phi1 = math.radians(lat1)
-        phi2 = math.radians(lat2)
-        delta_phi = math.radians(lat2 - lat1)
-        delta_lambda = math.radians(lon2 - lon1)
-
-        a = math.sin(delta_phi / 2.0) ** 2 + math.cos(phi1) * math.cos(phi2) * (math.sin(delta_lambda / 2.0) ** 2)
-        c = 2.0 * math.atan2(math.sqrt(a), math.sqrt(1.0 - a))
-        return r * c
 
     def preprocess_case_study_data(
         self,
@@ -76,24 +60,35 @@ class DataLoader:
                 f"Yêu cầu làm sạch và bổ sung đầy đủ dữ liệu gốc, không tự ý drop làm mất điểm thu gom!"
             )
 
-        # Kiểm tra Depot
-        if 'point_id' in df.columns and self.depot_index not in df['point_id'].values:
-            raise ValueError(f"Lỗi dữ liệu: Không tìm thấy trạm tập kết Depot với ID={self.depot_index} trong file.")
+        # Kiểm tra Depot và khóa chính trùng lặp
+        if 'point_id' in df.columns:
+            if df['point_id'].duplicated().any():
+                dup_ids = df.loc[df['point_id'].duplicated(), 'point_id'].unique().tolist()
+                raise ValueError(f"Lỗi dữ liệu: Phát hiện khóa chính point_id bị trùng lặp: {dup_ids}.")
+            if self.depot_index not in df['point_id'].values:
+                raise ValueError(f"Lỗi dữ liệu: Không tìm thấy trạm tập kết Depot với ID={self.depot_index} trong file.")
 
-        # Kiểm tra khối lượng rác vượt quá sức chứa xe Q_max: Báo lỗi để tách điểm hoặc tăng cỡ xe
+        # Kiểm tra miền giá trị demand: không âm và không vượt sức chứa xe Q_max
+        negative_points = []
         overloaded_points = []
         for idx, row in df.iterrows():
             pt_id = int(row.get('point_id', idx))
             dmd = float(row['demand'])
-            if pt_id != self.depot_index and dmd > capacity_q_max:
+            if dmd < 0.0:
+                negative_points.append((pt_id, dmd))
+            elif pt_id != self.depot_index and dmd > capacity_q_max:
                 overloaded_points.append((pt_id, dmd))
+
+        if negative_points:
+            detail_neg = ", ".join([f"Điểm {p}: {d} kg" for p, d in negative_points])
+            raise ValueError(f"Lỗi dữ liệu tải trọng: Phát hiện nhu cầu rác âm bất hợp lệ ({detail_neg}).")
 
         if overloaded_points:
             detail_str = ", ".join([f"Điểm {p}: {d} kg > {capacity_q_max} kg" for p, d in overloaded_points])
             raise ValueError(
                 f"Lỗi dữ liệu tải trọng: Phát hiện các điểm vượt quá sức chứa phương tiện ({detail_str}). "
                 f"Không tự ý cắt giảm demand làm thất thoát khối lượng rác! "
-                f"Yêu cầu áp dụng Customer Splitting (tách thành nhiều chuyến gom) hoặc tăng tải trọng xe Q."
+                f"Yêu cầu áp dụng Customer Splitting (tách thành nhiều chuyến gom bổ sung) hoặc tăng tải trọng xe Q."
             )
 
         # Ma trận khoảng cách: Kiểm tra nghiêm ngặt kích thước, cấm tự ý nội suy bằng Haversine
@@ -146,32 +141,23 @@ class DataLoader:
         if not points_csv_path or not os.path.exists(points_csv_path):
             raise FileNotFoundError(f"Không tìm thấy file danh sách điểm thu gom: {points_csv_path}")
 
-        # Tìm đường dẫn distance_matrix_csv_path
-        if distance_matrix_csv_path is None or not os.path.exists(distance_matrix_csv_path):
-            candidates = [
-                os.path.join(root_dir, "data", "ward", "processed", "distance_matrix.csv"),
-            ]
-            for c in candidates:
-                if os.path.exists(c):
-                    distance_matrix_csv_path = c
-                    break
+        # Tìm đường dẫn distance_matrix_csv_path (bắt buộc tồn tại ma trận Dijkstra OSMnx)
+        if distance_matrix_csv_path is None:
+            default_matrix = os.path.join(root_dir, "data", "ward", "processed", "distance_matrix.csv")
+            if os.path.exists(default_matrix):
+                distance_matrix_csv_path = default_matrix
+
+        if not distance_matrix_csv_path or not os.path.exists(distance_matrix_csv_path):
+            raise FileNotFoundError(
+                f"Không tìm thấy file ma trận khoảng cách đường bộ có hướng: {distance_matrix_csv_path}. "
+                f"Tuyệt đối không dùng khoảng cách đường chim bay Haversine thay thế! "
+                f"Yêu cầu chạy script src/map/extract_map.py để trích xuất ma trận Dijkstra từ đồ thị OSMnx."
+            )
 
         points_df = pd.read_csv(points_csv_path)
+        dist_matrix_raw = pd.read_csv(distance_matrix_csv_path, header=None).to_numpy(dtype=float)
 
-        if distance_matrix_csv_path and os.path.exists(distance_matrix_csv_path):
-            dist_matrix_raw = pd.read_csv(distance_matrix_csv_path, header=None).to_numpy(dtype=float)
-        else:
-            n = len(points_df)
-            dist_matrix_raw = np.zeros((n, n), dtype=float)
-            coords = points_df[['lat', 'lon']].to_numpy()
-            for i in range(n):
-                for j in range(n):
-                    if i != j:
-                        dist_matrix_raw[i, j] = self.calculate_haversine_distance(
-                            coords[i, 0], coords[i, 1], coords[j, 0], coords[j, 1]
-                        ) * 1.3
-
-        # Tiền xử lý dữ liệu qua bộ lọc phòng thủ
+        # Kiểm định nghiêm ngặt dữ liệu (Strict Validation)
         points_df, dist_matrix_clean = self.preprocess_case_study_data(points_df, dist_matrix_raw)
 
         # Nếu giá trị trung bình > 50 -> ma trận đang ở đơn vị mét -> quy đổi ra km cho thuật toán tính fitness
