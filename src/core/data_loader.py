@@ -51,7 +51,11 @@ class DataLoader:
         capacity_q_max: float = CAPACITY_Q_MAX
     ) -> Tuple[pd.DataFrame, np.ndarray]:
         """
-        Hàm tiền xử lý và khử nhiễu dữ liệu thực tế (Defensive Preprocessing).
+        Hàm kiểm định và tiền xử lý dữ liệu thực tế nghiêm ngặt (Strict Validation).
+        Tuân thủ nguyên tắc trung thực khoa học:
+        - Không tự ý xóa dòng khuyết dữ liệu (dropna).
+        - Không tự ý cắt giảm/gán đè demand khi vượt tải (gây mất mát lượng rác).
+        - Không tự ý tái tạo ma trận bằng khoảng cách đối xứng Haversine.
         """
         df = points_df.copy()
 
@@ -63,39 +67,44 @@ class DataLoader:
         if "demand_kg" in df.columns and "demand" not in df.columns:
             df["demand"] = df["demand_kg"]
 
-        initial_count = len(df)
-        df = df.dropna(subset=['lat', 'lon', 'demand'])
-        if len(df) < initial_count:
-            print(f"[CẢNH BÁO TIỀN XỬ LÝ]: Đã loại bỏ {initial_count - len(df)} dòng dữ liệu chứa giá trị rỗng (NaN).")
+        # Kiểm tra khuyết dữ liệu: Báo lỗi nghiêm ngặt thay vì tự động xóa dòng (dropna)
+        missing_mask = df[['lat', 'lon', 'demand']].isna().any(axis=1)
+        if missing_mask.any():
+            missing_ids = df.loc[missing_mask, 'point_id'].tolist() if 'point_id' in df.columns else df.index[missing_mask].tolist()
+            raise ValueError(
+                f"Lỗi dữ liệu đầu vào: Phát hiện {missing_mask.sum()} điểm chứa giá trị rỗng (NaN/Null) tại các điểm {missing_ids}. "
+                f"Yêu cầu làm sạch và bổ sung đầy đủ dữ liệu gốc, không tự ý drop làm mất điểm thu gom!"
+            )
 
         # Kiểm tra Depot
         if 'point_id' in df.columns and self.depot_index not in df['point_id'].values:
             raise ValueError(f"Lỗi dữ liệu: Không tìm thấy trạm tập kết Depot với ID={self.depot_index} trong file.")
 
-        # Xử lý khối lượng rác vượt quá sức chứa xe Q_max
+        # Kiểm tra khối lượng rác vượt quá sức chứa xe Q_max: Báo lỗi để tách điểm hoặc tăng cỡ xe
+        overloaded_points = []
         for idx, row in df.iterrows():
             pt_id = int(row.get('point_id', idx))
             dmd = float(row['demand'])
             if pt_id != self.depot_index and dmd > capacity_q_max:
-                print(
-                    f"[CẢNH BÁO VƯỢT TẢI]: Điểm {pt_id} có lượng rác {dmd} kg > sức chứa {capacity_q_max} kg. "
-                    f"Tự động điều chỉnh ngưỡng gom tối đa cho mỗi lượt là {capacity_q_max} kg."
-                )
-                df.at[idx, 'demand'] = capacity_q_max
+                overloaded_points.append((pt_id, dmd))
 
-        # Ma trận khoảng cách
+        if overloaded_points:
+            detail_str = ", ".join([f"Điểm {p}: {d} kg > {capacity_q_max} kg" for p, d in overloaded_points])
+            raise ValueError(
+                f"Lỗi dữ liệu tải trọng: Phát hiện các điểm vượt quá sức chứa phương tiện ({detail_str}). "
+                f"Không tự ý cắt giảm demand làm thất thoát khối lượng rác! "
+                f"Yêu cầu áp dụng Customer Splitting (tách thành nhiều chuyến gom) hoặc tăng tải trọng xe Q."
+            )
+
+        # Ma trận khoảng cách: Kiểm tra nghiêm ngặt kích thước, cấm tự ý nội suy bằng Haversine
         clean_matrix = np.asarray(dist_matrix, dtype=float).copy()
         n = len(df)
         if clean_matrix.shape[0] != n or clean_matrix.shape[1] != n:
-            print(f"[CẢNH BÁO MA TRẬN]: Kích thước ma trận ({clean_matrix.shape}) không khớp số điểm ({n}). Tái tạo dự phòng.")
-            clean_matrix = np.zeros((n, n), dtype=float)
-            coords = df[['lat', 'lon']].to_numpy()
-            for i in range(n):
-                for j in range(n):
-                    if i != j:
-                        clean_matrix[i, j] = self.calculate_haversine_distance(
-                            coords[i, 0], coords[i, 1], coords[j, 0], coords[j, 1]
-                        ) * 1.3
+            raise ValueError(
+                f"Lỗi ma trận khoảng cách: Kích thước ma trận ({clean_matrix.shape}) không khớp với số điểm ({n}). "
+                f"Tuyệt đối không tự động tái tạo bằng Haversine (vì Haversine là đối xứng, không phản ánh đường 1 chiều, vòng xoay của OSMnx). "
+                f"Yêu cầu trích xuất lại ma trận Dijkstra có hướng từ đồ thị OSMnx!"
+            )
 
         np.fill_diagonal(clean_matrix, 0.0)
 
